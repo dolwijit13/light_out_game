@@ -11,7 +11,7 @@ public class Main extends Application
 	{
 		try
 		{
-			Board board = new Board(5);
+			Board board = new Board(8);
 			Scene scene = new Scene(board, 1000, 1000);
 			primaryStage.setScene(scene);
 			primaryStage.show();
