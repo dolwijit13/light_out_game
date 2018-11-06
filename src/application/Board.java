@@ -1,26 +1,27 @@
 package application;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class Board extends GridPane
 {
-	private light[][] lights;
+	private Light[][] lights;
 	private int n;
 
 	public Board(int n)
 	{
 		this.n = n;
-		lights = new light[n][n];
+		lights = new Light[n][n];
 		for (int i = 0; i < n; i++)
 		{
 			for (int j = 0; j < n; j++)
 			{
-				lights[i][j] = new light("" + (i * n + j));
-				lights[i][j].setOnAction(myHandler);
+				lights[i][j] = new Light("" + (i * n + j));
+				lights[i][j].setOnMouseClicked(mouseClick);
 				lights[i][j].setId("" + (i * n + j));
 				this.add(lights[i][j], j, i);
 			}
@@ -31,23 +32,31 @@ public class Board extends GridPane
 		setPadding(new Insets(5, 5, 5, 5));
 	}
 
-	private final EventHandler<ActionEvent> myHandler = new EventHandler<ActionEvent>()
+	private final EventHandler<MouseEvent> mouseClick = new EventHandler<MouseEvent>()
 	{
 		@Override
-		public void handle(final ActionEvent event)
+		public void handle(MouseEvent event)
 		{
-			light b = (light) event.getSource();
-			int ID = Integer.parseInt(b.getId());
-			int x = ID / n, y = ID % n;
-			//System.out.println("a " +ID+" "+x+" "+y);
-			changeColor(x, y, true);
+			MouseButton button = event.getButton();
+			if (button == MouseButton.PRIMARY)
+			{
+				Light b = (Light) event.getSource(); int ID = Integer.parseInt(b.getId());
+				int x = ID / n, y = ID % n; //System.out.println("a " +ID+" "+x+" "+y);
+				changeColor(x, y, true);
+			}
+			else if (button == MouseButton.SECONDARY)
+			{
+				Light b = (Light) event.getSource(); int ID = Integer.parseInt(b.getId());
+				int x = ID / n, y = ID % n; //System.out.println("a " +ID+" "+x+" "+y);
+				changeColor(x, y, false);
+			}
 		}
 	};
 
 	public void changeColor(int x, int y, Boolean first)
 	{
-		//System.out.println("b "+(x*5+y)+" "+x+" "+y+" "+first);
-		light b = lights[x][y];
+		// System.out.println("b "+(x*5+y)+" "+x+" "+y+" "+first);
+		Light b = lights[x][y];
 		b.changeColor();
 		if (first)
 		{
@@ -55,7 +64,7 @@ public class Board extends GridPane
 			{
 				changeColor(x - 1, y, false);
 			}
-			if (x < (n-1))
+			if (x < (n - 1))
 			{
 				changeColor(x + 1, y, false);
 			}
@@ -63,7 +72,7 @@ public class Board extends GridPane
 			{
 				changeColor(x, y - 1, false);
 			}
-			if (y < (n-1))
+			if (y < (n - 1))
 			{
 				changeColor(x, y + 1, false);
 			}

@@ -2,11 +2,11 @@ package application;
 
 import javafx.scene.control.Button;
 
-public class light extends Button
+public class Light extends Button
 {
 	private Boolean isOpen;
 
-	public light()
+	public Light()
 	{
 		isOpen = false;
 		textProperty().set("N/A");
@@ -16,7 +16,7 @@ public class light extends Button
 		setPickOnBounds(false);
 	}
 
-	public light(String text)
+	public Light(String text)
 	{
 		isOpen = false;
 		textProperty().set(text);
