@@ -4,11 +4,13 @@ import javafx.scene.control.Button;
 
 public class Light extends Button
 {
-	private Boolean isOpen;
+	private int maxState;
+	private int currentState;
 
 	public Light()
 	{
-		isOpen = false;
+		maxState = 2;
+		currentState = 0;
 		textProperty().set("N/A");
 		setPrefHeight(80);
 		setPrefWidth(80);
@@ -16,9 +18,10 @@ public class Light extends Button
 		//setPickOnBounds(false);
 	}
 
-	public Light(String text,int h,int w)
+	public Light(String text,int h,int w,int maxState)
 	{
-		isOpen = false;
+		this.maxState = maxState;
+		this.currentState = 0;
 		textProperty().set(text);
 		setPrefHeight(h);
 		setPrefWidth(w);
@@ -28,15 +31,23 @@ public class Light extends Button
 
 	public void changeColor()
 	{
-		if (isOpen)
+		if (currentState == 0)
 		{
-			isOpen = false;
+			currentState = (currentState+1)%maxState;
+			setStyle("-fx-background-color: #51F827;");
+			///black green (to 1)
+		}
+		else if(currentState == maxState-1)
+		{
+			currentState = (currentState+1)%maxState;
 			setStyle("-fx-background-color: #239914;");
+			///light green (to 0)
 		}
 		else
 		{
-			isOpen = true;
-			setStyle("-fx-background-color: #51F827;");
+			currentState = (currentState+1)%maxState;
+			setStyle("-fx-background-color: #C92016;");
+			///red (to 2)
 		}
 	}
 }

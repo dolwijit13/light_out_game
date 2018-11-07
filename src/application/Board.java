@@ -12,7 +12,7 @@ public class Board extends GridPane
 	private Light[][] lights;
 	private int n;
 
-	public Board(int n)
+	public Board(int n,int maxState)
 	{
 		this.n = n;
 		lights = new Light[n][n];
@@ -20,7 +20,7 @@ public class Board extends GridPane
 		{
 			for (int j = 0; j < n; j++)
 			{
-				lights[i][j] = new Light("" + (i * n + j),705/n-5,705/n-5);
+				lights[i][j] = new Light("" + (i * n + j),705/n-5,705/n-5,maxState);
 				lights[i][j].setOnMouseClicked(mouseClick);
 				lights[i][j].setId("" + (i * n + j));
 				this.add(lights[i][j], j, i);

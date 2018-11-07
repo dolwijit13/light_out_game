@@ -25,7 +25,7 @@ public class Main extends Application
 			stage = primaryStage;
 			changeScene(startMenu);
             //stage.setScene(scene);
-            primaryStage.show();
+            stage.show();
 
 		}
 		catch (Exception e)

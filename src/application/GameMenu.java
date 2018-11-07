@@ -7,25 +7,20 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class GameMenu extends VBox
+public abstract class GameMenu extends VBox
 {
+	Button logo = new Button("BUMP");
+	Button score = new Button("Score");
+	HBox toMainMenuHbox = new HBox();
+	
 	public GameMenu(int gap)
 	{
 		super(gap);
 		setAlignment(Pos.CENTER);
 		setPrefWidth(540);
-		Button logo = new Button("BUMP");
-		Button score = new Button("Score");
-		HBox helper = new HBox(10);
-		helper.setAlignment(Pos.CENTER);
-		Button help1 = new Button("Help 1");
-		Button help2 = new Button("Help 2");
-		helper.getChildren().addAll(help1, help2);
-		HBox hBox = new HBox();
-		hBox.setAlignment(Pos.CENTER_RIGHT);
+		toMainMenuHbox.setAlignment(Pos.CENTER_RIGHT);
 		Button toMainMenu = new Button("Main Menu");
-		hBox.getChildren().add(toMainMenu);
-		getChildren().addAll(logo, score, helper, hBox);
+		toMainMenuHbox.getChildren().add(toMainMenu);
 
 		toMainMenu.setOnAction(new EventHandler<ActionEvent>()
 		{
