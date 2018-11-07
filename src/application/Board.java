@@ -20,15 +20,15 @@ public class Board extends GridPane
 		{
 			for (int j = 0; j < n; j++)
 			{
-				lights[i][j] = new Light("" + (i * n + j));
+				lights[i][j] = new Light("" + (i * n + j),705/n-5,705/n-5);
 				lights[i][j].setOnMouseClicked(mouseClick);
 				lights[i][j].setId("" + (i * n + j));
 				this.add(lights[i][j], j, i);
 			}
 		}
 		setAlignment(Pos.CENTER);
-		setVgap(10);
-		setHgap(10);
+		setVgap(5);
+		setHgap(5);
 		setPadding(new Insets(5, 5, 5, 5));
 	}
 

@@ -13,15 +13,15 @@ public class Light extends Button
 		setPrefHeight(80);
 		setPrefWidth(80);
 		setStyle("-fx-background-color: #239914;");
-		setPickOnBounds(false);
+		//setPickOnBounds(false);
 	}
 
-	public Light(String text)
+	public Light(String text,int h,int w)
 	{
 		isOpen = false;
 		textProperty().set(text);
-		setPrefHeight(80);
-		setPrefWidth(80);
+		setPrefHeight(h);
+		setPrefWidth(w);
 		setStyle("-fx-background-color: #239914;");
 		setPickOnBounds(false);
 	}
