@@ -1,26 +1,60 @@
 package application;
 
+import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class Main extends Application
 {
+	public static Pane pane = new Pane();
+	private static Stage stage;
+
 	@Override
 	public void start(Stage primaryStage)
 	{
+		
 		try
 		{
-			Board board = new Board(8);
-			Scene scene = new Scene(board, 1000, 1000);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			StartMenu startMenu = new StartMenu();
+			Scene scene = new Scene(startMenu, 1000, 1000);
+			stage = primaryStage;
+            stage.setScene(scene);
+            primaryStage.show();
 
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+
+
+	public static void setPane(Pane p)
+	{
+		pane = p;
+
+	}
+
+	public static Pane getPane()
+	{
+		return pane;
+	}
+	
+	public static void changeScene(Pane pane)
+	{
+		Scene scene = new Scene(pane, 1000, 1000);
+		stage.setScene(scene);
+	}
+	
+	public static void exit()
+	{
+		stage.close();
 	}
 
 	public static void main(String[] args)
