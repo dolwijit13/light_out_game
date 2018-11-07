@@ -34,8 +34,8 @@ public class MainMenu extends GridPane
 			@Override
 			public void handle(MouseEvent event)
 			{
-				Board board = new Board(5);
-				Main.changeScene(board);
+				ClassicMode classicMode = new ClassicMode(10, 1);
+				Main.changeScene(classicMode);
 			}
 			
 		});

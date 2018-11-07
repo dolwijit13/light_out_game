@@ -21,10 +21,9 @@ public class Main extends Application
 		
 		try
 		{
-			//StartMenu startMenu = new StartMenu();
-			GameMenu gameMenu = new GameMenu(10);
+			StartMenu startMenu = new StartMenu();
 			stage = primaryStage;
-			changeScene(gameMenu);
+			changeScene(startMenu);
             //stage.setScene(scene);
             primaryStage.show();
 
