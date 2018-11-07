@@ -13,13 +13,12 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
-
+		ClassicMode.readLevel();
 		try
 		{
 			StartMenu startMenu = new StartMenu();
 			stage = primaryStage;
 			changeScene(startMenu);
-			// stage.setScene(scene);
 			stage.show();
 
 		}
@@ -27,17 +26,6 @@ public class Main extends Application
 		{
 			e.printStackTrace();
 		}
-	}
-
-	public static void setPane(Pane p)
-	{
-		pane = p;
-
-	}
-
-	public static Pane getPane()
-	{
-		return pane;
 	}
 
 	public static void changeScene(Pane pane)

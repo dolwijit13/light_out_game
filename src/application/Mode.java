@@ -8,9 +8,9 @@ public abstract class Mode extends HBox
 	Board board;
 	GameMenu gameMenu;
 	
-	public Mode(int gap)
+	public Mode()
 	{
-		super(gap);
+		super(10);
 		setPadding(new Insets(10, 10, 10, 10));
 	}
 }

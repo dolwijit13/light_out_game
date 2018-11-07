@@ -50,4 +50,9 @@ public class Light extends Button
 			/// red (to 2)
 		}
 	}
+
+	public void setCurrentState(int currentState) {
+		this.currentState = currentState;
+		setStyle("-fx-background-color: #239914;");
+	}
 }
