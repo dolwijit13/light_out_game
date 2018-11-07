@@ -3,11 +3,9 @@ package application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class MainMenu extends GridPane
 {
@@ -34,12 +32,12 @@ public class MainMenu extends GridPane
 			@Override
 			public void handle(MouseEvent event)
 			{
-				ClassicMode classicMode = new ClassicMode(10, 15);
-				Main.changeScene(classicMode);
+				LevelSelection levelSelection = new LevelSelection();
+				Main.changeScene(levelSelection);
 			}
-			
+
 		});
-		
+
 		back.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -48,7 +46,7 @@ public class MainMenu extends GridPane
 				StartMenu startMenu = new StartMenu();
 				Main.changeScene(startMenu);
 			}
-			
+
 		});
 	}
 }

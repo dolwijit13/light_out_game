@@ -14,6 +14,6 @@ public class ClassicGameMenu extends GameMenu
 		Button help1 = new Button("Help 1");
 		Button help2 = new Button("Help 2");
 		helper.getChildren().addAll(help1, help2);
-		getChildren().addAll(logo, score, helper, toMainMenuHbox);
+		getChildren().addAll(logo, score, helper, toMainMenuButton);
 	}
 }

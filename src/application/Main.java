@@ -1,14 +1,9 @@
 package application;
 
-import javax.xml.bind.annotation.XmlElementDecl.GLOBAL;
-
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class Main extends Application
 {
@@ -18,14 +13,14 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
-		
+
 		try
 		{
 			StartMenu startMenu = new StartMenu();
 			stage = primaryStage;
 			changeScene(startMenu);
-            //stage.setScene(scene);
-            stage.show();
+			// stage.setScene(scene);
+			stage.show();
 
 		}
 		catch (Exception e)
@@ -33,7 +28,6 @@ public class Main extends Application
 			e.printStackTrace();
 		}
 	}
-
 
 	public static void setPane(Pane p)
 	{
@@ -45,13 +39,13 @@ public class Main extends Application
 	{
 		return pane;
 	}
-	
+
 	public static void changeScene(Pane pane)
 	{
 		Scene scene = new Scene(pane, 1280, 720);
 		stage.setScene(scene);
 	}
-	
+
 	public static void exit()
 	{
 		stage.close();

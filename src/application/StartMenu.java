@@ -4,11 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public class StartMenu extends GridPane
 {
@@ -26,7 +24,7 @@ public class StartMenu extends GridPane
 		add(newGame, 0, 2);
 		add(loadGame, 0, 3);
 		add(exit, 0, 4);
-		
+
 		newGame.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -35,9 +33,9 @@ public class StartMenu extends GridPane
 				MainMenu mainMenu = new MainMenu();
 				Main.changeScene(mainMenu);
 			}
-			
+
 		});
-		
+
 		exit.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override

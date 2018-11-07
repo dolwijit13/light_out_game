@@ -12,7 +12,7 @@ public class Board extends GridPane
 	private Light[][] lights;
 	private int n;
 
-	public Board(int n,int maxState)
+	public Board(int n, int maxState)
 	{
 		this.n = n;
 		lights = new Light[n][n];
@@ -20,7 +20,7 @@ public class Board extends GridPane
 		{
 			for (int j = 0; j < n; j++)
 			{
-				lights[i][j] = new Light("" + (i * n + j),705/n-5,705/n-5,maxState);
+				lights[i][j] = new Light("" + (i * n + j), 705 / n - 5, 705 / n - 5, maxState);
 				lights[i][j].setOnMouseClicked(mouseClick);
 				lights[i][j].setId("" + (i * n + j));
 				this.add(lights[i][j], j, i);
@@ -40,14 +40,16 @@ public class Board extends GridPane
 			MouseButton button = event.getButton();
 			if (button == MouseButton.PRIMARY)
 			{
-				Light b = (Light) event.getSource(); int ID = Integer.parseInt(b.getId());
-				int x = ID / n, y = ID % n; //System.out.println("a " +ID+" "+x+" "+y);
+				Light b = (Light) event.getSource();
+				int ID = Integer.parseInt(b.getId());
+				int x = ID / n, y = ID % n; // System.out.println("a " +ID+" "+x+" "+y);
 				changeColor(x, y, true);
 			}
 			else if (button == MouseButton.SECONDARY)
 			{
-				Light b = (Light) event.getSource(); int ID = Integer.parseInt(b.getId());
-				int x = ID / n, y = ID % n; //System.out.println("a " +ID+" "+x+" "+y);
+				Light b = (Light) event.getSource();
+				int ID = Integer.parseInt(b.getId());
+				int x = ID / n, y = ID % n; // System.out.println("a " +ID+" "+x+" "+y);
 				changeColor(x, y, false);
 			}
 		}
