@@ -21,10 +21,11 @@ public class Main extends Application
 		
 		try
 		{
-			StartMenu startMenu = new StartMenu();
-			Scene scene = new Scene(startMenu, 1000, 1000);
+			//StartMenu startMenu = new StartMenu();
+			GameMenu gameMenu = new GameMenu(10);
 			stage = primaryStage;
-            stage.setScene(scene);
+			changeScene(gameMenu);
+            //stage.setScene(scene);
             primaryStage.show();
 
 		}
@@ -48,7 +49,7 @@ public class Main extends Application
 	
 	public static void changeScene(Pane pane)
 	{
-		Scene scene = new Scene(pane, 1000, 1000);
+		Scene scene = new Scene(pane, 1280, 720);
 		stage.setScene(scene);
 	}
 	
