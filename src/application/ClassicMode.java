@@ -16,7 +16,7 @@ public class ClassicMode extends Mode
 		String[] start = levels[level - 1].split(" ");
 		level--;
 		int n = 5 + level / 5;
-		Board board = new Board(n, 2);
+		Board board = new Board(n, 2, level+1);
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);

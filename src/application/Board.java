@@ -11,11 +11,13 @@ public class Board extends GridPane
 {
 	private Light[][] lights;
 	private int n;
+	private int curLevel;
 
-	public Board(int n, int maxState)
+	public Board(int n, int maxState, int level)
 	{
 		this.n = n;
 		lights = new Light[n][n];
+		this.curLevel = level;
 		for (int i = 0; i < n; i++)
 		{
 			for (int j = 0; j < n; j++)
@@ -52,8 +54,31 @@ public class Board extends GridPane
 				int x = ID / n, y = ID % n; // System.out.println("a " +ID+" "+x+" "+y);
 				changeColor(x, y, false);
 			}
+			if (isWinLevel())
+				toNextLevel(curLevel);
 		}
 	};
+
+	private boolean isWinLevel()
+	{
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if (lights[i][j].getCurrentState() != 0)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private void toNextLevel(int curLevel)
+	{
+		ClassicMode nextLevel = new ClassicMode(curLevel + 1);
+		Main.changeScene(nextLevel);
+	}
 
 	public void changeColor(int x, int y, Boolean first)
 	{
