@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -25,6 +27,8 @@ public class ClassicMode extends Mode
 		gameMenu = new ClassicGameMenu();
 		passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
+		setResetButton(gameMenu.getResetButton());
+		setRestartButton(passLevel.getRestartButton());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -40,6 +44,24 @@ public class ClassicMode extends Mode
 		}
 		
 		hBox.getChildren().addAll(board, gameMenu);
+	}
+
+	@Override
+	protected void toNextLevel()
+	{
+		ClassicMode nextLevel = new ClassicMode(board.getCurLevel() + 1);
+		Main.changeScene(nextLevel);
+	}
+	
+	private void setResetButton(Button resetButton) {
+		resetButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				resetBoard();
+			}
+		});
 	}
 
 	public static void readLevel()
@@ -71,5 +93,10 @@ public class ClassicMode extends Mode
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	protected void resetBoard() {
+		Main.changeScene(new ClassicMode(board.getCurLevel()));
 	}
 }

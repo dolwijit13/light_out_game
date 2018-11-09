@@ -39,7 +39,19 @@ public abstract class Mode extends StackPane
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				toNextLevel(board.getCurLevel());
+				toNextLevel();
+			}
+		});
+	}
+	
+	protected void setRestartButton(Button restartButton)
+	{
+		restartButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				resetBoard();
 			}
 		});
 	}
@@ -94,9 +106,7 @@ public abstract class Mode extends StackPane
 		getChildren().add(passLevel);
 	}
 	
-	private void toNextLevel(int curLevel)
-	{
-		ClassicMode nextLevel = new ClassicMode(curLevel + 1);
-		Main.changeScene(nextLevel);
-	}
+	protected abstract void toNextLevel();
+	
+	protected abstract void resetBoard();
 }

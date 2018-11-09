@@ -18,9 +18,10 @@ public abstract class GameMenu extends VBox
 {
 	protected Button logo = new Button("BUMP");
 	protected Text penaltyText = new Text("Penalty");
-	protected static Label penaltyLabel = new Label("0");
+	protected Label penaltyLabel = new Label("0");
 	protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
-	protected static int penalty=0;
+	protected int penalty = 0;
+	protected Button resetButton = new Button("Reset");
 
 	public GameMenu()
 	{
@@ -42,5 +43,9 @@ public abstract class GameMenu extends VBox
 	public int getPenalty() 
 	{
 		return penalty;
+	}
+
+	public Button getResetButton() {
+		return resetButton;
 	}
 }

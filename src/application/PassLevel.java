@@ -59,4 +59,8 @@ public class PassLevel extends VBox
 	{
 		return toNextLevelButton;
 	}
+	
+	public Button getRestartButton() {
+		return restartButton;
+	}
 }
