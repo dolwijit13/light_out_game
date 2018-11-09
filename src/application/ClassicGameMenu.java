@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 
 public class ClassicGameMenu extends GameMenu
 {
-	public int penalty;
+	private static int penalty;
 
 	public ClassicGameMenu(int gap)
 	{
@@ -25,7 +25,7 @@ public class ClassicGameMenu extends GameMenu
 		
 	}
 
-	public int addPenalty(int add)
+	public static int addPenalty(int add)
 	{
 		penalty+=add;
 		penaltyLabel.setText(""+penalty);

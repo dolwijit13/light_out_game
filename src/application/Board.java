@@ -54,8 +54,10 @@ public class Board extends GridPane
 				int x = ID / n, y = ID % n; // System.out.println("a " +ID+" "+x+" "+y);
 				changeColor(x, y, false);
 			}
+			ClassicGameMenu.addPenalty(5);
 			if (isWinLevel())
 				toNextLevel(curLevel);
+		
 		}
 	};
 

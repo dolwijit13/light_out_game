@@ -10,7 +10,7 @@ public abstract class GameMenu extends VBox
 {
 	protected Button logo = new Button("BUMP");
 	protected Text penaltyText = new Text("Penalty");
-	protected Label penaltyLabel = new Label("0");
+	protected static Label penaltyLabel = new Label("0");
 	protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
 	
 	public GameMenu(int gap)
