@@ -13,9 +13,9 @@ public abstract class GameMenu extends VBox
 	protected static Label penaltyLabel = new Label("0");
 	protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
 	
-	public GameMenu(int gap)
+	public GameMenu()
 	{
-		super(gap);
+		super(10);
 		setAlignment(Pos.CENTER);
 		setPrefWidth(540);
 	}

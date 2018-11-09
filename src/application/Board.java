@@ -61,7 +61,7 @@ public class Board extends GridPane
 		}
 	};
 
-	private boolean isWinLevel()
+	public boolean isWinLevel()
 	{
 		for (int i = 0; i < n; i++)
 		{
@@ -76,7 +76,7 @@ public class Board extends GridPane
 		return true;
 	}
 
-	private void toNextLevel(int curLevel)
+	public void toNextLevel(int curLevel)
 	{
 		ClassicMode nextLevel = new ClassicMode(curLevel + 1);
 		Main.changeScene(nextLevel);
@@ -106,5 +106,15 @@ public class Board extends GridPane
 				changeColor(x, y + 1, false);
 			}
 		}
+	}
+	
+	public int getN()
+	{
+		return this.n;
+	}
+	
+	public int getCurLevel()
+	{
+		return this.curLevel;
 	}
 }

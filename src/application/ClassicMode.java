@@ -22,8 +22,9 @@ public class ClassicMode extends Mode
 			int temp = Integer.parseInt(start[i]);
 			board.changeColor(temp / n, temp % n, true);
 		}
-		GameMenu gameMenu = new ClassicGameMenu(10);
-		getChildren().addAll(board, gameMenu);
+		GameMenu gameMenu = new ClassicGameMenu();
+		
+		hBox.getChildren().addAll(board, gameMenu);
 	}
 
 	public static void readLevel()

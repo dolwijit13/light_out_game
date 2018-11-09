@@ -8,12 +8,10 @@ import javafx.scene.layout.HBox;
 
 public class ClassicGameMenu extends GameMenu
 {
-	private static int penalty;
+	private static int penalty=0;
 
-	public ClassicGameMenu(int gap)
+	public ClassicGameMenu()
 	{
-		super(gap);
-		penalty = 0;
 		HBox helper = new HBox(10);
 		helper.setAlignment(Pos.CENTER);
 		Button help1 = new Button("Help 1");
