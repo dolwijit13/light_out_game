@@ -30,6 +30,10 @@ public class ClassicGameMenu extends GameMenu
 		return penalty;
 	}
 	
+	public static int getPenalty() {
+		return penalty;
+	}
+	
 	private final EventHandler<MouseEvent> mouseClick = new EventHandler<MouseEvent>()
 	{
 		@Override

@@ -55,9 +55,10 @@ public class Board extends GridPane
 				changeColor(x, y, false);
 			}
 			ClassicGameMenu.addPenalty(5);
-			if (isWinLevel())
+			if (isWinLevel()) {
+				
 				toNextLevel(curLevel);
-		
+			}
 		}
 	};
 
