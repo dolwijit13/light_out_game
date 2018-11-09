@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+
 public class ClassicMode extends Mode
 {
 
@@ -16,13 +20,24 @@ public class ClassicMode extends Mode
 		String[] start = levels[level - 1].split(" ");
 		level--;
 		int n = 5 + level / 5;
-		Board board = new Board(n, 2, level+1);
+		
+		board = new Board(n, 2, level+1);
+		gameMenu = new ClassicGameMenu();
+		passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		setToNextLevelButton(passLevel.getToNextLevelButton());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
 			board.changeColor(temp / n, temp % n, true);
 		}
-		GameMenu gameMenu = new ClassicGameMenu();
+		
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				board.getLight(i, j).setOnMouseClicked(mouseClick);
+			}
+		}
 		
 		hBox.getChildren().addAll(board, gameMenu);
 	}

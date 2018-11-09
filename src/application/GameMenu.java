@@ -3,7 +3,15 @@ package application;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public abstract class GameMenu extends VBox
@@ -12,11 +20,27 @@ public abstract class GameMenu extends VBox
 	protected Text penaltyText = new Text("Penalty");
 	protected static Label penaltyLabel = new Label("0");
 	protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
-	
+	protected static int penalty=0;
+
 	public GameMenu()
 	{
 		super(10);
 		setAlignment(Pos.CENTER);
 		setPrefWidth(540);
+		setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, 
+				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setBackground(new Background(new BackgroundFill(Color.IVORY, null, null)));
+	}
+	
+	public int addPenalty(int add)
+	{
+		penalty+=add;
+		penaltyLabel.setText(""+penalty);
+		return penalty;
+	}
+
+	public int getPenalty() 
+	{
+		return penalty;
 	}
 }

@@ -19,6 +19,7 @@ public class Main extends Application
 			StartMenu startMenu = new StartMenu();
 			stage = primaryStage;
 			changeScene(startMenu);
+			stage.setResizable(false);
 			stage.show();
 
 		}

@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 
 public class ClassicGameMenu extends GameMenu
 {
-	private static int penalty=0;
 
 	public ClassicGameMenu()
 	{
@@ -21,17 +20,6 @@ public class ClassicGameMenu extends GameMenu
 		getChildren().addAll(logo, penaltyText, penaltyLabel, helper, toMainMenuButton);
 	
 		
-	}
-
-	public static int addPenalty(int add)
-	{
-		penalty+=add;
-		penaltyLabel.setText(""+penalty);
-		return penalty;
-	}
-	
-	public static int getPenalty() {
-		return penalty;
 	}
 	
 	private final EventHandler<MouseEvent> mouseClick = new EventHandler<MouseEvent>()
