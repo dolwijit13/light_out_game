@@ -22,8 +22,8 @@ public class ClassicMode extends Mode
 		String[] start = levels[level - 1].split(" ");
 		level--;
 		int n = 5 + level / 5;
-		
-		board = new Board(n, 2, level+1);
+
+		board = new Board(n, 2, level + 1);
 		gameMenu = new ClassicGameMenu();
 		passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
@@ -35,7 +35,7 @@ public class ClassicMode extends Mode
 			int temp = Integer.parseInt(start[i]);
 			board.changeColor(temp / n, temp % n, true);
 		}
-		
+
 		for (int i = 0; i < n; i++)
 		{
 			for (int j = 0; j < n; j++)
@@ -43,7 +43,7 @@ public class ClassicMode extends Mode
 				board.getLight(i, j).setOnMouseClicked(mouseClick);
 			}
 		}
-		
+
 		hBox.getChildren().addAll(board, gameMenu);
 	}
 
@@ -53,8 +53,9 @@ public class ClassicMode extends Mode
 		ClassicMode nextLevel = new ClassicMode(board.getCurLevel() + 1);
 		Main.changeScene(nextLevel);
 	}
-	
-	private void setResetButton(Button resetButton) {
+
+	private void setResetButton(Button resetButton)
+	{
 		resetButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -64,8 +65,9 @@ public class ClassicMode extends Mode
 			}
 		});
 	}
-	
-	private void setHelp1Button(Button help1Button) {
+
+	private void setHelp1Button(Button help1Button)
+	{
 		help1Button.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -109,7 +111,8 @@ public class ClassicMode extends Mode
 	}
 
 	@Override
-	protected void resetBoard() {
+	protected void resetBoard()
+	{
 		Main.changeScene(new ClassicMode(board.getCurLevel()));
 	}
 }

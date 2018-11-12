@@ -31,8 +31,9 @@ public class PassLevel extends VBox
 		vBox.setPrefWidth(640);
 		vBox.setPadding(new Insets(10,100,10,100));
 
-		Label clearLevel = new Label("LEVEL " + level + " CLEAR");
+		Label clearLevelLabel;
 		penaltyLabel = new Label("Penalty: " + penalty);
+		Label unlockLabel;
 
 		HBox hBox = new HBox(10);
 		hBox.setAlignment(Pos.CENTER);
@@ -41,12 +42,27 @@ public class PassLevel extends VBox
 		
 		restartButton = new Button("Restart");
 		toNextLevelButton = new Button("Next Level");
-		hBox.getChildren().addAll(toMainMenuButton, restartButton, toNextLevelButton);
-		vBox.getChildren().addAll(clearLevel, penaltyLabel, hBox);
+		
+		
+		if(level !=20)
+		{
+			clearLevelLabel = new Label("LEVEL " + level + " CLEAR");
+			unlockLabel = new Label("Unlocked new picture in gallery and level " + (level + 1));
+			hBox.getChildren().addAll(toMainMenuButton, restartButton, toNextLevelButton);
+			vBox.getChildren().addAll(clearLevelLabel, penaltyLabel, hBox);
+		}
+		else
+		{
+			clearLevelLabel = new Label("YOU CLEAR ALL 20 LEVEL!!!");
+			unlockLabel = new Label("Unlocked the LAST picture in gallery");
+			hBox.getChildren().addAll(toMainMenuButton, restartButton);
+			vBox.getChildren().addAll(clearLevelLabel, penaltyLabel, hBox);
+		}
+		
 
 		if (true)
 		{
-			Label unlockLabel = new Label("Unlocked new picture in gallery and level " + (level + 1));
+			
 			vBox.getChildren().add(unlockLabel);
 		}
 

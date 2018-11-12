@@ -1,10 +1,8 @@
 package application;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class ClassicGameMenu extends GameMenu
@@ -13,7 +11,7 @@ public class ClassicGameMenu extends GameMenu
 	Button help1Button;
 	Button help2Button;
 	Button help3Button;
-	
+
 	public ClassicGameMenu()
 	{
 		HBox helper = new HBox(10);
@@ -26,8 +24,9 @@ public class ClassicGameMenu extends GameMenu
 		helper.getChildren().addAll(help1Button, help2Button, help3Button);
 		getChildren().addAll(logo, penaltyText, penaltyLabel, helper, resetButton, toMainMenuButton);
 	}
-	
-	public Button getHelp1Button() {
+
+	public Button getHelp1Button()
+	{
 		return help1Button;
-	} 
+	}
 }
