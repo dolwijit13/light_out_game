@@ -19,6 +19,7 @@ public class PassLevel extends VBox
 {
 	Button restartButton;
 	Button toNextLevelButton;
+	Label penaltyLabel;
 	
 	public PassLevel(int level, int penalty)
 	{
@@ -31,7 +32,7 @@ public class PassLevel extends VBox
 		vBox.setPadding(new Insets(10,100,10,100));
 
 		Label clearLevel = new Label("LEVEL " + level + " CLEAR");
-		Label penaltyLabel = new Label("Penalty: " + penalty);
+		penaltyLabel = new Label("Penalty: " + penalty);
 
 		HBox hBox = new HBox(10);
 		hBox.setAlignment(Pos.CENTER);
@@ -62,5 +63,10 @@ public class PassLevel extends VBox
 	
 	public Button getRestartButton() {
 		return restartButton;
+	}
+	
+	public void setPenalty(int penalty)
+	{
+		penaltyLabel.setText("Penalty: " + penalty);
 	}
 }

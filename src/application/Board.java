@@ -74,4 +74,19 @@ public class Board extends GridPane
 	{
 		return lights[i][j];
 	}
+	
+	public boolean canHelp1() {
+		int cnt = 0;
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				if(lights[i][j].getCurrentState() != 0) {
+					cnt++;
+					if(cnt > 1){
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
 }

@@ -29,6 +29,7 @@ public class ClassicMode extends Mode
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
 		setRestartButton(passLevel.getRestartButton());
+		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -60,6 +61,18 @@ public class ClassicMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				resetBoard();
+			}
+		});
+	}
+	
+	private void setHelp1Button(Button help1Button) {
+		help1Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				gameMenu.addPenalty(999);
+				showPassLevel();
 			}
 		});
 	}

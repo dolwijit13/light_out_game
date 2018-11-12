@@ -82,6 +82,12 @@ public abstract class Mode extends StackPane
 			{
 				showPassLevel();
 			}
+			if(board.canHelp1() && gameMenu instanceof ClassicGameMenu) {
+				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(false);
+			}
+			else if(gameMenu instanceof ClassicGameMenu) {
+				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(true);
+			}
 		}
 	};
 
@@ -103,6 +109,8 @@ public abstract class Mode extends StackPane
 
 	public void showPassLevel()
 	{
+		//passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		passLevel.setPenalty(gameMenu.getPenalty());
 		getChildren().add(passLevel);
 	}
 	
