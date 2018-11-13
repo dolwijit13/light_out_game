@@ -29,4 +29,9 @@ public class ClassicGameMenu extends GameMenu
 	{
 		return help1Button;
 	}
+	
+	public Button getHelp2Button()
+	{
+		return help2Button;
+	}
 }

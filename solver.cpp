@@ -118,6 +118,7 @@ int main()
         }
         b[i]=x;
     }
+
     for(i=0;i<n*n;i++)
     {
         x=i/n;
@@ -158,6 +159,7 @@ int main()
             }
         }
     }
+
 
     for(i=0;i<n*n;i++)
     {

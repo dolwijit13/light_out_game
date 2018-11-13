@@ -2,6 +2,7 @@ package application;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -30,6 +31,7 @@ public class ClassicMode extends Mode
 		setResetButton(gameMenu.getResetButton());
 		setRestartButton(passLevel.getRestartButton());
 		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
+		setHelp2Button(((ClassicGameMenu) gameMenu).getHelp2Button());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -75,6 +77,29 @@ public class ClassicMode extends Mode
 			{
 				gameMenu.addPenalty(999);
 				showPassLevel();
+			}
+		});
+	}
+	
+	private void setHelp2Button(Button help2Button)
+	{
+		help2Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				gameMenu.addPenalty(999);
+				BoardSolver boardSolver;
+				try
+				{
+					boardSolver = new BoardSolver(board);
+					boardSolver.printShouldPress();
+				}
+				catch (FileNotFoundException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}

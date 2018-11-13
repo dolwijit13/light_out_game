@@ -27,6 +27,14 @@ public class Light extends Button
 		setPrefWidth(w);
 		setStyle("-fx-background-color: #239914;");
 		setPickOnBounds(false);
+		setId(text);
+	}
+	
+	//for BoardSolver
+	public Light(int curState,int maxState)
+	{
+		this.maxState = maxState;
+		this.currentState = curState;
 	}
 
 	public void changeColor()
@@ -60,5 +68,19 @@ public class Light extends Button
 	public int getCurrentState()
 	{
 		return currentState;
+	}
+	
+	public Light plus(Light o)
+	{
+		if(this.getCurrentState() + o.getCurrentState() == 1)
+			return new Light(1,2);
+        return new Light(0,2);
+	}
+	
+	public Light multiply(Light o)
+	{
+		if(this.getCurrentState() == o.getCurrentState() && o.getCurrentState()==1)
+            return new Light(1,2);
+        return new Light(0,2);
 	}
 }
