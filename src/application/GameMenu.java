@@ -22,30 +22,37 @@ public abstract class GameMenu extends VBox
 	protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
 	protected int penalty = 0;
 	protected Button resetButton = new Button("Reset");
+	protected Button undoButton = new Button("Undo");
 
 	public GameMenu()
 	{
 		super(10);
 		setAlignment(Pos.CENTER);
 		setPrefWidth(540);
-		setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, 
-				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+		setBorder(new Border(
+				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setBackground(new Background(new BackgroundFill(Color.IVORY, null, null)));
 	}
-	
+
 	public int addPenalty(int add)
 	{
-		penalty+=add;
-		penaltyLabel.setText(""+penalty);
+		penalty += add;
+		penaltyLabel.setText("" + penalty);
 		return penalty;
 	}
 
-	public int getPenalty() 
+	public int getPenalty()
 	{
 		return penalty;
 	}
 
-	public Button getResetButton() {
+	public Button getResetButton()
+	{
 		return resetButton;
+	}
+	
+	public Button getUndoButton()
+	{
+		return undoButton;
 	}
 }

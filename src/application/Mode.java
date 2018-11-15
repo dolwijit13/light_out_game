@@ -1,34 +1,32 @@
 package application;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public abstract class Mode extends StackPane
 {
-	Board board;
-	GameMenu gameMenu;
-	HBox hBox;
-	PassLevel passLevel;
+	protected Board board;
+	protected GameMenu gameMenu;
+	protected HBox hBox;
+	protected PassLevel passLevel;
+	protected Deque<Integer> undoDeq;
 
 	public Mode()
 	{
 		setAlignment(Pos.CENTER);
 		hBox = new HBox(10);
 		hBox.setPadding(new Insets(10, 10, 10, 10));
-		
+		undoDeq = new LinkedList<Integer>();
 		getChildren().addAll(hBox);
 	}
 
@@ -43,7 +41,7 @@ public abstract class Mode extends StackPane
 			}
 		});
 	}
-	
+
 	protected void setRestartButton(Button restartButton)
 	{
 		restartButton.setOnAction(new EventHandler<ActionEvent>()
@@ -52,6 +50,18 @@ public abstract class Mode extends StackPane
 			public void handle(ActionEvent arg0)
 			{
 				resetBoard();
+			}
+		});
+	}
+	
+	protected void setUndoButton(Button undoButton)
+	{
+		undoButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				undoBoard();
 			}
 		});
 	}
@@ -69,6 +79,9 @@ public abstract class Mode extends StackPane
 				int ID = Integer.parseInt(b.getId());
 				int x = ID / n, y = ID % n; // System.out.println("a " +ID+" "+x+" "+y);
 				board.changeColor(x, y, true);
+				undoDeq.addLast(ID);
+				while(undoDeq.size() >5)
+					undoDeq.removeFirst();
 			}
 			else if (button == MouseButton.SECONDARY)
 			{
@@ -82,10 +95,12 @@ public abstract class Mode extends StackPane
 			{
 				showPassLevel();
 			}
-			if(board.canHelp1() && gameMenu instanceof ClassicGameMenu) {
+			if (board.canHelp1() && gameMenu instanceof ClassicGameMenu)
+			{
 				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(false);
 			}
-			else if(gameMenu instanceof ClassicGameMenu) {
+			else if (gameMenu instanceof ClassicGameMenu)
+			{
 				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(true);
 			}
 		}
@@ -109,12 +124,23 @@ public abstract class Mode extends StackPane
 
 	public void showPassLevel()
 	{
-		//passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		// passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		passLevel.setPenalty(gameMenu.getPenalty());
 		getChildren().add(passLevel);
 	}
-	
+
 	protected abstract void toNextLevel();
-	
+
 	protected abstract void resetBoard();
+	
+	protected void undoBoard()
+	{
+		if(undoDeq.isEmpty())
+			return;
+		int lastId = undoDeq.getLast();
+		undoDeq.removeLast();
+		int n=board.getN();
+		board.changeColor(lastId/n, lastId%n, true);
+		gameMenu.addPenalty(-5);
+	}
 }

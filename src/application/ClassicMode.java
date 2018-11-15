@@ -30,6 +30,7 @@ public class ClassicMode extends Mode
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
 		setRestartButton(passLevel.getRestartButton());
+		setUndoButton(gameMenu.getUndoButton());
 		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
 		setHelp2Button(((ClassicGameMenu) gameMenu).getHelp2Button());
 		for (int i = 0; i < start.length; i++)

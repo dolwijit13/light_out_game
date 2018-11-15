@@ -22,14 +22,14 @@ public class ClassicGameMenu extends GameMenu
 		help2Button = new Button("Help 2");
 		help3Button = new Button("Help 3");
 		helper.getChildren().addAll(help1Button, help2Button, help3Button);
-		getChildren().addAll(logo, penaltyText, penaltyLabel, helper, resetButton, toMainMenuButton);
+		getChildren().addAll(logo, penaltyText, penaltyLabel, helper, resetButton, undoButton, toMainMenuButton);
 	}
 
 	public Button getHelp1Button()
 	{
 		return help1Button;
 	}
-	
+
 	public Button getHelp2Button()
 	{
 		return help2Button;
