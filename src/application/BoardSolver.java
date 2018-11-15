@@ -3,7 +3,10 @@ package application;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+
+import javafx.scene.control.Button;
 
 public class BoardSolver
 {
@@ -74,12 +77,14 @@ public class BoardSolver
 		}
 	}
 	
-	public void printShouldPress()
+	public void showShouldPress()
 	{
-		int sz=shouldPress.size();
-		for(int i=0;i<sz;i++)
-		{
-			System.out.println(shouldPress.get(i));
-		}
+		Random rand = new Random();
+		int sz = shouldPress.size();
+		int idx = shouldPress.get(rand.nextInt(sz));
+		int i = idx/n , j=idx%n;
+		Button button = board.getLight(i,j);
+		String style = button.getStyle();
+		button.setStyle(style+"-fx-border-color: #ff0000; -fx-border-width: 3px;");
 	}
 }

@@ -94,7 +94,7 @@ public class ClassicMode extends Mode
 				try
 				{
 					boardSolver = new BoardSolver(board);
-					boardSolver.printShouldPress();
+					boardSolver.showShouldPress();
 				}
 				catch (FileNotFoundException e)
 				{
