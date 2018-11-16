@@ -3,6 +3,9 @@ package application;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 
 public class ClassicGameMenu extends GameMenu
@@ -19,10 +22,12 @@ public class ClassicGameMenu extends GameMenu
 		help1Button = new Button("Help 1");
 		help1Button.setDisable(true);
 		help1Button.setTooltip(new Tooltip("Help1"));
-		help2Button = new Button("Help 2");
+		help2Button = new Button("Help2");
 		help3Button = new Button("Help 3");
 		helper.getChildren().addAll(help1Button, help2Button, help3Button);
 		getChildren().addAll(logo, penaltyText, penaltyLabel, helper, resetButton, undoButton, toMainMenuButton);
+		
+	
 	}
 
 	public Button getHelp1Button()

@@ -32,6 +32,7 @@ public abstract class GameMenu extends VBox
 		setBorder(new Border(
 				new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setBackground(new Background(new BackgroundFill(Color.IVORY, null, null)));
+		
 	}
 
 	public int addPenalty(int add)

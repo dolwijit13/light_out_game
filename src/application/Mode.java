@@ -56,6 +56,7 @@ public abstract class Mode extends StackPane
 	
 	protected void setUndoButton(Button undoButton)
 	{
+		undoButton.setDisable(true);
 		undoButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -103,6 +104,8 @@ public abstract class Mode extends StackPane
 			{
 				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(true);
 			}
+			Button undoButton = gameMenu.getUndoButton();
+			undoButton.setDisable(false);
 		}
 	};
 
@@ -142,5 +145,10 @@ public abstract class Mode extends StackPane
 		int n=board.getN();
 		board.changeColor(lastId/n, lastId%n, true);
 		gameMenu.addPenalty(-5);
+		if(undoDeq.isEmpty())
+		{
+			Button undoButton = gameMenu.getUndoButton();
+			undoButton.setDisable(true);
+		}
 	}
 }
