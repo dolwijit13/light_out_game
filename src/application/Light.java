@@ -1,12 +1,17 @@
 package application;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Light extends Button
 {
 	private int maxState;
 	private int currentState;
-
+	private ImageView back = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+	private ImageView test = new ImageView(new Image(ClassLoader.getSystemResource("test.png").toString()));
+	
 	public Light()
 	{
 		maxState = 2;
@@ -14,18 +19,23 @@ public class Light extends Button
 		textProperty().set("N/A");
 		setPrefHeight(80);
 		setPrefWidth(80);
-		setStyle("-fx-background-color: #239914;");
+		setGraphic(back);
 		// setPickOnBounds(false);
 	}
 
 	public Light(String text, int h, int w, int maxState)
 	{
+		back.setFitHeight(h);
+		back.setFitWidth(w);
+		test.setFitHeight(h);
+		test.setFitWidth(w);
+		setPadding(new Insets(0,0,0,0));
 		this.maxState = maxState;
 		this.currentState = 0;
-		textProperty().set(text);
+		//textProperty().set(text);
 		setPrefHeight(h);
 		setPrefWidth(w);
-		setStyle("-fx-background-color: #239914;");
+		setGraphic(back);
 		setPickOnBounds(false);
 		setId(text);
 	}
@@ -42,13 +52,15 @@ public class Light extends Button
 		if (currentState == 0)
 		{
 			currentState = (currentState + 1) % maxState;
-			setStyle("-fx-background-color: #51F827;");
+			setGraphic(test);
+			setStyle("");
 			/// black green (to 1)
 		}
 		else if (currentState == maxState - 1)
 		{
 			currentState = (currentState + 1) % maxState;
-			setStyle("-fx-background-color: #239914;");
+			setGraphic(back);
+			setStyle("");
 			/// light green (to 0)
 		}
 		else
@@ -62,7 +74,8 @@ public class Light extends Button
 	public void setCurrentState(int currentState)
 	{
 		this.currentState = currentState;
-		setStyle("-fx-background-color: #239914;");
+		setGraphic(back);
+		setStyle("");
 	}
 	
 	public int getCurrentState()
