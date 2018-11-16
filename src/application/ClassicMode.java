@@ -26,7 +26,7 @@ public class ClassicMode extends Mode
 	{
 		String[] start = levels[level - 1].split(" ");
 		level--;
-		int n = 5 + level / 5;
+		int n = 4 + level / 5;
 
 		board = new Board(n, 2, level + 1);
 		gameMenu = new ClassicGameMenu();
