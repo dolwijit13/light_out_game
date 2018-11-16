@@ -9,32 +9,35 @@ public class Light extends Button
 {
 	private int maxState;
 	private int currentState;
-	private ImageView back = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
-	private ImageView test = new ImageView(new Image(ClassLoader.getSystemResource("test.png").toString()));
+	private ImageView back;
+	private ImageView test;
+	private int size;
 	
 	public Light()
 	{
+		back = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+		test = new ImageView(new Image(ClassLoader.getSystemResource("test.png").toString()));
 		maxState = 2;
 		currentState = 0;
 		textProperty().set("N/A");
-		setPrefHeight(80);
-		setPrefWidth(80);
+		size =80;
+		setPrefHeight(size);
+		setPrefWidth(size);
 		setGraphic(back);
-		// setPickOnBounds(false);
 	}
 
 	public Light(String text, int h, int w, int maxState)
 	{
-		back.setFitHeight(h);
-		back.setFitWidth(w);
-		test.setFitHeight(h);
-		test.setFitWidth(w);
+		back = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+		test = new ImageView(new Image(ClassLoader.getSystemResource("test.png").toString()));
+		size = h;
+		setMaxSize();
 		setPadding(new Insets(0,0,0,0));
 		this.maxState = maxState;
 		this.currentState = 0;
 		//textProperty().set(text);
-		setPrefHeight(h);
-		setPrefWidth(w);
+		setMaxHeight(size);
+		setMaxWidth(size);
 		setGraphic(back);
 		setPickOnBounds(false);
 		setId(text);
@@ -53,6 +56,7 @@ public class Light extends Button
 		{
 			currentState = (currentState + 1) % maxState;
 			setGraphic(test);
+			setMaxSize();
 			setStyle("");
 			/// black green (to 1)
 		}
@@ -60,12 +64,14 @@ public class Light extends Button
 		{
 			currentState = (currentState + 1) % maxState;
 			setGraphic(back);
+			setMaxSize();
 			setStyle("");
 			/// light green (to 0)
 		}
 		else
 		{
 			currentState = (currentState + 1) % maxState;
+			setMaxSize();
 			setStyle("-fx-background-color: #C92016;");
 			/// red (to 2)
 		}
@@ -95,5 +101,21 @@ public class Light extends Button
 		if(this.getCurrentState() == o.getCurrentState() && o.getCurrentState()==1)
             return new Light(1,2);
         return new Light(0,2);
+	}
+	
+	public void setMaxSize()
+	{
+		back.setFitHeight(size);
+		back.setFitWidth(size);
+		test.setFitHeight(size);
+		test.setFitWidth(size);
+	}
+	
+	public void setMinSize()
+	{
+		back.setFitHeight(size-6);
+		back.setFitWidth(size-6);
+		test.setFitHeight(size-6);
+		test.setFitWidth(size-6);
 	}
 }
