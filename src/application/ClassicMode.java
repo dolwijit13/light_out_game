@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +20,7 @@ import javafx.scene.layout.BackgroundImage;
 public class ClassicMode extends Mode
 {
 
-	private static String levelFile = "level.txt";
+	private static InputStream levelFile = ClassicMode.class.getClassLoader().getResourceAsStream("level.txt");
 	private static String[] levels;
 
 	public ClassicMode(int level)
@@ -111,32 +112,31 @@ public class ClassicMode extends Mode
 
 	public static void readLevel()
 	{
-		File file = null;
-		BufferedReader fileReader = null;
-		String thisLine = null;
 		try
 		{
-			file = new File(levelFile);
+			/*
+			file = new File(in);
 			fileReader = new BufferedReader(new FileReader(file));
 			while ((thisLine = fileReader.readLine()) != null)
 			{
 				levels = thisLine.split("-");
 			}
+			*/
+			String levelString="";
+			char c ='1';
+			while(c!='*')
+			{
+				c = (char) levelFile.read();
+				if(c=='*')
+					break;
+				levelString+=c;
+			}
+			levels=levelString.split("-");
+			
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				fileReader.close();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
 		}
 	}
 
