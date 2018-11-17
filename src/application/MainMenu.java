@@ -11,6 +11,7 @@ public class MainMenu extends GridPane
 {
 	public MainMenu()
 	{
+		//System.out.println(PlayerInfo.getSelectedPlayerInfo().name);
 		setAlignment(Pos.CENTER);
 		setVgap(10);
 		setHgap(10);

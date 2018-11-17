@@ -35,6 +35,17 @@ public class StartMenu extends GridPane
 			}
 
 		});
+		
+		loadGame.setOnMouseClicked(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent event)
+			{
+				LoadingSelection loadingSelection = new LoadingSelection();
+				Main.changeScene(loadingSelection);
+			}
+
+		});
 
 		exit.setOnAction(new EventHandler<ActionEvent>()
 		{
