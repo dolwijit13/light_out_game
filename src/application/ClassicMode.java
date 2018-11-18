@@ -29,7 +29,7 @@ public class ClassicMode extends Mode
 		level--;
 		int n = 4 + level / 5;
 
-		board = new Board(n, 2, level + 1);
+		board = new Board(n, 2, level + 1,0);
 		gameMenu = new ClassicGameMenu();
 		passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());

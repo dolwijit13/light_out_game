@@ -13,25 +13,25 @@ public class Board extends GridPane
 	private int n=0;
 	private int curLevel;
 
-	public Board(int n, int maxState, int level)
+	public Board(int n, int maxState, int level, int mode)
 	{
 		this.n = n;
 		lights = new Light[n][n];
 		this.curLevel = level;
+		setAlignment(Pos.CENTER);
+		setVgap(5);
+		setHgap(5);
+		setPadding(new Insets(5, 5, 5, 5));
 		for (int i = 0; i < n; i++)
 		{
 			for (int j = 0; j < n; j++)
 			{
-				lights[i][j] = new Light("" + (i * n + j), 705 / n - 5, 705 / n - 5, maxState);
+				lights[i][j] = new Light("" + (i * n + j), 705 / n - 5, 705 / n - 5, maxState,mode,level);
 				//lights[i][j].setOnMouseClicked(mouseClick);
 				lights[i][j].setId("" + (i * n + j));
 				this.add(lights[i][j], j, i);
 			}
 		}
-		setAlignment(Pos.CENTER);
-		setVgap(5);
-		setHgap(5);
-		setPadding(new Insets(5, 5, 5, 5));
 	}
 
 	public void changeColor(int x, int y, Boolean first)
@@ -79,7 +79,7 @@ public class Board extends GridPane
 		int cnt = 0;
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < n; j++) {
-				if(lights[i][j].getCurrentState() != 0) {
+				if(lights[i][j].getCurrentState() != 1) {
 					cnt++;
 					if(cnt > 1){
 						return false;
