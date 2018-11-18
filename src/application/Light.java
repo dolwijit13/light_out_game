@@ -31,10 +31,10 @@ public class Light extends Button
 	public Light(String text, int h, int w, int maxState, int mode, int level) //mode : 0 = classic, 1 = time, 2 = ???, 3 = 3 colors
 	{
 		this.mode = mode;
-		state0 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+		state1 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
 		switch (mode) {
 		case 0:
-			state1 = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+level+"/"+text+".png").toString()));
+			state0 = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+level+"/"+text+".png").toString()));
 		default:
 			break;
 		}
@@ -42,12 +42,12 @@ public class Light extends Button
 		size = h;
 		setPadding(new Insets(0,0,0,0));
 		this.maxState = maxState;
-		this.currentState = 1;
+		this.currentState = 0;
 		//textProperty().set(text);
 		setMaxHeight(size);
 		setMaxWidth(size);
 		setMaxSize();
-		setGraphic(state1);
+		setGraphic(state0);
 		setPickOnBounds(false);
 		setId(text);
 	}

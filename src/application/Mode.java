@@ -116,7 +116,7 @@ public abstract class Mode extends StackPane
 		{
 			for (int j = 0; j < n; j++)
 			{
-				if (board.getLight(i, j).getCurrentState() != 1)
+				if (board.getLight(i, j).getCurrentState() != 0)
 				{
 					return false;
 				}
