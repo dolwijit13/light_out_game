@@ -35,20 +35,52 @@ public class LoadingSelection extends VBox
 			Label nameLabel = new Label(name);
 			nameLabel.setPrefHeight(44);
 			nameLabel.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";");
-
-			Label classicLabel = new Label("Classic : " + classicLastPassedLevel);
+			
+			Label classicLabel;
+			if(classicLastPassedLevel==0)
+			{
+				classicLabel = new Label("Classic : -");
+			}
+			else
+			{
+				classicLabel = new Label("Classic : " + classicLastPassedLevel);
+			}
 			classicLabel.setPrefWidth(500);
 			classicLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
-			Label timerLabel = new Label("Timer : " + timerPassedLevel);
+			Label timerLabel;
+			if(timerPassedLevel==0)
+			{
+				timerLabel = new Label("Timer : -");
+			}
+			else
+			{
+				timerLabel = new Label("Timer : " + timerPassedLevel);
+			}
 			timerLabel.setPrefWidth(500);
 			timerLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
-			Label drawLabel = new Label("Draw : " + drawPassedLevel);
+			Label drawLabel;
+			if(drawPassedLevel==0)
+			{
+				drawLabel = new Label("Draw : -");
+			}
+			else
+			{
+				drawLabel = new Label("Draw : " + drawPassedLevel);
+			}
 			drawLabel.setPrefWidth(500);
 			drawLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
 			Label triColorLabel = new Label("TriColor : " + triColorPassedLevel);
+			if(triColorPassedLevel==0)
+			{
+				triColorLabel = new Label("TriColor : -");
+			}
+			else
+			{
+				triColorLabel = new Label("TriColor : " + triColorPassedLevel);
+			}
 			triColorLabel.setPrefWidth(500);
 			triColorLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
