@@ -60,11 +60,13 @@ public class PassLevel extends VBox
 		}
 		
 
-		if (true)
+		if (PlayerInfo.getClassicLastPassedLevel() < level)
 		{
-			
 			vBox.getChildren().add(unlockLabel);
+			PlayerInfo.setClassicLastPassedLevel(level);
 		}
+		
+		PlayerInfo.setClassicPenalty(level, penalty);
 
 		vBox.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID,
 		  CornerRadii.EMPTY, BorderWidths.DEFAULT)));

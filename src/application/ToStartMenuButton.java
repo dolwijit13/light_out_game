@@ -23,4 +23,20 @@ public class ToStartMenuButton extends Button
 			}
 		});
 	}
+	
+	public ToStartMenuButton(String s)
+	{
+		super(s);
+		setAlignment(Pos.CENTER);
+
+		this.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				StartMenu startMenu = new StartMenu();
+				Main.changeScene(startMenu);
+			}
+		});
+	}
 }

@@ -21,17 +21,24 @@ public class LevelSelection extends VBox
 		GridPane grid = new GridPane();
 		grid.setVgap(15);
 		grid.setHgap(15);
+		
+		int maxLevelCanPlay = PlayerInfo.getClassicLastPassedLevel()+1; 
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 5; j++)
 			{
-				Button level = new Button("" + (i * 5 + j + 1));
+				int curLevel = (i * 5 + j + 1);
+				Button level = new Button("" + curLevel);
 				grid.add(level, j, i);
 				level.setPrefHeight(120);
 				level.setPrefWidth(240);
 				//level.setStyle("-fx-background-color: #51F827;");
 				level.setOnMouseClicked(mouseClick);
-				level.setId("" + (i * 5 + j + 1));
+				level.setId("" + curLevel);
+				if(curLevel > maxLevelCanPlay)
+				{
+					level.setDisable(true);
+				}
 			}
 		}
 

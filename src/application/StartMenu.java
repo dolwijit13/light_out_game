@@ -30,8 +30,8 @@ public class StartMenu extends GridPane
 			@Override
 			public void handle(MouseEvent event)
 			{
-				MainMenu mainMenu = new MainMenu();
-				Main.changeScene(mainMenu);
+				CreateNewPlayer creatNewPlayer = new CreateNewPlayer();
+				Main.changeScene(creatNewPlayer);
 			}
 
 		});

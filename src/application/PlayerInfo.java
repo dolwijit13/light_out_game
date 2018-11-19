@@ -46,6 +46,20 @@ public class PlayerInfo
 		this.triColorPassedLevel = triColorPassedLevel;
 		this.triColorPenalty = triColorPenalty;
 	}
+	
+	public PlayerInfo(String name)
+	{
+		this.n = 0;
+		this.name = name;
+		this.classicLastPassedLevel = 0;
+		this.classicPenalty = new ArrayList<Integer>();
+		this.timerPassedLevel = 0;
+		this.timerPenalty = 0;
+		this.drawPassedLevel = 0;
+		this.drawPenalty = new ArrayList<Integer>();
+		this.triColorPassedLevel = 0;
+		this.triColorPenalty = new ArrayList<Integer>();
+	}
 
 	public PlayerInfo(int n)
 	{
@@ -215,55 +229,125 @@ public class PlayerInfo
 		}
 	}
 
-	public int getN()
+	public static void setN(int n)
 	{
-		return n;
+		selectedPlayerInfo.n = n;
+	}
+
+	public static void setName(String name)
+	{
+		selectedPlayerInfo.name = name;
+	}
+
+	public static void setClassicLastPassedLevel(int classicLastPassedLevel)
+	{
+		selectedPlayerInfo.classicLastPassedLevel = classicLastPassedLevel;
+	}
+
+	public static void setClassicPenalty(int level,int newPenalty)
+	{
+		if(selectedPlayerInfo.classicPenalty.size() < level)
+		{
+			selectedPlayerInfo.classicPenalty.add(newPenalty);
+		}
+		else if(selectedPlayerInfo.classicPenalty.get(level-1) > newPenalty)
+		{
+			selectedPlayerInfo.classicPenalty.set(level-1, newPenalty);
+		}
+	}
+
+	public static void setTimerPassedLevel(int timerPassedLevel)
+	{
+		selectedPlayerInfo.timerPassedLevel = timerPassedLevel;
+	}
+
+	public static void setTimerPenalty(int timerPenalty)
+	{
+		selectedPlayerInfo.timerPenalty = timerPenalty;
+	}
+
+	public static void setDrawPassedLevel(int drawPassedLevel)
+	{
+		selectedPlayerInfo.drawPassedLevel = drawPassedLevel;
+	}
+
+	public static void setDrawPenalty(int level,int newPenalty)
+	{
+		if(selectedPlayerInfo.drawPenalty.size() < level)
+		{
+			selectedPlayerInfo.drawPenalty.add(newPenalty);
+		}
+		else if(selectedPlayerInfo.drawPenalty.get(level-1) > newPenalty)
+		{
+			selectedPlayerInfo.drawPenalty.set(level-1, newPenalty);
+		}
+	}
+
+	public static void setTriColorPassedLevel(int triColorPassedLevel)
+	{
+		selectedPlayerInfo.triColorPassedLevel = triColorPassedLevel;
+	}
+
+	public static void setTriColorPenalty(int level,int newPenalty)
+	{
+		if(selectedPlayerInfo.triColorPenalty.size() < level)
+		{
+			selectedPlayerInfo.triColorPenalty.add(newPenalty);
+		}
+		else if(selectedPlayerInfo.triColorPenalty.get(level-1) > newPenalty)
+		{
+			selectedPlayerInfo.triColorPenalty.set(level-1, newPenalty);
+		}
+	}
+
+	public static int getN()
+	{
+		return selectedPlayerInfo.n;
 	}
 
 	public String getName()
 	{
-		return name;
+		return selectedPlayerInfo.name;
 	}
 
-	public int getClassicLastPassedLevel()
+	public static int getClassicLastPassedLevel()
 	{
-		return classicLastPassedLevel;
+		return selectedPlayerInfo.classicLastPassedLevel;
 	}
 
-	public ArrayList<Integer> getClassicPenalty()
+	public static ArrayList<Integer> getClassicPenalty()
 	{
-		return classicPenalty;
+		return selectedPlayerInfo.classicPenalty;
 	}
 
-	public int getTimerPassedLevel()
+	public static int getTimerPassedLevel()
 	{
-		return timerPassedLevel;
+		return selectedPlayerInfo.timerPassedLevel;
 	}
 
-	public int getTimerPenalty()
+	public static int getTimerPenalty()
 	{
-		return timerPenalty;
+		return selectedPlayerInfo.timerPenalty;
 	}
 
-	public int getDrawPassedLevel()
+	public static int getDrawPassedLevel()
 	{
-		return drawPassedLevel;
+		return selectedPlayerInfo.drawPassedLevel;
 	}
 
-	public ArrayList<Integer> getDrawPenalty()
+	public static ArrayList<Integer> getDrawPenalty()
 	{
-		return drawPenalty;
+		return selectedPlayerInfo.drawPenalty;
 	}
 
-	public int getTriColorPassedLevel()
+	public static int getTriColorPassedLevel()
 	{
-		return triColorPassedLevel;
+		return selectedPlayerInfo.triColorPassedLevel;
 	}
 
-	public ArrayList<Integer> getTriColorPenalty()
+	public static ArrayList<Integer> getTriColorPenalty()
 	{
-		return triColorPenalty;
+		return selectedPlayerInfo.triColorPenalty;
 	}
-	
 	
 }
