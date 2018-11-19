@@ -65,16 +65,16 @@ public class Light extends Button
 		{
 			currentState = (currentState + 1) % maxState;
 			setGraphic(state1);
-			setMaxSize();
-			setStyle("");
+			//setMaxSize();
+			//setStyle("");
 			/// black green (to 1)
 		}
 		else if (currentState == maxState - 1)
 		{
 			currentState = (currentState + 1) % maxState;
 			setGraphic(state0);
-			setMaxSize();
-			setStyle("");
+			//setMaxSize();
+			//setStyle("");
 			/// light green (to 0)
 		}
 		else

@@ -78,7 +78,7 @@ public class BoardSolver
 			{
 				ans = ans.plus(inversedM[i][j].multiply(boardVector.get(j)));
 			}
-			if (ans.getCurrentState() == 0)
+			if (ans.getCurrentState() == 1)
 				shouldPress.add(i);
 		}
 	}

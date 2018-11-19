@@ -14,6 +14,7 @@ public class LoadingSelection extends VBox
 	protected class PlayerButton extends VBox
 	{
 		protected PlayerInfo playerInfo;
+		protected int n;
 		protected String name;
 		protected int classicLastPassedLevel; //// number of passed level in classic mode
 		protected int timerPassedLevel; // number of passed level in timer mode
@@ -24,6 +25,7 @@ public class LoadingSelection extends VBox
 		{
 			super();
 			this.playerInfo = playerInfo;
+			this.n = playerInfo.n;
 			this.name = playerInfo.name;
 			this.classicLastPassedLevel = playerInfo.classicLastPassedLevel;
 			this.timerPassedLevel = playerInfo.timerPassedLevel;
@@ -73,16 +75,19 @@ public class LoadingSelection extends VBox
 					PlayerButton selectedPlayer = LoadingSelection.getSelectedPlayer();
 					if(selectedPlayer == null)
 					{
+						setOKDisable(false);
 						LoadingSelection.setSelectedPlayer(source);
 						return;
 					}
 					LoadingSelection.setSelectedPlayerBorder();
 					if(!selectedPlayer.name.equals(source.name))
 					{
+						setOKDisable(false);
 						LoadingSelection.setSelectedPlayer(source);
 					}
 					else
 					{
+						setOKDisable(true);
 						LoadingSelection.setSelectedPlayer(null);
 					}
 				}
@@ -90,11 +95,12 @@ public class LoadingSelection extends VBox
 		}
 	}
 
-	private PlayerButton player1;
-	private PlayerButton player2;
-	private PlayerButton player3;
-	private PlayerButton player4;
-	private static PlayerButton selectedPlayer;
+	protected PlayerButton player1;
+	protected PlayerButton player2;
+	protected PlayerButton player3;
+	protected PlayerButton player4;
+	protected static PlayerButton selectedPlayer;
+	protected Button OKButton;
 
 	public LoadingSelection()
 	{
@@ -150,7 +156,7 @@ public class LoadingSelection extends VBox
 		returnButton.setText("RETURN");
 		returnButton.setPrefHeight(52);
 		returnButton.setPrefWidth(585);
-		Button OKButton = new Button("OK");
+		OKButton = new Button("OK");
 		OKButton.setPrefHeight(52);
 		OKButton.setPrefWidth(585);
 		
@@ -159,8 +165,7 @@ public class LoadingSelection extends VBox
 		downHBox.setPrefHeight(92);
 		downHBox.setAlignment(Pos.CENTER);
 		
-		this.getChildren().addAll(upVBox,playerSelectionHBox,downHBox);
-		
+		OKButton.setDisable(true);
 		OKButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -171,6 +176,8 @@ public class LoadingSelection extends VBox
 				Main.changeScene(mainMenu);
 			}
 		});
+		
+		this.getChildren().addAll(upVBox,playerSelectionHBox,downHBox);
 	}
 	
 	public static void setSelectedPlayerBorder()
@@ -187,6 +194,11 @@ public class LoadingSelection extends VBox
 		{
 			o.setStyle("-fx-border-color: #000000; -fx-border-width: 4px;");
 		}
+	}
+	
+	public void setOKDisable(Boolean disable)
+	{
+		OKButton.setDisable(disable);
 	}
 	
 	public static PlayerButton getSelectedPlayer()

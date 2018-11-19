@@ -21,13 +21,13 @@ public class MainMenu extends GridPane
 		Button gallery = new Button("Gallery");
 		Button howToPlay = new Button("How to play");
 		Button leaderboard = new Button("Leaderboard");
-		Button back = new Button("Back");
+		Button backAndSave = new Button("Back");
 		add(logo, 0, 1);
 		add(play, 0, 2);
 		add(gallery, 0, 3);
 		add(howToPlay, 0, 4);
 		add(leaderboard, 0, 5);
-		add(back, 0, 6);
+		add(backAndSave, 0, 6);
 		play.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -39,15 +39,14 @@ public class MainMenu extends GridPane
 
 		});
 
-		back.setOnMouseClicked(new EventHandler<MouseEvent>()
+		backAndSave.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
 			public void handle(MouseEvent event)
 			{
-				StartMenu startMenu = new StartMenu();
-				Main.changeScene(startMenu);
+				SavingSelection savingSelection = new SavingSelection();
+				Main.changeScene(savingSelection);
 			}
-
 		});
 	}
 }
