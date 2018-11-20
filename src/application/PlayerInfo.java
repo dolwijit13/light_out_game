@@ -67,66 +67,6 @@ public class PlayerInfo
 		this.drawPenalty = prefs.getByteArray(n+"drawPenalty", null);
 		this.triColorPassedLevel = prefs.getInt(n+"triColorPassedLevel", 0);
 		this.triColorPenalty = prefs.getByteArray(n+"triColorPenalty", null);
-		
-		/*
-		InputStream playerFile = PlayerInfo.class.getClassLoader().getResourceAsStream("PlayerInfo.txt");
-		try
-		{
-			BufferedReader read = new BufferedReader(new InputStreamReader(playerFile));
-			String s;
-
-			// find n'th player info
-			while (true)
-			{
-				s = read.readLine();
-				if (s.length() == 0)
-					continue;
-				if (s.charAt(0) == '*')
-				{
-					if (s.charAt(1) - '0' == n)
-					{
-						break;
-					}
-				}
-			}
-
-			String s2[];
-
-			this.name = read.readLine();
-
-			this.classicLastPassedLevel = Integer.parseInt(read.readLine());
-			this.classicPenalty = new ArrayList<Integer>();
-			s2 = read.readLine().split(" ");
-			for (int i = 0; i < classicLastPassedLevel; i++)
-			{
-				this.classicPenalty.add(Integer.parseInt(s2[i]));
-			}
-
-			this.timerPassedLevel = Integer.parseInt(read.readLine());
-			this.timerPenalty = Integer.parseInt(read.readLine());
-
-			this.drawPassedLevel = Integer.parseInt(read.readLine());
-			this.drawPenalty = new ArrayList<Integer>();
-			s2 = read.readLine().split(" ");
-			for (int i = 0; i < drawPassedLevel; i++)
-			{
-				this.drawPenalty.add(Integer.parseInt(s2[i]));
-			}
-
-			this.triColorPassedLevel = Integer.parseInt(read.readLine());
-			this.triColorPenalty = new ArrayList<Integer>();
-			s2 = read.readLine().split(" ");
-			for (int i = 0; i < triColorPassedLevel; i++)
-			{
-				this.triColorPenalty.add(Integer.parseInt(s2[i]));
-			}
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
 	}
 
 	public static void setSelectedPlayerInfo(PlayerInfo o)
@@ -169,8 +109,6 @@ public class PlayerInfo
 
 	public static void setClassicPenalty(int level,int newPenalty)
 	{
-		System.out.println((level-1)*2);
-		System.out.println(selectedPlayerInfo.classicPenalty.length);
 		int oldPenalty = selectedPlayerInfo.classicPenalty[(level-1)*2]*256+selectedPlayerInfo.classicPenalty[(level-1)*2+1];
 		if(oldPenalty > newPenalty)
 		{

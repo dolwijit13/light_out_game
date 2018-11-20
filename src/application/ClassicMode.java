@@ -114,14 +114,6 @@ public class ClassicMode extends Mode
 	{
 		try
 		{
-			/*
-			file = new File(in);
-			fileReader = new BufferedReader(new FileReader(file));
-			while ((thisLine = fileReader.readLine()) != null)
-			{
-				levels = thisLine.split("-");
-			}
-			*/
 			String levelString="";
 			char c ='1';
 			while(c!='*')

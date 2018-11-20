@@ -105,6 +105,13 @@ public class LoadingSelection extends VBox
 				{
 					PlayerButton source = (PlayerButton)event.getSource();
 					PlayerButton selectedPlayer = LoadingSelection.getSelectedPlayer();
+					if(source.name.length()<4)
+					{
+						LoadingSelection.setSelectedPlayerBorder();
+						setOKDisable(true);
+						LoadingSelection.setSelectedPlayer(null);
+						return;
+					}
 					if(selectedPlayer == null)
 					{
 						setOKDisable(false);
@@ -112,7 +119,7 @@ public class LoadingSelection extends VBox
 						return;
 					}
 					LoadingSelection.setSelectedPlayerBorder();
-					if(!selectedPlayer.name.equals(source.name))
+					if(!(selectedPlayer.name.equals(source.name) && selectedPlayer.n == source.n))
 					{
 						setOKDisable(false);
 						LoadingSelection.setSelectedPlayer(source);
