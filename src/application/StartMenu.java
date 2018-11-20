@@ -41,7 +41,7 @@ public class StartMenu extends GridPane
 			@Override
 			public void handle(MouseEvent event)
 			{
-				LoadingSelection loadingSelection = new LoadingSelection();
+				LoadingSelection loadingSelection = new LoadingSelection(true);
 				Main.changeScene(loadingSelection);
 			}
 

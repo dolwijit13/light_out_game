@@ -10,9 +10,10 @@ import javafx.scene.input.MouseEvent;
 
 public class SavingSelection extends LoadingSelection
 {
+	
 	public SavingSelection()
 	{
-		super();
+		super(false);
 		OKButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override

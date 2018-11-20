@@ -14,6 +14,7 @@ public class LoadingSelection extends VBox
 	protected class PlayerButton extends VBox
 	{
 		protected PlayerInfo playerInfo;
+		protected boolean isLoading;
 		protected int n;
 		protected String name;
 		protected int classicLastPassedLevel; //// number of passed level in classic mode
@@ -21,10 +22,12 @@ public class LoadingSelection extends VBox
 		protected int drawPassedLevel; // number of passed level in draw mode
 		protected int triColorPassedLevel; // number of passed level in tricolor mode
 
-		public PlayerButton(PlayerInfo playerInfo)
+		
+		public PlayerButton(PlayerInfo playerInfo,Boolean isLoading)
 		{
 			super();
 			this.playerInfo = playerInfo;
+			this.isLoading = isLoading;
 			this.n = playerInfo.n;
 			this.name = playerInfo.name;
 			this.classicLastPassedLevel = playerInfo.classicLastPassedLevel;
@@ -105,7 +108,7 @@ public class LoadingSelection extends VBox
 				{
 					PlayerButton source = (PlayerButton)event.getSource();
 					PlayerButton selectedPlayer = LoadingSelection.getSelectedPlayer();
-					if(source.name.length()<4)
+					if(source.name.length()<4 && isLoading)
 					{
 						LoadingSelection.setSelectedPlayerBorder();
 						setOKDisable(true);
@@ -141,7 +144,7 @@ public class LoadingSelection extends VBox
 	protected static PlayerButton selectedPlayer;
 	protected Button OKButton;
 
-	public LoadingSelection()
+	public LoadingSelection(boolean isLoading)
 	{
 		super();
 		selectedPlayer=null;
@@ -171,10 +174,10 @@ public class LoadingSelection extends VBox
 		PlayerInfo player3Info = new PlayerInfo(3);
 		PlayerInfo player4Info = new PlayerInfo(4);
 
-		this.player1 = new PlayerButton(player1Info);
-		this.player2 = new PlayerButton(player2Info);
-		this.player3 = new PlayerButton(player3Info);
-		this.player4 = new PlayerButton(player4Info);
+		this.player1 = new PlayerButton(player1Info,isLoading);
+		this.player2 = new PlayerButton(player2Info,isLoading);
+		this.player3 = new PlayerButton(player3Info,isLoading);
+		this.player4 = new PlayerButton(player4Info,isLoading);
 
 		playerSelectionVBox.getChildren().addAll(player1, player2, player3, player4);
 
