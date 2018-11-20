@@ -44,6 +44,7 @@ public class CreateNewPlayer extends VBox
 			{
 				PlayerInfo playerInfo = new PlayerInfo(nameField.getText());
 				PlayerInfo.setSelectedPlayerInfo(playerInfo);
+				System.out.println(PlayerInfo.getClassicPenalty().length);
 				MainMenu mainMenu = new MainMenu();
 				Main.changeScene(mainMenu);
 			}

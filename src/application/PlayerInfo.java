@@ -1,38 +1,30 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 public class PlayerInfo
 {
+	private static Preferences prefs;
 	protected static PlayerInfo selectedPlayerInfo;
 
 	protected int n;
 	protected String name;
 
 	protected int classicLastPassedLevel; //// number of passed level in classic mode
-	protected ArrayList<Integer> classicPenalty; // penalty of each classic mode level (1-20)
+	protected byte[] classicPenalty; // penalty of each classic mode level (1-20)
 
 	protected int timerPassedLevel; // number of passed level in timer mode
 	protected int timerPenalty; // penalty of timer mode
 
 	protected int drawPassedLevel; // number of passed level in draw mode
-	protected ArrayList<Integer> drawPenalty; // penalty of each draw mode level (1-??)
+	protected byte[] drawPenalty; // penalty of each draw mode level (1-??)
 
 	protected int triColorPassedLevel; // number of passed level in tricolor mode
-	protected ArrayList<Integer> triColorPenalty; // penalty of each tricolor mode level (1-??)
+	protected byte[] triColorPenalty; // penalty of each tricolor mode level (1-??)
 
-	public PlayerInfo(int n, String name, int classicLastPassedLevel, ArrayList<Integer> classicPenalty,
-			int timerPassedLevel, int timerPenalty, int drawPassedLevel, ArrayList<Integer> drawPenalty,
-			int triColorPassedLevel, ArrayList<Integer> triColorPenalty)
+	public PlayerInfo(int n, String name, int classicLastPassedLevel, byte[] classicPenalty,
+			int timerPassedLevel, int timerPenalty, int drawPassedLevel, byte[] drawPenalty,
+			int triColorPassedLevel, byte[] triColorPenalty)
 	{
 		this.n = n;
 		this.name = name;
@@ -51,18 +43,32 @@ public class PlayerInfo
 		this.n = 0;
 		this.name = name;
 		this.classicLastPassedLevel = 0;
-		this.classicPenalty = new ArrayList<Integer>();
+		this.classicPenalty = new byte[41];
 		this.timerPassedLevel = 0;
 		this.timerPenalty = 0;
 		this.drawPassedLevel = 0;
-		this.drawPenalty = new ArrayList<Integer>();
+		this.drawPenalty = new byte[41];
 		this.triColorPassedLevel = 0;
-		this.triColorPenalty = new ArrayList<Integer>();
+		this.triColorPenalty = new byte[41];
+		prefs = Preferences.userNodeForPackage(this.getClass());
 	}
 
 	public PlayerInfo(int n)
 	{
+		prefs=Preferences.userRoot().node(this.getClass().getName());
+		
 		this.n = n;
+		this.name = prefs.get(n+"name", " ");
+		this.classicLastPassedLevel = prefs.getInt(n+"classicLastPassedLevel", 0);
+		this.classicPenalty = prefs.getByteArray(n+"classicPenalty", null);
+		this.timerPassedLevel = prefs.getInt(n+"timerPassedLevel", 0);
+		this.timerPenalty = prefs.getInt(n+"timerPenalty", 0);
+		this.drawPassedLevel = prefs.getInt(n+"drawPassedLevel", 0);
+		this.drawPenalty = prefs.getByteArray(n+"drawPenalty", null);
+		this.triColorPassedLevel = prefs.getInt(n+"triColorPassedLevel", 0);
+		this.triColorPenalty = prefs.getByteArray(n+"triColorPenalty", null);
+		
+		/*
 		InputStream playerFile = PlayerInfo.class.getClassLoader().getResourceAsStream("PlayerInfo.txt");
 		try
 		{
@@ -120,6 +126,7 @@ public class PlayerInfo
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 	}
 
 	public static void setSelectedPlayerInfo(PlayerInfo o)
@@ -134,97 +141,15 @@ public class PlayerInfo
 	
 	public static void saveToN(int n)
 	{
-		InputStream playerFile = PlayerInfo.class.getClassLoader().getResourceAsStream("PlayerInfo.txt");
-		try
-		{
-			BufferedReader read = new BufferedReader(new InputStreamReader(playerFile));
-			ArrayList<String>write = new ArrayList<String>();
-
-			// find n'th player info
-			while (true)
-			{
-				String s;
-				s = read.readLine();
-				write.add(s);
-				if (s.length() == 0)
-					continue;
-				if (s.charAt(0) == '*')
-				{
-					if (s.charAt(1) - '0' == n)
-					{
-						break;
-					}
-				}
-			}
-			
-			write.add(selectedPlayerInfo.name);
-			read.readLine();
-			
-			write.add(""+selectedPlayerInfo.classicLastPassedLevel);
-			read.readLine();
-			String tmp="";
-			for (int i = 0; i < selectedPlayerInfo.classicLastPassedLevel; i++)
-			{
-				tmp+=""+selectedPlayerInfo.classicPenalty.get(i)+' ';
-			}
-			write.add(tmp);
-			read.readLine();
-			
-			write.add(""+selectedPlayerInfo.timerPassedLevel);
-			read.readLine();
-			write.add(""+selectedPlayerInfo.timerPenalty);
-			read.readLine();
-
-			write.add(""+selectedPlayerInfo.drawPassedLevel);
-			read.readLine();
-			tmp="";
-			for (int i = 0; i < selectedPlayerInfo.drawPassedLevel; i++)
-			{
-				tmp+=""+selectedPlayerInfo.drawPenalty.get(i)+' ';
-			}
-			write.add(tmp);
-			read.readLine();
-			
-			write.add(""+selectedPlayerInfo.triColorPassedLevel);
-			read.readLine();
-			tmp="";
-			for (int i = 0; i < selectedPlayerInfo.triColorPassedLevel; i++)
-			{
-				tmp+=""+selectedPlayerInfo.drawPenalty.get(i)+' ';
-			}
-			write.add(tmp);
-			read.readLine();
-			
-			while (read.ready())
-			{
-				String s;
-				s = read.readLine();
-				write.add(s);
-			}
-			
-			URL url = PlayerInfo.class.getClassLoader().getResource("PlayerInfo.txt");
-			BufferedWriter b_writer;
-			try
-			{
-				b_writer = new BufferedWriter (new FileWriter (new File (url.toURI())));
-				for(int i=0;i<write.size();i++)
-				{
-					b_writer.write(write.get(i));
-					b_writer.write("\r\n");
-				}
-				b_writer.close();
-			}
-			catch (URISyntaxException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		prefs.put(n+"name",selectedPlayerInfo.name);
+		prefs.putInt(n+"classicLastPassedLevel", selectedPlayerInfo.classicLastPassedLevel);
+		prefs.putByteArray(n+"classicPenalty", selectedPlayerInfo.classicPenalty);
+		prefs.putInt(n+"timerPassedLevel", selectedPlayerInfo.timerPassedLevel);
+		prefs.putInt(n+"timerPenalty", selectedPlayerInfo.timerPenalty);
+		prefs.putInt(n+"drawPassedLevel", selectedPlayerInfo.drawPassedLevel);
+		prefs.putByteArray(n+"drawPenalty", selectedPlayerInfo.drawPenalty);
+		prefs.putInt(n+"triColorPassedLevel", selectedPlayerInfo.triColorPassedLevel);
+		prefs.putByteArray(n+"triColorPenalty", selectedPlayerInfo.triColorPenalty);
 	}
 
 	public static void setN(int n)
@@ -244,13 +169,15 @@ public class PlayerInfo
 
 	public static void setClassicPenalty(int level,int newPenalty)
 	{
-		if(selectedPlayerInfo.classicPenalty.size() < level)
+		System.out.println((level-1)*2);
+		System.out.println(selectedPlayerInfo.classicPenalty.length);
+		int oldPenalty = selectedPlayerInfo.classicPenalty[(level-1)*2]*256+selectedPlayerInfo.classicPenalty[(level-1)*2+1];
+		if(oldPenalty > newPenalty)
 		{
-			selectedPlayerInfo.classicPenalty.add(newPenalty);
-		}
-		else if(selectedPlayerInfo.classicPenalty.get(level-1) > newPenalty)
-		{
-			selectedPlayerInfo.classicPenalty.set(level-1, newPenalty);
+			byte a = (byte) (newPenalty/256);
+			byte b = (byte) (newPenalty%256);
+			selectedPlayerInfo.classicPenalty[(level-1)*2]=a;
+			selectedPlayerInfo.classicPenalty[(level-1)*2+1]=b;
 		}
 	}
 
@@ -271,13 +198,13 @@ public class PlayerInfo
 
 	public static void setDrawPenalty(int level,int newPenalty)
 	{
-		if(selectedPlayerInfo.drawPenalty.size() < level)
+		int oldPenalty = selectedPlayerInfo.drawPenalty[(level-1)*2]*256+selectedPlayerInfo.drawPenalty[(level-1)*2+1];
+		if(oldPenalty > newPenalty)
 		{
-			selectedPlayerInfo.drawPenalty.add(newPenalty);
-		}
-		else if(selectedPlayerInfo.drawPenalty.get(level-1) > newPenalty)
-		{
-			selectedPlayerInfo.drawPenalty.set(level-1, newPenalty);
+			byte a = (byte) (newPenalty/256);
+			byte b = (byte) (newPenalty%256);
+			selectedPlayerInfo.drawPenalty[(level-1)*2]=a;
+			selectedPlayerInfo.drawPenalty[(level-1)*2+1]=b;
 		}
 	}
 
@@ -288,13 +215,13 @@ public class PlayerInfo
 
 	public static void setTriColorPenalty(int level,int newPenalty)
 	{
-		if(selectedPlayerInfo.triColorPenalty.size() < level)
+		int oldPenalty = selectedPlayerInfo.triColorPenalty[(level-1)*2]*256+selectedPlayerInfo.triColorPenalty[(level-1)*2+1];
+		if(oldPenalty > newPenalty)
 		{
-			selectedPlayerInfo.triColorPenalty.add(newPenalty);
-		}
-		else if(selectedPlayerInfo.triColorPenalty.get(level-1) > newPenalty)
-		{
-			selectedPlayerInfo.triColorPenalty.set(level-1, newPenalty);
+			byte a = (byte) (newPenalty/256);
+			byte b = (byte) (newPenalty%256);
+			selectedPlayerInfo.triColorPenalty[(level-1)*2]=a;
+			selectedPlayerInfo.triColorPenalty[(level-1)*2+1]=b;
 		}
 	}
 
@@ -313,7 +240,7 @@ public class PlayerInfo
 		return selectedPlayerInfo.classicLastPassedLevel;
 	}
 
-	public static ArrayList<Integer> getClassicPenalty()
+	public static byte[] getClassicPenalty()
 	{
 		return selectedPlayerInfo.classicPenalty;
 	}
@@ -333,7 +260,7 @@ public class PlayerInfo
 		return selectedPlayerInfo.drawPassedLevel;
 	}
 
-	public static ArrayList<Integer> getDrawPenalty()
+	public static byte[] getDrawPenalty()
 	{
 		return selectedPlayerInfo.drawPenalty;
 	}
@@ -343,7 +270,7 @@ public class PlayerInfo
 		return selectedPlayerInfo.triColorPassedLevel;
 	}
 
-	public static ArrayList<Integer> getTriColorPenalty()
+	public static byte[] getTriColorPenalty()
 	{
 		return selectedPlayerInfo.triColorPenalty;
 	}
