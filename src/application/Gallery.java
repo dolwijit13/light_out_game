@@ -43,20 +43,11 @@ public class Gallery extends VBox
 				//level.setStyle("-fx-background-color: #51F827;");
 				level.setOnMouseClicked(mouseClick);
 				level.setId("" + curLevel);
-				if(curLevel <= unlockedImages)
-				{
-					ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("classic/" + curLevel + "/full.png").toString()));
-					image.setFitHeight(120);
-					image.setFitWidth(120);
-					level.setGraphic(image);
-				}
-				else {
-					ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("assets/locked_image.png").toString()));
-					image.setFitHeight(120);
-					image.setFitWidth(120);
-					level.setGraphic(image);
-					level.setDisable(true);
-				}
+				ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("assets/locked_image.png").toString()));
+				image.setFitHeight(120);
+				image.setFitWidth(120);
+				level.setGraphic(image);
+				level.setDisable(true);
 				grid.add(level, j, i);
 			}
 		}
@@ -72,8 +63,8 @@ public class Gallery extends VBox
 		{
 			Button pressed = (Button) event.getSource();
 			int level = Integer.parseInt(pressed.getId());
-			ImageViewer classicMode = new ImageViewer(level);
-			Main.changeScene(classicMode);
+			ImageViewer imageViewer = new ImageViewer(level);
+			Main.changeScene(imageViewer);
 		}
 	};
 }
