@@ -38,6 +38,17 @@ public class MainMenu extends GridPane
 			}
 
 		});
+		
+		gallery.setOnMouseClicked(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent event)
+			{
+				Gallery gallery = new Gallery();
+				Main.changeScene(gallery);
+			}
+
+		});
 
 		backAndSave.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
