@@ -21,10 +21,6 @@ public class Gallery extends VBox
 		Text sceneTitle = new Text("GALLERY");
 		sceneTitle.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";-fx-fill: #555;");
 		
-//		ImageView lockedImage = new ImageView(new Image(ClassLoader.getSystemResource("assets/locked_image.png").toString()));
-//		lockedImage.setFitHeight(120);
-//		lockedImage.setFitWidth(120);
-		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
 		grid.setVgap(15);
@@ -43,11 +39,19 @@ public class Gallery extends VBox
 				//level.setStyle("-fx-background-color: #51F827;");
 				level.setOnMouseClicked(mouseClick);
 				level.setId("" + curLevel);
-				ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("assets/locked_image.png").toString()));
-				image.setFitHeight(120);
-				image.setFitWidth(120);
-				level.setGraphic(image);
-				level.setDisable(true);
+				if(curLevel <= unlockedImages) {
+					ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+curLevel+"/full.png").toString()));
+					image.setFitHeight(120);
+					image.setFitWidth(120);
+					level.setGraphic(image);
+					level.setDisable(false);
+				}else {
+					ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("assets/locked_image.png").toString()));
+					image.setFitHeight(120);
+					image.setFitWidth(120);
+					level.setGraphic(image);
+					level.setDisable(true);
+				}
 				grid.add(level, j, i);
 			}
 		}
