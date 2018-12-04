@@ -33,8 +33,8 @@ public class MainMenu extends GridPane
 			@Override
 			public void handle(MouseEvent event)
 			{
-				LevelSelection levelSelection = new LevelSelection();
-				Main.changeScene(levelSelection);
+				ModeSelection modeSelection = new ModeSelection();
+				Main.changeScene(modeSelection);
 			}
 
 		});
