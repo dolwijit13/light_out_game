@@ -123,14 +123,22 @@ public class PlayerInfo
 		}
 	}
 
-	public static void setTimerPassedLevel(int timerPassedLevel)
+	public static void setTimerPassedLevel(int newLevel)
 	{
-		selectedPlayerInfo.timerPassedLevel = timerPassedLevel;
+		int lastLevel=getTimerPassedLevel();
+		if(newLevel > lastLevel)
+		{
+			selectedPlayerInfo.timerPassedLevel = newLevel;
+		}
 	}
 
-	public static void setTimerPenalty(int timerPenalty)
+	public static void setTimerPenalty(int newLevel)
 	{
-		selectedPlayerInfo.timerPenalty = timerPenalty;
+		int lastLevel=getDrawPassedLevel();
+		if(newLevel > lastLevel)
+		{
+			selectedPlayerInfo.drawPassedLevel = newLevel;
+		}
 	}
 
 	public static void setDrawPassedLevel(int drawPassedLevel)
@@ -150,9 +158,14 @@ public class PlayerInfo
 		}
 	}
 
-	public static void setTriColorPassedLevel(int triColorPassedLevel)
+	public static void setTriColorPassedLevel(int newLevel)
 	{
-		selectedPlayerInfo.triColorPassedLevel = triColorPassedLevel;
+		int lastLevel=getTriColorPassedLevel();
+		if(newLevel > lastLevel)
+		{
+			selectedPlayerInfo.triColorPassedLevel = newLevel;
+			System.out.println(getTriColorPassedLevel());
+		}
 	}
 
 	public static void setTriColorPenalty(int level,int newPenalty)

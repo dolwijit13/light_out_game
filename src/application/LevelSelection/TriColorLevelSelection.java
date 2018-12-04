@@ -11,7 +11,7 @@ public class TriColorLevelSelection extends LevelSelection
 {
 	public TriColorLevelSelection()
 	{
-		super(2,5,PlayerInfo.getTimerPassedLevel()+1);
+		super(2,5,PlayerInfo.getTriColorPassedLevel()+1);
 	}
 
 	@Override

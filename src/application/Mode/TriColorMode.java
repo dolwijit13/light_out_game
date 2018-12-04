@@ -4,12 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import application.Main;
 import application.GameLogic.Board;
 import application.GameLogic.BoardSolver;
 import application.GameMenu.ClassicGameMenu;
 import application.GameMenu.TriColorGameMenu;
 import application.PassLevel.PassLevel;
 import application.PassLevel.TriColorPassLevel;
+import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -78,22 +80,21 @@ public class TriColorMode extends Mode
 	@Override
 	protected void toNextLevel()
 	{
-		// TODO Auto-generated method stub
-		
+		TriColorMode nextLevel = new TriColorMode(board.getCurLevel() + 1);
+		Main.changeScene(nextLevel);
 	}
 
 	@Override
 	protected void resetBoard()
 	{
-		// TODO Auto-generated method stub
-		
+		Main.changeScene(new TriColorMode(board.getCurLevel()));
 	}
 
 	@Override
 	protected void setPenalty()
 	{
-		// TODO Auto-generated method stub
-		
+		PlayerInfo.setTriColorPassedLevel(level);
+		PlayerInfo.setTriColorPenalty(level, gameMenu.getPenalty());
 	}
 	
 	private void setResetButton(Button resetButton)

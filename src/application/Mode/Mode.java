@@ -153,6 +153,10 @@ public abstract class Mode extends StackPane
 		undoDeq.removeLast();
 		int n=board.getN();
 		board.changeColor(lastId/n, lastId%n, true);
+		if(this instanceof TriColorMode)
+		{
+			board.changeColor(lastId/n, lastId%n, true);
+		}
 		gameMenu.addPenalty(-5);
 		if(undoDeq.isEmpty())
 		{

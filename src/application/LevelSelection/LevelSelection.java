@@ -46,6 +46,7 @@ public abstract class LevelSelection extends VBox
 				int curLevel = (i * m + j + 1);
 				LevelButton levelButton = new LevelButton(curLevel);
 				grid.add(levelButton, j, i);
+				System.out.println(curLevel + " " + maxLevelCanPlay);
 				if(curLevel > maxLevelCanPlay)
 				{
 					levelButton.setDisable(true);
