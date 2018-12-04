@@ -2,6 +2,7 @@ package application;
 
 import java.io.FileNotFoundException;
 
+import application.Mode.ClassicMode;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;

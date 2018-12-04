@@ -1,4 +1,4 @@
-package application;
+package GameLogic;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

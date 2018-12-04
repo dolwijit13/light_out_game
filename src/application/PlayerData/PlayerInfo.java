@@ -1,4 +1,4 @@
-package application;
+package application.PlayerData;
 
 import java.util.prefs.Preferences;
 

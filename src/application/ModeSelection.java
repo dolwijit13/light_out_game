@@ -1,5 +1,6 @@
 package application;
 
+import application.LevelSelection.ClassicLevelSelection;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

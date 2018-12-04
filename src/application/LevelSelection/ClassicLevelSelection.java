@@ -1,5 +1,8 @@
-package application;
+package application.LevelSelection;
 
+import application.Main;
+import application.Mode.ClassicMode;
+import application.PlayerData.PlayerInfo;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

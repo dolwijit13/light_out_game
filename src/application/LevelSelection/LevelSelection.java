@@ -1,5 +1,6 @@
-package application;
+package application.LevelSelection;
 
+import application.Button.ToMainMenuButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,7 +10,7 @@ import javafx.scene.text.Text;
 
 public abstract class LevelSelection extends VBox
 {
-	protected class LevelButton extends Button
+	public class LevelButton extends Button
 	{
 		private int level;
 		public LevelButton(int level)

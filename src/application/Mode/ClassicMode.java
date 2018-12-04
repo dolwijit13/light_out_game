@@ -1,26 +1,22 @@
-package application;
+package application.Mode;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 
+import GameLogic.Board;
+import GameLogic.BoardSolver;
+import application.Main;
+import application.PassLevel;
+import application.GameMenu.ClassicGameMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BackgroundImage;
 
 public class ClassicMode extends Mode
 {
 
-	private static InputStream levelFile = ClassicMode.class.getClassLoader().getResourceAsStream("level.txt");
+	private static InputStream levelFile = ClassicMode.class.getClassLoader().getResourceAsStream("classic/ClassicLevel.txt");
 	private static String[] levels;
 	protected int level;
 

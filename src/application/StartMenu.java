@@ -1,5 +1,7 @@
 package application;
 
+import application.PlayerData.CreateNewPlayer;
+import application.PlayerData.LoadingSelection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

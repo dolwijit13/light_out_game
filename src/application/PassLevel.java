@@ -1,5 +1,7 @@
 package application;
 
+import application.Button.ToMainMenuButton;
+import application.PlayerData.PlayerInfo;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
