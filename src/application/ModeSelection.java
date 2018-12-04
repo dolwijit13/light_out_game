@@ -50,8 +50,8 @@ public class ModeSelection extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
-				LevelSelection levelSelection = new LevelSelection();
-				Main.changeScene(levelSelection);
+				ClassicLevelSelection classicLevelSelection = new ClassicLevelSelection();
+				Main.changeScene(classicLevelSelection);
 			}
 
 		});

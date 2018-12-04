@@ -1,16 +1,32 @@
 package application;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class LevelSelection extends VBox
+public abstract class LevelSelection extends VBox
 {
+	protected class LevelButton extends Button
+	{
+		private int level;
+		public LevelButton(int level)
+		{
+			super(""+level);
+			this.level = level;
+			setPrefHeight(120);
+			setPrefWidth(240);
+			setLevelButton(this);
+		}
+		
+		public int getLevel()
+		{
+			return level;
+		}
+	}
+	
 	public LevelSelection()
 	{
 		super(10);
@@ -28,16 +44,11 @@ public class LevelSelection extends VBox
 			for (int j = 0; j < 5; j++)
 			{
 				int curLevel = (i * 5 + j + 1);
-				Button level = new Button("" + curLevel);
-				grid.add(level, j, i);
-				level.setPrefHeight(120);
-				level.setPrefWidth(240);
-				//level.setStyle("-fx-background-color: #51F827;");
-				level.setOnMouseClicked(mouseClick);
-				level.setId("" + curLevel);
+				LevelButton levelButton = new LevelButton(curLevel);
+				grid.add(levelButton, j, i);
 				if(curLevel > maxLevelCanPlay)
 				{
-					level.setDisable(true);
+					levelButton.setDisable(true);
 				}
 			}
 		}
@@ -45,16 +56,6 @@ public class LevelSelection extends VBox
 		ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
 		getChildren().addAll(sceneTitle, grid, toMainMenuButton);
 	}
-
-	private final EventHandler<MouseEvent> mouseClick = new EventHandler<MouseEvent>()
-	{
-		@Override
-		public void handle(MouseEvent event)
-		{
-			Button pressed = (Button) event.getSource();
-			int level = Integer.parseInt(pressed.getId());
-			ClassicMode classicMode = new ClassicMode(level);
-			Main.changeScene(classicMode);
-		}
-	};
+	
+	public abstract void setLevelButton(LevelButton levelButton);
 }
