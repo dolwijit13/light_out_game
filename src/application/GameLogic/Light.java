@@ -34,7 +34,15 @@ public class Light extends Button
 		state1 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
 		switch (mode) {
 		case 0:
+			//for classic
 			state0 = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+level+"/"+text+".png").toString()));
+			break;
+		case 2:
+			//for
+			state0 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+			state1 = new ImageView(new Image(ClassLoader.getSystemResource("green.png").toString()));
+			state2 = new ImageView(new Image(ClassLoader.getSystemResource("red.png").toString()));
+			break;
 		default:
 			break;
 		}
@@ -123,7 +131,7 @@ public class Light extends Button
 		state0.setFitWidth(size);
 		state1.setFitHeight(size);
 		state1.setFitWidth(size);
-		if(mode == 3) {
+		if(mode == 2) {
 			state2.setFitHeight(size);
 			state2.setFitWidth(size);
 		}
@@ -135,7 +143,7 @@ public class Light extends Button
 		state0.setFitWidth(size-6);
 		state1.setFitHeight(size-6);
 		state1.setFitWidth(size-6);
-		if(mode == 3) {
+		if(mode == 2) {
 			state2.setFitHeight(size-6);
 			state2.setFitWidth(size-6);
 		}

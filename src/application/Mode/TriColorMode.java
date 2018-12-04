@@ -1,12 +1,18 @@
 package application.Mode;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
 import application.GameLogic.Board;
+import application.GameLogic.BoardSolver;
 import application.GameMenu.ClassicGameMenu;
 import application.GameMenu.TriColorGameMenu;
 import application.PassLevel.PassLevel;
+import application.PassLevel.TriColorPassLevel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 public class TriColorMode extends Mode
 {
@@ -21,15 +27,15 @@ public class TriColorMode extends Mode
 		level--;
 		int n = 4 + level / 5;
 
-		board = new Board(n, 2, level + 1,0);
+		board = new Board(n, 3, level + 1,2);
 		gameMenu = new TriColorGameMenu();
-		passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
 		setRestartButton(passLevel.getRestartButton());
 		setUndoButton(gameMenu.getUndoButton());
-		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
-		setHelp2Button(((ClassicGameMenu) gameMenu).getHelp2Button());
+		setHelp1Button(((TriColorGameMenu) gameMenu).getHelp1Button());
+		setHelp2Button(((TriColorGameMenu) gameMenu).getHelp2Button());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -81,6 +87,61 @@ public class TriColorMode extends Mode
 	{
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected void setPenalty()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void setResetButton(Button resetButton)
+	{
+		resetButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				resetBoard();
+			}
+		});
+	}
+
+	private void setHelp1Button(Button help1Button)
+	{
+		help1Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				gameMenu.addPenalty(999);
+				showPassLevel();
+			}
+		});
+	}
+	
+	private void setHelp2Button(Button help2Button)
+	{
+		help2Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				gameMenu.addPenalty(999);
+				BoardSolver boardSolver;
+				try
+				{
+					boardSolver = new BoardSolver(board);
+					boardSolver.showShouldPress();
+				}
+				catch (FileNotFoundException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }

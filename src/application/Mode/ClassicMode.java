@@ -10,6 +10,7 @@ import application.GameLogic.BoardSolver;
 import application.GameMenu.ClassicGameMenu;
 import application.PassLevel.ClassicPassLevel;
 import application.PassLevel.PassLevel;
+import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -32,8 +33,8 @@ public class ClassicMode extends Mode
 		gameMenu = new ClassicGameMenu();
 		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
-		setResetButton(gameMenu.getResetButton());
 		setRestartButton(passLevel.getRestartButton());
+		setResetButton(gameMenu.getResetButton());
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
 		setHelp2Button(((ClassicGameMenu) gameMenu).getHelp2Button());
@@ -135,5 +136,12 @@ public class ClassicMode extends Mode
 	protected void resetBoard()
 	{
 		Main.changeScene(new ClassicMode(board.getCurLevel()));
+	}
+
+	@Override
+	protected void setPenalty()
+	{
+		PlayerInfo.setClassicPassedLevel(level);
+		PlayerInfo.setClassicPenalty(level, gameMenu.getPenalty());
 	}
 }

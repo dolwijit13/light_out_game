@@ -28,7 +28,7 @@ public abstract class PassLevel extends VBox
 	protected VBox vBox = new VBox(10);
 	protected HBox hBox = new HBox(10);
 	
-	public PassLevel(int level, int penalty)
+	public PassLevel(int level, int penalty,int maxLevel)
 	{
 		super(10);
 		setAlignment(Pos.CENTER);
@@ -43,6 +43,21 @@ public abstract class PassLevel extends VBox
 		
 		restartButton = new Button("Restart");
 		toNextLevelButton = new Button("Next Level");
+		
+		if(level !=maxLevel)
+		{
+			clearLevelLabel = new Label("LEVEL " + level + " CLEAR");
+			unlockLabel = new Label("Unlocked new picture in gallery and level " + (level + 1));
+			hBox.getChildren().addAll(toMainMenuButton, restartButton, toNextLevelButton);
+			vBox.getChildren().addAll(clearLevelLabel, penaltyLabel, hBox);
+		}
+		else
+		{
+			clearLevelLabel = new Label("YOU CLEAR ALL "+maxLevel+" LEVEL!!!");
+			unlockLabel = new Label("Unlocked the LAST picture in gallery");
+			hBox.getChildren().addAll(toMainMenuButton, restartButton);
+			vBox.getChildren().addAll(clearLevelLabel, penaltyLabel, hBox);
+		}
 
 		vBox.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID,
 		  CornerRadii.EMPTY, BorderWidths.DEFAULT)));

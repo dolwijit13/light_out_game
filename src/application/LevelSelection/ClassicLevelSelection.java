@@ -10,7 +10,7 @@ public class ClassicLevelSelection extends LevelSelection
 {
 	public ClassicLevelSelection()
 	{
-		super(4,5,PlayerInfo.getClassicLastPassedLevel()+1);
+		super(4,5,PlayerInfo.getClassicPassedLevel()+1);
 	}
 	
 	public void setLevelButton(LevelButton levelButton)

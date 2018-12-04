@@ -32,7 +32,7 @@ public class ImageViewer extends VBox {
 		ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
 		hBox.getChildren().addAll(previousImageButton, toMainMenuButton, nextImageButton);
 		
-		int unlockedImages = PlayerInfo.getClassicLastPassedLevel();
+		int unlockedImages = PlayerInfo.getClassicPassedLevel();
 		if(level - 1 == 0) previousImageButton.setDisable(true);
 		if(level + 1 > unlockedImages) nextImageButton.setDisable(true);
 		
