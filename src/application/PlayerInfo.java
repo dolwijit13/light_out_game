@@ -102,9 +102,13 @@ public class PlayerInfo
 		selectedPlayerInfo.name = name;
 	}
 
-	public static void setClassicLastPassedLevel(int classicLastPassedLevel)
+	public static void setClassicLastPassedLevel(int newLevel)
 	{
-		selectedPlayerInfo.classicLastPassedLevel = classicLastPassedLevel;
+		int lastLevel=getClassicLastPassedLevel();
+		if(newLevel > lastLevel)
+		{
+			selectedPlayerInfo.classicLastPassedLevel = newLevel;
+		}
 	}
 
 	public static void setClassicPenalty(int level,int newPenalty)

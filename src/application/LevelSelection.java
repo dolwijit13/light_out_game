@@ -27,7 +27,7 @@ public abstract class LevelSelection extends VBox
 		}
 	}
 	
-	public LevelSelection()
+	public LevelSelection(int n,int m,int maxLevelCanPlay)
 	{
 		super(10);
 		setAlignment(Pos.CENTER);
@@ -37,13 +37,12 @@ public abstract class LevelSelection extends VBox
 		GridPane grid = new GridPane();
 		grid.setVgap(15);
 		grid.setHgap(15);
-		
-		int maxLevelCanPlay = PlayerInfo.getClassicLastPassedLevel()+1; 
-		for (int i = 0; i < 4; i++)
+	
+		for (int i = 0; i < n; i++)
 		{
-			for (int j = 0; j < 5; j++)
+			for (int j = 0; j < m; j++)
 			{
-				int curLevel = (i * 5 + j + 1);
+				int curLevel = (i * m + j + 1);
 				LevelButton levelButton = new LevelButton(curLevel);
 				grid.add(levelButton, j, i);
 				if(curLevel > maxLevelCanPlay)
