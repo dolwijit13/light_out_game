@@ -18,23 +18,20 @@ public:
 
     light operator+(light o)
     {
-        if(this->val + o.val == 1)
-            return light(1);
-        return light(0);
+        int tmp=this->val + o.val;
+        return light(tmp%2);
     }
 
     light operator-(light o)
     {
-        if(this->val + o.val == 1)
-            return light(1);
-        return light(0);
+        int tmp=this->val - o.val+2;
+        return light(tmp%2);
     }
 
     light operator*(light o)
     {
-        if(this->val == o.val && o.val==1)
-            return light(1);
-        return light(0);
+        int tmp=this->val * o.val;
+        return light(tmp%2);
     }
 
     void operator=(light o)
@@ -100,16 +97,19 @@ int main()
     int x,y;
     printf("n : ");
     scanf("%d",&n);
+
     printf("start board : \n");
     for(i=0;i<n*n;i++)
     {
         scanf("%d",&x);
         a[i]=x;
     }
+
     printf("final board : (input -1 if turn off every light)\n");
     for(i=0;i<n*n;i++)
     {
         scanf("%d",&x);
+        x=0;
         if(x==-1)
         {
             for(j=0;j<n*n;j++)
@@ -185,6 +185,8 @@ int main()
     }
 
     printf("-------------\n");
+    */
+
     for(i=0;i<n*n;i++)
     {
         for(j=0;j<n*n;j++)
@@ -195,6 +197,7 @@ int main()
     }
     //*/
 
+    //*
     queue<pair<int,int> >q;
     for(i=0;i<n*n;i++)
     {
@@ -215,4 +218,5 @@ int main()
         printf("(%d,%d) %d\n",x,y,x*n+y);
         q.pop();
     }
+    //*/
 }

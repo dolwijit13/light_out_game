@@ -89,8 +89,8 @@ public class Light extends Button
 		{
 			currentState = (currentState + 1) % maxState;
 			setGraphic(state2);
-			setMaxSize();
-			setStyle("");
+			//setMaxSize();
+			//setStyle("");
 			/// red (to 2)
 		}
 	}
@@ -113,16 +113,14 @@ public class Light extends Button
 	
 	public Light plus(Light o)
 	{
-		if(this.getCurrentState() + o.getCurrentState() == 1)
-			return new Light(1,2);
-        return new Light(0,2);
+		int tmp=this.getCurrentState()+o.getCurrentState();
+        return new Light(tmp%2,2);
 	}
 	
 	public Light multiply(Light o)
 	{
-		if(this.getCurrentState() == o.getCurrentState() && o.getCurrentState()==1)
-            return new Light(1,2);
-        return new Light(0,2);
+		int tmp=this.getCurrentState()*o.getCurrentState();
+        return new Light(tmp%2,2);
 	}
 	
 	public void setMaxSize()
@@ -147,5 +145,10 @@ public class Light extends Button
 			state2.setFitHeight(size-6);
 			state2.setFitWidth(size-6);
 		}
+	}
+	
+	public int getMaxState()
+	{
+		return maxState;
 	}
 }

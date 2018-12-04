@@ -9,12 +9,14 @@ public class Board extends GridPane
 	private Light[][] lights;
 	private int n=0;
 	private int curLevel;
+	private int maxState;
 
 	public Board(int n, int maxState, int level, int mode)
 	{
 		this.n = n;
 		lights = new Light[n][n];
 		this.curLevel = level;
+		this.maxState = maxState;
 		setAlignment(Pos.CENTER);
 		setVgap(5);
 		setHgap(5);
@@ -90,5 +92,10 @@ public class Board extends GridPane
 			}
 		}
 		return true;
+	}
+	
+	public int getMaxState()
+	{
+		return maxState;
 	}
 }

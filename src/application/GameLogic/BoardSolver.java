@@ -17,11 +17,13 @@ public class BoardSolver
 	private int n;
 	private ArrayList<Integer> shouldPress;
 	private ArrayList<Light> boardVector;
+	private int maxState;
 
 	public BoardSolver(Board board) throws FileNotFoundException
 	{
 		inversedMFile = BoardSolver.class.getClassLoader().getResourceAsStream("BoardSolver_inversedM.txt");
 		this.board = board;
+		this.maxState = board.getMaxState();
 		n = board.getN();
 		read_inversedM();
 		shouldPress = new ArrayList<Integer>();
@@ -34,6 +36,7 @@ public class BoardSolver
 			}
 		}
 		find_ShouldPress();
+		printInversedM();
 	}
 
 	private void read_inversedM()
@@ -73,12 +76,12 @@ public class BoardSolver
 	{
 		for (int i = 0; i < n * n; i++)
 		{
-			Light ans = new Light();
+			Light ans = new Light(0,2);
 			for (int j = 0; j < n * n; j++)
 			{
 				ans = ans.plus(inversedM[i][j].multiply(boardVector.get(j)));
 			}
-			if (ans.getCurrentState() == 1)
+			if (ans.getCurrentState() !=0)
 				shouldPress.add(i);
 		}
 	}
@@ -89,6 +92,10 @@ public class BoardSolver
 		{
 			for (int j = 0; j < n * n; j++)
 			{
+				if(j%n==0 && j!=0)
+				{
+					System.out.print("\t");
+				}
 				System.out.print(inversedM[i][j].getCurrentState() + " ");
 			}
 			System.out.println();
@@ -97,6 +104,7 @@ public class BoardSolver
 
 	public void showShouldPress()
 	{
+		/*
 		Random rand = new Random();
 		int sz = shouldPress.size();
 		int idx = shouldPress.get(rand.nextInt(sz));
@@ -105,5 +113,18 @@ public class BoardSolver
 		String style = light.getStyle();
 		light.setMinSize();
 		light.setStyle(style + "-fx-border-color: #ff0000; -fx-border-width: 3px;");
+		*/
+		//*
+		for(int i=0 ; i<shouldPress.size();i++)
+		{
+			int idx=shouldPress.get(i);
+			Light light = board.getLight(idx/n, idx%n);
+			String style = light.getStyle();
+			System.out.println("a");
+			light.setMinSize();
+			light.setStyle(style + "-fx-border-color: #4f00ff; -fx-border-width: 3px;");
+		}
+		
+		//*/
 	}
 }

@@ -134,6 +134,7 @@ public class TriColorMode extends Mode
 				try
 				{
 					boardSolver = new BoardSolver(board);
+					System.out.println("b");
 					boardSolver.showShouldPress();
 				}
 				catch (FileNotFoundException e)
