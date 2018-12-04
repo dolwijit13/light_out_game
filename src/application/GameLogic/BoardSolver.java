@@ -36,7 +36,7 @@ public class BoardSolver
 			}
 		}
 		find_ShouldPress();
-		printInversedM();
+		//printInversedM();
 	}
 
 	private void read_inversedM()
@@ -120,7 +120,6 @@ public class BoardSolver
 			int idx=shouldPress.get(i);
 			Light light = board.getLight(idx/n, idx%n);
 			String style = light.getStyle();
-			System.out.println("a");
 			light.setMinSize();
 			light.setStyle(style + "-fx-border-color: #4f00ff; -fx-border-width: 3px;");
 		}

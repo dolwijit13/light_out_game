@@ -7,9 +7,7 @@ import java.io.InputStream;
 import application.Main;
 import application.GameLogic.Board;
 import application.GameLogic.BoardSolver;
-import application.GameMenu.ClassicGameMenu;
 import application.GameMenu.TriColorGameMenu;
-import application.PassLevel.PassLevel;
 import application.PassLevel.TriColorPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -134,7 +132,6 @@ public class TriColorMode extends Mode
 				try
 				{
 					boardSolver = new BoardSolver(board);
-					System.out.println("b");
 					boardSolver.showShouldPress();
 				}
 				catch (FileNotFoundException e)

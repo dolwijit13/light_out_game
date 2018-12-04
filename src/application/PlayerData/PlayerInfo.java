@@ -164,7 +164,6 @@ public class PlayerInfo
 		if(newLevel > lastLevel)
 		{
 			selectedPlayerInfo.triColorPassedLevel = newLevel;
-			System.out.println(getTriColorPassedLevel());
 		}
 	}
 
