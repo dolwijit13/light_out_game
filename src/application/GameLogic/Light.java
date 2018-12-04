@@ -1,4 +1,4 @@
-package GameLogic;
+package application.GameLogic;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

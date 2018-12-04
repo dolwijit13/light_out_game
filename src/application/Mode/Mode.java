@@ -3,11 +3,11 @@ package application.Mode;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import GameLogic.Board;
-import GameLogic.Light;
-import application.PassLevel;
+import application.GameLogic.Board;
+import application.GameLogic.Light;
 import application.GameMenu.ClassicGameMenu;
 import application.GameMenu.GameMenu;
+import application.PassLevel.PassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

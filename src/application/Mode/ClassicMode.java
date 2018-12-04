@@ -4,11 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import GameLogic.Board;
-import GameLogic.BoardSolver;
 import application.Main;
-import application.PassLevel;
+import application.GameLogic.Board;
+import application.GameLogic.BoardSolver;
 import application.GameMenu.ClassicGameMenu;
+import application.PassLevel.ClassicPassLevel;
+import application.PassLevel.PassLevel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ import javafx.scene.control.Button;
 public class ClassicMode extends Mode
 {
 
-	private static InputStream levelFile = ClassicMode.class.getClassLoader().getResourceAsStream("classic/ClassicLevel.txt");
+	private static InputStream levelFile = ClassicMode.class.getClassLoader().getResourceAsStream("ClassicLevel.txt");
 	private static String[] levels;
 	protected int level;
 
@@ -29,7 +30,7 @@ public class ClassicMode extends Mode
 
 		board = new Board(n, 2, level + 1,0);
 		gameMenu = new ClassicGameMenu();
-		passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
 		setRestartButton(passLevel.getRestartButton());

@@ -33,7 +33,7 @@ public class LoadingSelection extends VBox
 			this.isLoading = isLoading;
 			this.n = playerInfo.n;
 			this.name = playerInfo.name;
-			this.classicLastPassedLevel = playerInfo.classicLastPassedLevel;
+			this.classicLastPassedLevel = playerInfo.classicPassedLevel;
 			this.timerPassedLevel = playerInfo.timerPassedLevel;
 			this.drawPassedLevel = playerInfo.drawPassedLevel;
 			this.triColorPassedLevel = playerInfo.triColorPassedLevel;

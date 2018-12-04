@@ -10,7 +10,7 @@ public class PlayerInfo
 	protected int n;
 	protected String name;
 
-	protected int classicLastPassedLevel; //// number of passed level in classic mode
+	protected int classicPassedLevel; //// number of passed level in classic mode
 	protected byte[] classicPenalty; // penalty of each classic mode level (1-20)
 
 	protected int timerPassedLevel; // number of passed level in timer mode
@@ -28,7 +28,7 @@ public class PlayerInfo
 	{
 		this.n = n;
 		this.name = name;
-		this.classicLastPassedLevel = classicLastPassedLevel;
+		this.classicPassedLevel = classicLastPassedLevel;
 		this.classicPenalty = classicPenalty;
 		this.timerPassedLevel = timerPassedLevel;
 		this.timerPenalty = timerPenalty;
@@ -42,7 +42,7 @@ public class PlayerInfo
 	{
 		this.n = 0;
 		this.name = name;
-		this.classicLastPassedLevel = 0;
+		this.classicPassedLevel = 0;
 		this.classicPenalty = new byte[41];
 		this.timerPassedLevel = 0;
 		this.timerPenalty = 0;
@@ -59,7 +59,7 @@ public class PlayerInfo
 		
 		this.n = n;
 		this.name = prefs.get(n+"name", " ");
-		this.classicLastPassedLevel = prefs.getInt(n+"classicLastPassedLevel", 0);
+		this.classicPassedLevel = prefs.getInt(n+"classicLastPassedLevel", 0);
 		this.classicPenalty = prefs.getByteArray(n+"classicPenalty", null);
 		this.timerPassedLevel = prefs.getInt(n+"timerPassedLevel", 0);
 		this.timerPenalty = prefs.getInt(n+"timerPenalty", 0);
@@ -82,7 +82,7 @@ public class PlayerInfo
 	public static void saveToN(int n)
 	{
 		prefs.put(n+"name",selectedPlayerInfo.name);
-		prefs.putInt(n+"classicLastPassedLevel", selectedPlayerInfo.classicLastPassedLevel);
+		prefs.putInt(n+"classicLastPassedLevel", selectedPlayerInfo.classicPassedLevel);
 		prefs.putByteArray(n+"classicPenalty", selectedPlayerInfo.classicPenalty);
 		prefs.putInt(n+"timerPassedLevel", selectedPlayerInfo.timerPassedLevel);
 		prefs.putInt(n+"timerPenalty", selectedPlayerInfo.timerPenalty);
@@ -107,7 +107,7 @@ public class PlayerInfo
 		int lastLevel=getClassicLastPassedLevel();
 		if(newLevel > lastLevel)
 		{
-			selectedPlayerInfo.classicLastPassedLevel = newLevel;
+			selectedPlayerInfo.classicPassedLevel = newLevel;
 		}
 	}
 
@@ -179,7 +179,7 @@ public class PlayerInfo
 
 	public static int getClassicLastPassedLevel()
 	{
-		return selectedPlayerInfo.classicLastPassedLevel;
+		return selectedPlayerInfo.classicPassedLevel;
 	}
 
 	public static byte[] getClassicPenalty()

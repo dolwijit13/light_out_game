@@ -1,6 +1,8 @@
-package application;
+package application.Mode;
 
+import application.Main;
 import application.LevelSelection.ClassicLevelSelection;
+import application.LevelSelection.TriColorLevelSelection;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -53,6 +55,17 @@ public class ModeSelection extends VBox
 			{
 				ClassicLevelSelection classicLevelSelection = new ClassicLevelSelection();
 				Main.changeScene(classicLevelSelection);
+			}
+
+		});
+		
+		triColorButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent event)
+			{
+				TriColorLevelSelection triColorLevelSelection = new TriColorLevelSelection();
+				Main.changeScene(triColorLevelSelection);
 			}
 
 		});

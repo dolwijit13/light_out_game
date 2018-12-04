@@ -1,4 +1,4 @@
-package GameLogic;
+package application.GameLogic;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
