@@ -2,6 +2,7 @@ package application;
 
 import java.util.Optional;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -50,6 +51,16 @@ public class SavingSelection extends LoadingSelection
 				PlayerInfo.saveToN(n);
 				StartMenu startMenu = new StartMenu();
 				Main.changeScene(startMenu);
+			}
+		});
+		
+		returnButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				MainMenu mainMenu = new MainMenu();
+				Main.changeScene(mainMenu);
 			}
 		});
 	}

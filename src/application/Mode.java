@@ -94,6 +94,10 @@ public abstract class Mode extends StackPane
 			gameMenu.addPenalty(5);
 			if (isWinLevel())
 			{
+				if(gameMenu instanceof ClassicGameMenu)
+				{
+					PlayerInfo.setClassicLastPassedLevel(board.getCurLevel());
+				}
 				showPassLevel();
 			}
 			if (board.canHelp1() && gameMenu instanceof ClassicGameMenu)

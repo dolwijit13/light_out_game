@@ -63,7 +63,6 @@ public class PassLevel extends VBox
 		if (PlayerInfo.getClassicLastPassedLevel() < level)
 		{
 			vBox.getChildren().add(unlockLabel);
-			PlayerInfo.setClassicLastPassedLevel(level);
 		}
 		
 		PlayerInfo.setClassicPenalty(level, penalty);

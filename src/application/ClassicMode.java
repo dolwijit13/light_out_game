@@ -22,9 +22,11 @@ public class ClassicMode extends Mode
 
 	private static InputStream levelFile = ClassicMode.class.getClassLoader().getResourceAsStream("level.txt");
 	private static String[] levels;
+	protected int level;
 
 	public ClassicMode(int level)
 	{
+		this.level = level;
 		String[] start = levels[level - 1].split(" ");
 		level--;
 		int n = 4 + level / 5;
