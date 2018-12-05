@@ -24,6 +24,8 @@ public class ClassicMode extends Mode
 
 	public ClassicMode(int level)
 	{
+		
+		mode = 0;
 		this.level = level;
 		String[] start = levels[level - 1].split(" ");
 		level--;

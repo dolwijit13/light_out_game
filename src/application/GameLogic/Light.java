@@ -33,11 +33,16 @@ public class Light extends Button
 	{
 		this.shouldPress=0;
 		this.mode = mode;
-		state1 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
 		switch (mode) {
 		case 0:
 			//for classic
 			state0 = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+level+"/"+text+".png").toString()));
+			state1 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+			break;
+		case 1:
+			//for timer
+			state0 = new ImageView(new Image(ClassLoader.getSystemResource("green.png").toString()));
+			state1 = new ImageView(new Image(ClassLoader.getSystemResource("red.png").toString()));
 			break;
 		case 2:
 			//for

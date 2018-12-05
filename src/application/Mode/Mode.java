@@ -21,6 +21,7 @@ import javafx.scene.layout.StackPane;
 
 public abstract class Mode extends StackPane
 {
+	protected int mode;
 	protected Board board;
 	protected GameMenu gameMenu;
 	protected HBox hBox;
@@ -98,10 +99,12 @@ public abstract class Mode extends StackPane
 				board.changeColor(x, y, false);
 			}
 			gameMenu.addPenalty(5);
-			if (isWinLevel())
+			if (isWinLevel() && mode != 1)
 			{
 				setPenalty();
 				showPassLevel();
+			}else if(isWinLevel() && mode == 1){
+				toNextLevel();
 			}
 			if (board.canHelp1() && gameMenu instanceof ClassicGameMenu)
 			{

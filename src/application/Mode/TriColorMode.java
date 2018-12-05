@@ -23,6 +23,8 @@ public class TriColorMode extends Mode
 
 	public TriColorMode(int level)
 	{
+		mode = 2;
+		
 		this.level = level;
 		String[] start = levels[level - 1].split(" ");
 		level--;

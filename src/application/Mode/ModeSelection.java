@@ -73,6 +73,17 @@ public class ModeSelection extends VBox
 
 		});
 		
+		timerButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent event)
+			{
+				TimerMode timerMode = new TimerMode(1,180,0,null);
+				Main.changeScene(timerMode);
+			}
+
+		});
+		
 		triColorButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
