@@ -27,6 +27,7 @@ public class TimerMode extends Mode{
 		gameMenu = new TimerGameMenu(0);
 		oldPenalty = penalty;
 		gameMenu.addPenalty(penalty); 
+		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
 		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setResetButton(gameMenu.getResetButton());
 		setUndoButton(gameMenu.getUndoButton());
@@ -75,6 +76,19 @@ public class TimerMode extends Mode{
 			public void handle(ActionEvent arg0)
 			{
 				resetBoard();
+			}
+		});
+	}
+	
+	private void setNewPuzzleButton(Button newPuzzleButton)
+	{
+		newPuzzleButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty+500, null);
+				Main.changeScene(timerMode);
 			}
 		});
 	}
