@@ -40,6 +40,7 @@ public class Board extends GridPane
 		b.changeColor();
 		if (first)
 		{
+			b.addShouldPress();
 			if (x > 0)
 			{
 				changeColor(x - 1, y, false);

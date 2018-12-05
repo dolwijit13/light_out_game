@@ -3,6 +3,7 @@ package application.Mode;
 import application.Main;
 import application.LevelSelection.ClassicLevelSelection;
 import application.LevelSelection.TriColorLevelSelection;
+import application.PlayerData.PlayerInfo;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,6 +46,19 @@ public class ModeSelection extends VBox
 		grid.add(timerButton, 2, 1);
 		grid.add(drawButton, 1, 2);
 		grid.add(triColorButton, 2, 2);
+		
+		if(PlayerInfo.getClassicPassedLevel() <5)
+		{
+			timerButton.setDisable(true);
+		}
+		if(PlayerInfo.getClassicPassedLevel() <10)
+		{
+			drawButton.setDisable(true);
+		}
+		if(PlayerInfo.getClassicPassedLevel() <15)
+		{
+			triColorButton.setDisable(true);
+		}
 		
 		this.getChildren().addAll(sceneTitle,grid);
 		

@@ -104,7 +104,7 @@ public class BoardSolver
 
 	public void showShouldPress()
 	{
-		/*
+		//*
 		Random rand = new Random();
 		int sz = shouldPress.size();
 		int idx = shouldPress.get(rand.nextInt(sz));
@@ -113,15 +113,15 @@ public class BoardSolver
 		String style = light.getStyle();
 		light.setMinSize();
 		light.setStyle(style + "-fx-border-color: #ff0000; -fx-border-width: 3px;");
-		*/
-		//*
+		//*/
+		/*
 		for(int i=0 ; i<shouldPress.size();i++)
 		{
 			int idx=shouldPress.get(i);
 			Light light = board.getLight(idx/n, idx%n);
 			String style = light.getStyle();
 			light.setMinSize();
-			light.setStyle(style + "-fx-border-color: #4f00ff; -fx-border-width: 3px;");
+			light.setStyle(style + "-fx-border-color: #ff0000; -fx-border-width: 3px;");
 		}
 		
 		//*/

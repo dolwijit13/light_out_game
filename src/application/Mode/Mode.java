@@ -129,6 +129,7 @@ public abstract class Mode extends StackPane
 				}
 			}
 		}
+		//return false;
 		return true;
 	}
 

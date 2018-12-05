@@ -1,12 +1,13 @@
 package application.Mode;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Random;
 
 import application.Main;
 import application.GameLogic.Board;
-import application.GameLogic.BoardSolver;
+import application.GameLogic.Light;
 import application.GameMenu.TriColorGameMenu;
 import application.PassLevel.TriColorPassLevel;
 import application.PlayerData.PlayerInfo;
@@ -19,7 +20,7 @@ public class TriColorMode extends Mode
 	private static InputStream levelFile = TriColorMode.class.getClassLoader().getResourceAsStream("TriColorLevel.txt");
 	private static String[] levels;
 	protected int level;
-	
+
 	public TriColorMode(int level)
 	{
 		this.level = level;
@@ -27,7 +28,7 @@ public class TriColorMode extends Mode
 		level--;
 		int n = 4 + level / 5;
 
-		board = new Board(n, 3, level + 1,2);
+		board = new Board(n, 3, level + 1, 2);
 		gameMenu = new TriColorGameMenu();
 		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
@@ -36,6 +37,7 @@ public class TriColorMode extends Mode
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp1Button(((TriColorGameMenu) gameMenu).getHelp1Button());
 		setHelp2Button(((TriColorGameMenu) gameMenu).getHelp2Button());
+		setHelp3Button(((TriColorGameMenu) gameMenu).getHelp3Button());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -52,22 +54,22 @@ public class TriColorMode extends Mode
 
 		hBox.getChildren().addAll(board, gameMenu);
 	}
-	
+
 	public static void readLevel()
 	{
 		try
 		{
-			String levelString="";
-			char c ='1';
-			while(c!='*')
+			String levelString = "";
+			char c = '1';
+			while (c != '*')
 			{
 				c = (char) levelFile.read();
-				if(c=='*')
+				if (c == '*')
 					break;
-				levelString+=c;
+				levelString += c;
 			}
-			levels=levelString.split("-");
-			
+			levels = levelString.split("-");
+
 		}
 		catch (IOException e)
 		{
@@ -94,7 +96,7 @@ public class TriColorMode extends Mode
 		PlayerInfo.setTriColorPassedLevel(level);
 		PlayerInfo.setTriColorPenalty(level, gameMenu.getPenalty());
 	}
-	
+
 	private void setResetButton(Button resetButton)
 	{
 		resetButton.setOnAction(new EventHandler<ActionEvent>()
@@ -119,7 +121,7 @@ public class TriColorMode extends Mode
 			}
 		});
 	}
-	
+
 	private void setHelp2Button(Button help2Button)
 	{
 		help2Button.setOnAction(new EventHandler<ActionEvent>()
@@ -128,16 +130,59 @@ public class TriColorMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				gameMenu.addPenalty(999);
-				BoardSolver boardSolver;
-				try
+				int n = 4 + (level-1) / 5;
+				ArrayList<Integer> shouldPress = new ArrayList<Integer>();
+				for (int i= 0; i < n; i++)
 				{
-					boardSolver = new BoardSolver(board);
-					boardSolver.showShouldPress();
+					for(int j=0;j<n;j++)
+					{
+						if(board.getLight(i, j).isShouldPress())
+						{
+							shouldPress.add(i*n+j);
+						}
+					}
 				}
-				catch (FileNotFoundException e)
+				
+				//*
+				Random rand = new Random();
+				int sz = shouldPress.size();
+				int idx = shouldPress.get(rand.nextInt(sz));
+				int i = idx / n, j = idx % n;
+				Light light = board.getLight(i, j);
+				String style = light.getStyle();
+				light.setMinSize();
+				light.setStyle(style + "-fx-border-color: #000080; -fx-border-width: 3px;");
+				//*/
+				
+				/*
+				for(int i=0;i<shouldPress.size();i++)
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					int tmp=shouldPress.get(i);
+					int x=tmp/n;
+					int y=tmp%n;
+					board.changeColor(x, y, true);
+				}
+				*/
+			}
+		});
+	}
+	
+	private void setHelp3Button(Button help3Button)
+	{
+		help3Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				gameMenu.addPenalty(999);
+				int n = 4 + (level-1) / 5;
+				for(int i=0;i<n;i++)
+				{
+					for(int j=0;j<n;j++)
+					{
+						System.out.print(board.getLight(i, j).isShouldPress()+" ");
+					}
+					System.out.println("");
 				}
 			}
 		});

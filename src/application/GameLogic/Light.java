@@ -14,6 +14,7 @@ public class Light extends Button
 	private ImageView state2;
 	private int size;
 	private int mode;
+	private int shouldPress;
 	
 	public Light()
 	{
@@ -30,6 +31,7 @@ public class Light extends Button
 
 	public Light(String text, int h, int w, int maxState, int mode, int level) //mode : 0 = classic, 1 = time, 2 = ???, 3 = 3 colors
 	{
+		this.shouldPress=0;
 		this.mode = mode;
 		state1 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
 		switch (mode) {
@@ -150,5 +152,15 @@ public class Light extends Button
 	public int getMaxState()
 	{
 		return maxState;
+	}
+	
+	public void addShouldPress()
+	{
+		shouldPress = (shouldPress+1 ) %maxState;
+	}
+	
+	public boolean isShouldPress()
+	{
+		return shouldPress!=0;
 	}
 }
