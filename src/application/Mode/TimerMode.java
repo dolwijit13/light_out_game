@@ -17,18 +17,17 @@ public class TimerMode extends Mode{
 	private int level;
 	private int timeLeft;
 	private int[] pressed;
-	private int oldPenalty;
 	private Thread timerThread;
 	
 	public TimerMode(int level, int time, int penalty, int passedLevel, int[] tmp)
 	{
 		mode = 1;
-		timeLeft = time;
+		this.passedLevel = passedLevel;
+		this.timeLeft = time;
 		this.level = level;
-		n = (level-1)/5;
+		this.n = (level-1)/5;
 		board = new Board(n+4, 2, level, 1);
 		gameMenu = new TimerGameMenu(0);
-		oldPenalty = penalty;
 		gameMenu.addPenalty(penalty); 
 		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
 		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
@@ -109,7 +108,7 @@ public class TimerMode extends Mode{
 			public void handle(ActionEvent arg0)
 			{
 				timerThread.suspend();
-				TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty+500, passedLevel, null);
+				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty()+500, passedLevel, null);
 				Main.changeScene(timerMode);
 			}
 		});
@@ -120,6 +119,7 @@ public class TimerMode extends Mode{
 		// TODO Auto-generated method stub
 		timerThread.suspend();
 		passedLevel++;
+		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
 		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), passedLevel, null);
 		Main.changeScene(nextLevel);
 	}
@@ -127,7 +127,7 @@ public class TimerMode extends Mode{
 	@Override
 	protected void resetBoard() {
 		timerThread.suspend();
-		TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty, passedLevel, pressed);
+		TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
 		Main.changeScene(timerMode);
 	}
 
