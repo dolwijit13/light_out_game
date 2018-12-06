@@ -41,7 +41,8 @@ public class DrawGameMenu extends GameMenu
 			
 			for(int i=0;i<initalBoard.size();i++)
 			{
-				lights[i/n][i%n].changeColor();
+				int tmp = initalBoard.get(i);
+				lights[tmp/n][tmp%n].changeColor();
 			}
 		}
 	}
