@@ -28,7 +28,7 @@ public class TimerGameMenu extends GameMenu
 		Text timeLeftText = new Text("Time left");
 		timeLeftLabel = new Label("test");
 		Text passedLevelText = new Text("Completed");
-		passedLevelLabel = new Label();
+		passedLevelLabel = new Label("0");
 		GridPane gridPane = new GridPane();
 		gridPane.add(timeLeftText, 0, 0);
 		gridPane.add(canvas, 0, 1);
@@ -48,6 +48,10 @@ public class TimerGameMenu extends GameMenu
 	
 	public void setTimeLeft(int timeLeft) {
 		this.timeLeft = timeLeft;
+	}
+	
+	public void setPassedLevelLabel(int passedLevel) {
+		passedLevelLabel.setText(""+passedLevel);
 	}
 	
 	public GraphicsContext getGc() {

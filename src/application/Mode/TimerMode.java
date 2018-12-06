@@ -17,19 +17,19 @@ public class TimerMode extends Mode{
 	private int level;
 	private int timeLeft;
 	private int[] pressed;
-	private int oldPenalty;
 	private Thread timerThread;
 	
 	public TimerMode(int level, int time, int penalty, int[] tmp)
 	{
 		mode = 1;
-		timeLeft = time;
+		this.passedLevel = passedLevel;
+		this.timeLeft = time;
 		this.level = level;
-		n = (level-1)/5;
+		this.n = (level-1)/5;
 		board = new Board(n+4, 2, level, 1);
 		gameMenu = new TimerGameMenu(0);
-		oldPenalty = penalty;
 		gameMenu.addPenalty(penalty); 
+		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
 		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
 		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setResetButton(gameMenu.getResetButton());
@@ -73,11 +73,11 @@ public class TimerMode extends Mode{
 		timerThread = new Thread(() -> {
 			while(true){
 				try {
-					((TimerGameMenu) gameMenu).drawCurrentTimeString(((TimerGameMenu) gameMenu).getGc());
 					((TimerGameMenu) gameMenu).setTimeLeft(timeLeft);
+					((TimerGameMenu) gameMenu).drawCurrentTimeString(((TimerGameMenu) gameMenu).getGc());
 					Thread.sleep(1000);
 					timeLeft--;
-					System.out.println(timeLeft);
+					//System.out.println(timeLeft);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -109,7 +109,7 @@ public class TimerMode extends Mode{
 			public void handle(ActionEvent arg0)
 			{
 				timerThread.suspend();
-				TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty+500, null);
+				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty()+500, passedLevel, null);
 				Main.changeScene(timerMode);
 			}
 		});
@@ -119,14 +119,14 @@ public class TimerMode extends Mode{
 	protected void toNextLevel() {
 		// TODO Auto-generated method stub
 		timerThread.suspend();
-		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), null);
+		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), passedLevel+1, null);
 		Main.changeScene(nextLevel);
 	}
 
 	@Override
 	protected void resetBoard() {
 		timerThread.suspend();
-		TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty, pressed);
+		TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
 		Main.changeScene(timerMode);
 	}
 
