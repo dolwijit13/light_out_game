@@ -6,6 +6,7 @@ import application.Main;
 import application.GameLogic.Board;
 import application.GameMenu.TimerGameMenu;
 import application.PassLevel.ClassicPassLevel;
+import application.PassLevel.TimerPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,9 +32,10 @@ public class TimerMode extends Mode
 		board = new Board(n + 4, 2, level, 1);
 		gameMenu = new TimerGameMenu(0);
 		gameMenu.addPenalty(penalty);
+		passLevel = new TimerPassLevel(gameMenu.getPenalty(), passedLevel);
+		setRestartButton(passLevel.getRestartButton());
 		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
 		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
-		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setResetButton(gameMenu.getResetButton());
 		setUndoButton(gameMenu.getUndoButton());
 		if (tmp == null)
@@ -88,7 +90,15 @@ public class TimerMode extends Mode
 					((TimerGameMenu) gameMenu).drawCurrentTimeString(((TimerGameMenu) gameMenu).getGc());
 					Thread.sleep(1000);
 					timeLeft--;
-					// System.out.println(timeLeft);
+					if(timeLeft == 0) {
+						javafx.application.Platform.runLater(new Runnable() {
+				            @Override public void run() {
+				                showPassLevel();
+				            }
+				        });
+						break;
+					}
+					 System.out.println(timeLeft);
 				}
 				catch (InterruptedException e)
 				{
@@ -99,7 +109,7 @@ public class TimerMode extends Mode
 		});
 		timerThread.start();
 	}
-
+	
 	private void setResetButton(Button resetButton)
 	{
 		resetButton.setOnAction(new EventHandler<ActionEvent>()
@@ -107,7 +117,8 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				resetBoard();
+				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
+				Main.changeScene(timerMode);
 			}
 		});
 	}
@@ -136,7 +147,7 @@ public class TimerMode extends Mode
 	@Override
 	protected void resetBoard()
 	{
-		TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
+		TimerMode timerMode = new TimerMode(1, 60, 0, 0, null);
 		Main.changeScene(timerMode);
 	}
 
@@ -151,6 +162,13 @@ public class TimerMode extends Mode
 	@Override
 	public void timerNextLevel() {
 		timerThread.interrupt();
+		for (int i = 0; i < n + 4; i++)
+		{
+			for (int j = 0; j < n + 4; j++)
+			{
+				board.getLight(i, j).setOnMouseClicked(null);
+			}
+		}
 		Thread t = new Thread(() -> {
 			for(int i = 0; i < (n+4)*(n+4); i++)
 			{
