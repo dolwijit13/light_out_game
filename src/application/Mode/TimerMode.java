@@ -13,13 +13,14 @@ import javafx.scene.control.Button;
 public class TimerMode extends Mode{
 	
 	private int n;
+	private int passedLevel;
 	private int level;
 	private int timeLeft;
 	private int[] pressed;
 	private int oldPenalty;
 	private Thread timerThread;
 	
-	public TimerMode(int level, int time, int penalty, int[] tmp)
+	public TimerMode(int level, int time, int penalty, int passedLevel, int[] tmp)
 	{
 		mode = 1;
 		timeLeft = time;
@@ -108,7 +109,7 @@ public class TimerMode extends Mode{
 			public void handle(ActionEvent arg0)
 			{
 				timerThread.suspend();
-				TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty+500, null);
+				TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty+500, passedLevel, null);
 				Main.changeScene(timerMode);
 			}
 		});
@@ -118,14 +119,15 @@ public class TimerMode extends Mode{
 	protected void toNextLevel() {
 		// TODO Auto-generated method stub
 		timerThread.suspend();
-		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), null);
+		passedLevel++;
+		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), passedLevel, null);
 		Main.changeScene(nextLevel);
 	}
 
 	@Override
 	protected void resetBoard() {
 		timerThread.suspend();
-		TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty, pressed);
+		TimerMode timerMode = new TimerMode(level, timeLeft, oldPenalty, passedLevel, pressed);
 		Main.changeScene(timerMode);
 	}
 
