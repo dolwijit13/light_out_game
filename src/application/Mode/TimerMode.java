@@ -6,6 +6,7 @@ import application.Main;
 import application.GameLogic.Board;
 import application.GameMenu.TimerGameMenu;
 import application.PassLevel.ClassicPassLevel;
+import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -132,7 +133,6 @@ public class TimerMode extends Mode{
 
 	@Override
 	protected void setPenalty() {
-		// TODO Auto-generated method stub
 		return;
 	}
 
