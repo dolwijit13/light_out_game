@@ -70,11 +70,35 @@ public class TimerMode extends Mode
 	private int timeLeft;
 	private int[] pressed;
 	private Thread timerThread;
+	private Thread passedLevelThread;
 	private PauseMenu pauseMenu;
 
 	public TimerMode(int level, int time, int penalty, int passedLevel, int[] tmp)
 	{
 		mode = 1;
+		passedLevelThread = new Thread(() -> {
+			for(int i = 0; i < (n+4)*(n+4); i++)
+			{
+				try
+				{
+					board.changeColor(i/(n+4), i%(n+4), false);;
+					Thread.sleep(3000/((n+4)*(n+4)*2));
+					board.changeColor(i/(n+4), i%(n+4), false);;
+					Thread.sleep(3000/((n+4)*(n+4)*2));
+					// System.out.println(timeLeft);
+				}
+				catch (InterruptedException e)
+				{
+					System.out.println("Stop Timer Thread");
+					break;
+				}
+			}
+			javafx.application.Platform.runLater(new Runnable() {
+	            @Override public void run() {
+	                toNextLevel();
+	            }
+	        });
+		});
 		this.passedLevel = passedLevel;
 		this.timeLeft = time;
 		this.level = level;
@@ -153,7 +177,7 @@ public class TimerMode extends Mode
 				        });
 						break;
 					}
-					 System.out.println(timeLeft);
+					//System.out.println(timeLeft);
 				}
 				catch (InterruptedException e)
 				{
@@ -201,6 +225,7 @@ public class TimerMode extends Mode
 			{
 				getChildren().remove(pauseMenu);
 				timerThread.resume();
+				passedLevelThread.resume();
 			}
 		});
 	}
@@ -214,6 +239,7 @@ public class TimerMode extends Mode
 			{
 				getChildren().add(pauseMenu);
 				timerThread.suspend();
+				passedLevelThread.suspend();
 			}
 		});
 	}
@@ -259,30 +285,7 @@ public class TimerMode extends Mode
 				board.getLight(i, j).setOnMouseClicked(null);
 			}
 		}
-		Thread t = new Thread(() -> {
-			for(int i = 0; i < (n+4)*(n+4); i++)
-			{
-				try
-				{
-					board.changeColor(i/(n+4), i%(n+4), false);;
-					Thread.sleep(75);
-					board.changeColor(i/(n+4), i%(n+4), false);;
-					Thread.sleep(75);
-					// System.out.println(timeLeft);
-				}
-				catch (InterruptedException e)
-				{
-					System.out.println("Stop Timer Thread");
-					break;
-				}
-			}
-			javafx.application.Platform.runLater(new Runnable() {
-	            @Override public void run() {
-	                toNextLevel();
-	            }
-	        });
-		});
-		t.start();
+		passedLevelThread.start();
 	}
 
 	@Override
