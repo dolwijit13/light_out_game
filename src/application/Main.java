@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 public class Main extends Application
 {
-	public static Pane pane = new Pane();
+	public static Pane pane;
 	private static Stage stage;
 
 	@Override
@@ -38,6 +38,7 @@ public class Main extends Application
 
 	public static void changeScene(Pane pane)
 	{
+		Main.pane = pane;
 		Scene scene = new Scene(pane, 1280, 720);
 		stage.setScene(scene);
 	}

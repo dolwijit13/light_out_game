@@ -3,24 +3,74 @@ package application.Mode;
 import java.util.Random;
 
 import application.Main;
+import application.Button.ToMainMenuButton;
 import application.GameLogic.Board;
 import application.GameMenu.TimerGameMenu;
 import application.PassLevel.ClassicPassLevel;
 import application.PassLevel.TimerPassLevel;
 import application.PlayerData.PlayerInfo;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class TimerMode extends Mode
 {
 
+	private class PauseMenu extends VBox {
+		
+		protected Button restartButton;
+		protected Button resumeButton;
+		protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
+		protected Text pauseMenuText;
+		protected VBox vBox = new VBox(10);
+		protected HBox hBox = new HBox(10);
+		
+		public PauseMenu() {
+			super(10);
+			setAlignment(Pos.CENTER);
+			vBox.setAlignment(Pos.CENTER);
+			vBox.setPrefHeight(360);
+			vBox.setPrefWidth(640);
+			vBox.setPadding(new Insets(10,100,10,100));
+
+			resumeButton = new Button("Resume");
+			restartButton = new Button("Restart");
+			pauseMenuText = new Text("PAUSE MENU");
+			
+			hBox.getChildren().addAll(resumeButton, restartButton, toMainMenuButton);
+			vBox.getChildren().addAll(pauseMenuText, hBox);
+			
+			hBox.setAlignment(Pos.CENTER);
+
+			vBox.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID,
+			  CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			vBox.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, null, null)));
+			getChildren().add(vBox);
+		}
+	};
+	
 	private int n;
 	private int passedLevel;
 	private int level;
 	private int timeLeft;
 	private int[] pressed;
 	private Thread timerThread;
+	private PauseMenu pauseMenu;
 
 	public TimerMode(int level, int time, int penalty, int passedLevel, int[] tmp)
 	{
@@ -33,6 +83,10 @@ public class TimerMode extends Mode
 		gameMenu = new TimerGameMenu(0);
 		gameMenu.addPenalty(penalty);
 		passLevel = new TimerPassLevel(gameMenu.getPenalty(), passedLevel);
+		pauseMenu = new PauseMenu();
+		setPauseButton(((TimerGameMenu) gameMenu).getPauseButton());
+		setResumeButton(pauseMenu.resumeButton);
+		setRestartButton(pauseMenu.restartButton);
 		setRestartButton(passLevel.getRestartButton());
 		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
 		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
@@ -82,7 +136,7 @@ public class TimerMode extends Mode
 		hBox.getChildren().addAll(board, gameMenu);
 
 		timerThread = new Thread(() -> {
-			while (true)
+			while (true && Main.pane instanceof TimerMode)
 			{
 				try
 				{
@@ -94,6 +148,7 @@ public class TimerMode extends Mode
 						javafx.application.Platform.runLater(new Runnable() {
 				            @Override public void run() {
 				                showPassLevel();
+				                timerThread.interrupt();
 				            }
 				        });
 						break;
@@ -117,8 +172,7 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
-				Main.changeScene(timerMode);
+				resetBoard();
 			}
 		});
 	}
@@ -130,8 +184,36 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				timerThread.interrupt();
 				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty() + 500, passedLevel, null);
 				Main.changeScene(timerMode);
+			}
+		});
+	}
+	
+	private void setResumeButton(Button resumeButton)
+	{
+		resumeButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@SuppressWarnings("deprecation")
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				getChildren().remove(pauseMenu);
+				timerThread.resume();
+			}
+		});
+	}
+	
+	private void setPauseButton(Button pauseButton) {
+		pauseButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@SuppressWarnings("deprecation")
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				getChildren().add(pauseMenu);
+				timerThread.suspend();
 			}
 		});
 	}
@@ -145,10 +227,18 @@ public class TimerMode extends Mode
 	}
 
 	@Override
-	protected void resetBoard()
-	{
-		TimerMode timerMode = new TimerMode(1, 60, 0, 0, null);
-		Main.changeScene(timerMode);
+	protected void setRestartButton(Button restartButton) {
+		
+		restartButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				timerThread.interrupt();
+				TimerMode timerMode = new TimerMode(1, 60, 0, 0, null);
+				Main.changeScene(timerMode);
+			}
+		});
 	}
 
 	@Override
@@ -193,5 +283,12 @@ public class TimerMode extends Mode
 	        });
 		});
 		t.start();
+	}
+
+	@Override
+	protected void resetBoard() {
+		timerThread.interrupt();
+		TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
+		Main.changeScene(timerMode);
 	}
 }

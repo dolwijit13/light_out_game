@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 public class TimerGameMenu extends GameMenu
 {
 	private Button newPuzzleButton;
-	private Label timeLeftLabel;
+	private Button pauseButton;
 	private Label passedLevelLabel;
 	private Canvas canvas;
 	private int timeLeft;
@@ -25,8 +25,8 @@ public class TimerGameMenu extends GameMenu
 		canvas = new Canvas(70, 50);
 		gc = canvas.getGraphicsContext2D();
 		newPuzzleButton = new Button("New");
+		pauseButton = new Button("Pause");
 		Text timeLeftText = new Text("Time left");
-		timeLeftLabel = new Label("test");
 		Text passedLevelText = new Text("Completed");
 		passedLevelLabel = new Label("0");
 		GridPane gridPane = new GridPane();
@@ -39,7 +39,7 @@ public class TimerGameMenu extends GameMenu
 		gridPane.setHgap(40);
 		gridPane.setVgap(10);
 		gridPane.setAlignment(Pos.CENTER);
-		getChildren().addAll(logo, gridPane, newPuzzleButton, resetButton, undoButton, toMainMenuButton);
+		getChildren().addAll(logo, gridPane, newPuzzleButton, resetButton, undoButton, pauseButton, toMainMenuButton);
 	}
 	
 	public Button getNewPuzzleButton() {
@@ -52,6 +52,10 @@ public class TimerGameMenu extends GameMenu
 	
 	public void setPassedLevelLabel(int passedLevel) {
 		passedLevelLabel.setText(""+passedLevel);
+	}
+	
+	public Button getPauseButton() {
+		return pauseButton;
 	}
 	
 	public GraphicsContext getGc() {
