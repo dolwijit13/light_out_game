@@ -48,7 +48,7 @@ public class Light extends Button
 			color0 = "#FF6969";
 			color1 = "#69B6FF";
 			break;
-		case 2:
+		case 3:
 			//for
 			color0 = "#FF6969";
 			color1 = "#69B6FF";

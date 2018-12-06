@@ -23,14 +23,14 @@ public class TriColorMode extends Mode
 
 	public TriColorMode(int level)
 	{
-		mode = 2;
+		mode = 3;
 		
 		this.level = level;
 		String[] start = levels[level - 1].split(" ");
 		level--;
 		int n = 4 + level / 5;
 
-		board = new Board(n, 3, level + 1, 2);
+		board = new Board(n, 3, level + 1, mode);
 		gameMenu = new TriColorGameMenu();
 		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
