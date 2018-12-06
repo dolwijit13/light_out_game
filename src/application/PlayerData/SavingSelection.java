@@ -25,7 +25,7 @@ public class SavingSelection extends LoadingSelection
 			{
 				PlayerButton selectedPlayer = LoadingSelection.selectedPlayer;
 				int n=selectedPlayer.n;
-				if(!selectedPlayer.name.equals(""))
+				if(!selectedPlayer.name.equals(" "))
 				{
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("Overwriting");
