@@ -22,7 +22,7 @@ public class TimerGameMenu extends GameMenu
 	public TimerGameMenu(int penalty)
 	{
 		super.penalty = penalty;
-		canvas = new Canvas(100, 100);
+		canvas = new Canvas(70, 50);
 		gc = canvas.getGraphicsContext2D();
 		newPuzzleButton = new Button("New");
 		Text timeLeftText = new Text("Time left");
@@ -61,6 +61,6 @@ public class TimerGameMenu extends GameMenu
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font(40));
 		gc.clearRect(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-		gc.fillText("" + this.timeLeft, this.canvas.getWidth() / 2, this.canvas.getWidth() / 2 + 10);
+		gc.fillText("" + this.timeLeft, 0, this.canvas.getWidth() / 2);
 	}
 }

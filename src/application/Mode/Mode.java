@@ -104,7 +104,7 @@ public abstract class Mode extends StackPane
 				setPenalty();
 				showPassLevel();
 			}else if(isWinLevel() && mode == 1){
-				toNextLevel();
+				timerNextLevel();
 			}
 			if (board.canHelp1() && gameMenu instanceof ClassicGameMenu)
 			{
@@ -148,6 +148,8 @@ public abstract class Mode extends StackPane
 	protected abstract void resetBoard();
 	
 	protected abstract void setPenalty();
+	
+	protected void timerNextLevel() {}
 	
 	protected void undoBoard()
 	{

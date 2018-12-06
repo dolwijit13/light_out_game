@@ -92,8 +92,6 @@ public class TimerMode extends Mode
 				}
 				catch (InterruptedException e)
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					System.out.println("Stop Timer Thread");
 					break;
 				}
@@ -121,7 +119,6 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				timerThread.suspend();
 				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty() + 500, passedLevel, null);
 				Main.changeScene(timerMode);
 			}
@@ -132,15 +129,13 @@ public class TimerMode extends Mode
 	protected void toNextLevel()
 	{
 		// TODO Auto-generated method stub
-		timerThread.suspend();
-		TimerMode nextLevel = new TimerMode(level + 1, timeLeft, gameMenu.getPenalty(), passedLevel + 1, null);
+		TimerMode nextLevel = new TimerMode(level + 1, timeLeft + 15, gameMenu.getPenalty(), passedLevel + 1, null);
 		Main.changeScene(nextLevel);
 	}
 
 	@Override
 	protected void resetBoard()
 	{
-		timerThread.suspend();
 		TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
 		Main.changeScene(timerMode);
 	}
@@ -152,5 +147,33 @@ public class TimerMode extends Mode
 		PlayerInfo.setTimerPenalty(gameMenu.getPenalty());
 		return;
 	}
-
+	
+	@Override
+	public void timerNextLevel() {
+		timerThread.interrupt();
+		Thread t = new Thread(() -> {
+			for(int i = 0; i < (n+4)*(n+4); i++)
+			{
+				try
+				{
+					board.changeColor(i/(n+4), i%(n+4), false);;
+					Thread.sleep(75);
+					board.changeColor(i/(n+4), i%(n+4), false);;
+					Thread.sleep(75);
+					// System.out.println(timeLeft);
+				}
+				catch (InterruptedException e)
+				{
+					System.out.println("Stop Timer Thread");
+					break;
+				}
+			}
+			javafx.application.Platform.runLater(new Runnable() {
+	            @Override public void run() {
+	                toNextLevel();
+	            }
+	        });
+		});
+		t.start();
+	}
 }
