@@ -29,7 +29,7 @@ public class DrawMode extends Mode
 
 		this.level = level;
 		String[] start = levels[level - 1].split(" ");
-		
+		System.out.println(initialBoards[level-1]);
 		String[] initialTmp = initialBoards[level - 1].split(" ");
 		initalBoard = new ArrayList<Integer>();
 		level--;
@@ -39,6 +39,7 @@ public class DrawMode extends Mode
 		
 		for (int i = 0; i < initialTmp.length; i++)
 		{
+			System.out.println(initialTmp.length);
 			int temp = Integer.parseInt(initialTmp[i]);
 			initalBoard.add(temp);
 			board.changeColor(temp /n, temp %n, false);
