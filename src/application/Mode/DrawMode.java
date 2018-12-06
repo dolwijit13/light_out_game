@@ -8,8 +8,8 @@ import java.util.Random;
 import application.Main;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
-import application.GameMenu.drawGameMenu;
-import application.PassLevel.drawPassLevel;
+import application.GameMenu.DrawGameMenu;
+import application.PassLevel.DrawPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,15 +36,6 @@ public class DrawMode extends Mode
 		int n = 4 + level / 5;	
 
 		board = new Board(n, 2, level + 1, 2);
-		gameMenu = new drawGameMenu();
-		passLevel = new drawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
-		setToNextLevelButton(passLevel.getToNextLevelButton());
-		setResetButton(gameMenu.getResetButton());
-		setRestartButton(passLevel.getRestartButton());
-		setUndoButton(gameMenu.getUndoButton());
-		setHelp1Button(((drawGameMenu) gameMenu).getHelp1Button());
-		setHelp2Button(((drawGameMenu) gameMenu).getHelp2Button());
-		setHelp3Button(((drawGameMenu) gameMenu).getHelp3Button());
 		
 		for (int i = 0; i < initialTmp.length; i++)
 		{
@@ -52,6 +43,16 @@ public class DrawMode extends Mode
 			initalBoard.add(temp);
 			board.changeColor(temp /n, temp %n, false);
 		}	
+		
+		gameMenu = new DrawGameMenu(n,initalBoard);
+		passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		setToNextLevelButton(passLevel.getToNextLevelButton());
+		setResetButton(gameMenu.getResetButton());
+		setRestartButton(passLevel.getRestartButton());
+		setUndoButton(gameMenu.getUndoButton());
+		setHelp2Button(((DrawGameMenu) gameMenu).getHelp2Button());
+		setHelp3Button(((DrawGameMenu) gameMenu).getHelp3Button());
+		
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -144,19 +145,6 @@ public class DrawMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				resetBoard();
-			}
-		});
-	}
-
-	private void setHelp1Button(Button help1Button)
-	{
-		help1Button.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent arg0)
-			{
-				gameMenu.addPenalty(999);
-				showPassLevel();
 			}
 		});
 	}
