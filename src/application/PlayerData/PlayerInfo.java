@@ -114,7 +114,7 @@ public class PlayerInfo
 	public static void setClassicPenalty(int level,int newPenalty)
 	{
 		int oldPenalty = selectedPlayerInfo.classicPenalty[(level-1)*2]*256+selectedPlayerInfo.classicPenalty[(level-1)*2+1];
-		if(oldPenalty > newPenalty)
+		if(oldPenalty > newPenalty || oldPenalty==0)
 		{
 			byte a = (byte) (newPenalty/256);
 			byte b = (byte) (newPenalty%256);
@@ -137,7 +137,7 @@ public class PlayerInfo
 		int lastLevel=getDrawPassedLevel();
 		if(newLevel > lastLevel)
 		{
-			selectedPlayerInfo.drawPassedLevel = newLevel;
+			selectedPlayerInfo.timerPenalty = newLevel;
 		}
 	}
 
@@ -149,7 +149,7 @@ public class PlayerInfo
 	public static void setDrawPenalty(int level,int newPenalty)
 	{
 		int oldPenalty = selectedPlayerInfo.drawPenalty[(level-1)*2]*256+selectedPlayerInfo.drawPenalty[(level-1)*2+1];
-		if(oldPenalty > newPenalty)
+		if(oldPenalty > newPenalty || oldPenalty==0)
 		{
 			byte a = (byte) (newPenalty/256);
 			byte b = (byte) (newPenalty%256);
@@ -170,7 +170,7 @@ public class PlayerInfo
 	public static void setTriColorPenalty(int level,int newPenalty)
 	{
 		int oldPenalty = selectedPlayerInfo.triColorPenalty[(level-1)*2]*256+selectedPlayerInfo.triColorPenalty[(level-1)*2+1];
-		if(oldPenalty > newPenalty)
+		if(oldPenalty > newPenalty || oldPenalty==0)
 		{
 			byte a = (byte) (newPenalty/256);
 			byte b = (byte) (newPenalty%256);
@@ -227,6 +227,57 @@ public class PlayerInfo
 	public static byte[] getTriColorPenalty()
 	{
 		return selectedPlayerInfo.triColorPenalty;
+	}
+	
+	public int getAllClassicPenalty()
+	{
+		int ans=0;
+		for(int i=0;i<40;i++)
+		{
+			if(i%2==0)
+			{
+				ans+= classicPenalty[i]*256;
+			}
+			else
+			{
+				ans+= classicPenalty[i];
+			}
+		}
+		return ans;
+	}
+	
+	public int getAllDrawPenalty()
+	{
+		int ans=0;
+		for(int i=0;i<20;i++)
+		{
+			if(i%2==0)
+			{
+				ans+= drawPenalty[i]*256;
+			}
+			else
+			{
+				ans+= drawPenalty[i];
+			}
+		}
+		return ans;
+	}
+	
+	public int getAllTriColorPenalty()
+	{
+		int ans=0;
+		for(int i=0;i<20;i++)
+		{
+			if(i%2==0)
+			{
+				ans+= triColorPenalty[i]*256;
+			}
+			else
+			{
+				ans+= triColorPenalty[i];
+			}
+		}
+		return ans;
 	}
 	
 }

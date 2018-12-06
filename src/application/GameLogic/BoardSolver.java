@@ -112,7 +112,7 @@ public class BoardSolver
 		Light light = board.getLight(i, j);
 		String style = light.getStyle();
 		light.setMinSize();
-		light.setStyle(style + "-fx-border-color: #ff0000; -fx-border-width: 3px;");
+		light.setBorder("-fx-border-color: #ff0000; -fx-border-width: 3px;");
 		//*/
 		/*
 		for(int i=0 ; i<shouldPress.size();i++)

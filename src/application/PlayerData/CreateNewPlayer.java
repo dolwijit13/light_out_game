@@ -30,7 +30,7 @@ public class CreateNewPlayer extends VBox
 		
 		nameField.textProperty().addListener((observable, oldValue, newValue) -> 
 		{
-		    if(newValue.length()>3)
+		    if(newValue.length()>2)
 		    {
 		    	okButton.setDisable(false);
 		    }

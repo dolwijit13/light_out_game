@@ -1,6 +1,7 @@
 package application;
 
 import application.PlayerData.CreateNewPlayer;
+import application.PlayerData.LeaderBoard;
 import application.PlayerData.LoadingSelection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,11 +22,13 @@ public class StartMenu extends GridPane
 		Button logo = new Button("AU");
 		Button newGame = new Button("New Game");
 		Button loadGame = new Button("Load Game");
+		Button leaderboard = new Button("Leaderboard");
 		Button exit = new Button("Exit");
 		add(logo, 0, 1);
 		add(newGame, 0, 2);
 		add(loadGame, 0, 3);
-		add(exit, 0, 4);
+		add(leaderboard, 0, 4);
+		add(exit, 0, 5);
 
 		newGame.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
@@ -45,6 +48,17 @@ public class StartMenu extends GridPane
 			{
 				LoadingSelection loadingSelection = new LoadingSelection(true);
 				Main.changeScene(loadingSelection);
+			}
+
+		});
+		
+		leaderboard.setOnMouseClicked(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent event)
+			{
+				LeaderBoard leaderBoard = new LeaderBoard(0);
+				Main.changeScene(leaderBoard);
 			}
 
 		});

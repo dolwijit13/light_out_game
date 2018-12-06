@@ -146,7 +146,7 @@ public class LoadingSelection extends VBox
 	protected PlayerButton player4;
 	protected static PlayerButton selectedPlayer;
 	protected Button OKButton;
-	protected ToStartMenuButton returnButton = new ToStartMenuButton();
+	protected ToStartMenuButton returnButton = new ToStartMenuButton("Return",52,585);
 
 	public LoadingSelection(boolean isLoading)
 	{
@@ -198,9 +198,6 @@ public class LoadingSelection extends VBox
 		upVBox.setStyle("-fx-background-color: #0D00FF");
 		
 		HBox downHBox = new HBox(20);
-		returnButton.setText("RETURN");
-		returnButton.setPrefHeight(52);
-		returnButton.setPrefWidth(585);
 		OKButton = new Button("OK");
 		OKButton.setPrefHeight(52);
 		OKButton.setPrefWidth(585);

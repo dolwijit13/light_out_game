@@ -57,7 +57,7 @@ public class SavingSelection extends LoadingSelection
 			}
 		});
 		
-		returnButton.setOnAction(new EventHandler<ActionEvent>()
+		returnButton.getButton().setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent event)

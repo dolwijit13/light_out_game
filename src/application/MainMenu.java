@@ -22,14 +22,12 @@ public class MainMenu extends GridPane
 		Button play = new Button("Play");
 		Button gallery = new Button("Gallery");
 		Button howToPlay = new Button("How to play");
-		Button leaderboard = new Button("Leaderboard");
 		Button backAndSave = new Button("Back");
 		add(logo, 0, 1);
 		add(play, 0, 2);
 		add(gallery, 0, 3);
 		add(howToPlay, 0, 4);
-		add(leaderboard, 0, 5);
-		add(backAndSave, 0, 6);
+		add(backAndSave, 0, 5);
 		play.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override

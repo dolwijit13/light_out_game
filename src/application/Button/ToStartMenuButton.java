@@ -8,14 +8,16 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-public class ToStartMenuButton extends Button
+public class ToStartMenuButton extends HBox
 {
+	Button toStartMenuButton;
 	public ToStartMenuButton()
 	{
-		super("Start Menu");
+		toStartMenuButton = new Button("Start Menu");
 		setAlignment(Pos.CENTER);
+		getChildren().add(toStartMenuButton);
 
-		this.setOnAction(new EventHandler<ActionEvent>()
+		toStartMenuButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent event)
@@ -28,10 +30,11 @@ public class ToStartMenuButton extends Button
 	
 	public ToStartMenuButton(String s)
 	{
-		super(s);
+		toStartMenuButton = new Button("Start Menu");
 		setAlignment(Pos.CENTER);
+		getChildren().add(toStartMenuButton);
 
-		this.setOnAction(new EventHandler<ActionEvent>()
+		toStartMenuButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent event)
@@ -40,5 +43,29 @@ public class ToStartMenuButton extends Button
 				Main.changeScene(startMenu);
 			}
 		});
+	}
+	
+	public ToStartMenuButton(String s,int h,int w)
+	{
+		toStartMenuButton = new Button(s);
+		setAlignment(Pos.CENTER);
+		toStartMenuButton.setPrefHeight(h);
+		toStartMenuButton.setPrefWidth(w);
+		getChildren().add(toStartMenuButton);
+
+		toStartMenuButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				StartMenu startMenu = new StartMenu();
+				Main.changeScene(startMenu);
+			}
+		});
+	}
+	
+	public Button getButton()
+	{
+		return toStartMenuButton;
 	}
 }

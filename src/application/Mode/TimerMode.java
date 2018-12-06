@@ -172,6 +172,7 @@ public class TimerMode extends Mode
 						javafx.application.Platform.runLater(new Runnable() {
 				            @Override public void run() {
 				                showPassLevel();
+				                setPenalty();
 				                timerThread.interrupt();
 				            }
 				        });
