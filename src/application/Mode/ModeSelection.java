@@ -78,7 +78,7 @@ public class ModeSelection extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
-				TimerMode timerMode = new TimerMode(1,180,0,0,null);
+				TimerMode timerMode = new TimerMode(1,180,0,null);
 				Main.changeScene(timerMode);
 			}
 
