@@ -29,6 +29,7 @@ public class TimerMode extends Mode{
 		board = new Board(n+4, 2, level, 1);
 		gameMenu = new TimerGameMenu(0);
 		gameMenu.addPenalty(penalty); 
+		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
 		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
 		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setResetButton(gameMenu.getResetButton());
@@ -72,11 +73,11 @@ public class TimerMode extends Mode{
 		timerThread = new Thread(() -> {
 			while(true){
 				try {
-					((TimerGameMenu) gameMenu).drawCurrentTimeString(((TimerGameMenu) gameMenu).getGc());
 					((TimerGameMenu) gameMenu).setTimeLeft(timeLeft);
+					((TimerGameMenu) gameMenu).drawCurrentTimeString(((TimerGameMenu) gameMenu).getGc());
 					Thread.sleep(1000);
 					timeLeft--;
-					System.out.println(timeLeft);
+					//System.out.println(timeLeft);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -118,9 +119,7 @@ public class TimerMode extends Mode{
 	protected void toNextLevel() {
 		// TODO Auto-generated method stub
 		timerThread.suspend();
-		passedLevel++;
-		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
-		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), passedLevel, null);
+		TimerMode nextLevel = new TimerMode(level+1, timeLeft, gameMenu.getPenalty(), passedLevel+1, null);
 		Main.changeScene(nextLevel);
 	}
 

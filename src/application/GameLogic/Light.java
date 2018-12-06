@@ -11,10 +11,14 @@ public class Light extends Button
 	private int currentState;
 	private ImageView state0;
 	private ImageView state1;
-	private ImageView state2;
+	private String color0;
+	private String color1;
+	private String color2;
 	private int size;
 	private int mode;
 	private int shouldPress;
+	private String colorStyle = "";
+	private String borderStyle = "";
 	
 	public Light()
 	{
@@ -41,14 +45,14 @@ public class Light extends Button
 			break;
 		case 1:
 			//for timer
-			state0 = new ImageView(new Image(ClassLoader.getSystemResource("green.png").toString()));
-			state1 = new ImageView(new Image(ClassLoader.getSystemResource("red.png").toString()));
+			color0 = "#FF6969";
+			color1 = "#69B6FF";
 			break;
 		case 2:
 			//for
-			state0 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
-			state1 = new ImageView(new Image(ClassLoader.getSystemResource("green.png").toString()));
-			state2 = new ImageView(new Image(ClassLoader.getSystemResource("red.png").toString()));
+			color0 = "#FF6969";
+			color1 = "#69B6FF";
+			color2 = "#FFFA4F";
 			break;
 		default:
 			break;
@@ -59,10 +63,16 @@ public class Light extends Button
 		this.maxState = maxState;
 		this.currentState = 0;
 		//textProperty().set(text);
+		setPrefHeight(size);
+		setPrefWidth(size);
 		setMaxHeight(size);
 		setMaxWidth(size);
 		setMaxSize();
-		setGraphic(state0);
+		if(mode == 0) {
+			setGraphic(state0);
+		}else {
+			setStyle("-fx-background-color: "+ color0 +";");
+		}
 		setPickOnBounds(false);
 		setId(text);
 	}
@@ -79,7 +89,11 @@ public class Light extends Button
 		if (currentState == 0)
 		{
 			currentState = (currentState + 1) % maxState;
-			setGraphic(state1);
+			if(mode == 0) {
+				setGraphic(state1);
+			}else {
+				setColor(color1);
+			}
 			//setMaxSize();
 			//setStyle("");
 			/// black green (to 1)
@@ -87,7 +101,11 @@ public class Light extends Button
 		else if (currentState == maxState - 1)
 		{
 			currentState = (currentState + 1) % maxState;
-			setGraphic(state0);
+			if(mode == 0) {
+				setGraphic(state0);
+			}else {
+				setColor(color0);
+			}
 			//setMaxSize();
 			//setStyle("");
 			/// light green (to 0)
@@ -95,14 +113,24 @@ public class Light extends Button
 		else
 		{
 			currentState = (currentState + 1) % maxState;
-			setGraphic(state2);
+			setColor(color2);
 			//setMaxSize();
 			//setStyle("");
 			/// red (to 2)
 		}
 	}
+	
+	public void setColor(String color) {
+		colorStyle = "-fx-background-color: "+ color +";";
+		setStyle(colorStyle+borderStyle);
+	}
+	
+	public void setBorder(String border) {
+		borderStyle = border;
+		setStyle(colorStyle+borderStyle);
+	}
 
-	public void setCurrentState(int currentState)
+	/*public void setCurrentState(int currentState)
 	{
 		this.currentState = currentState;
 		switch(currentState) {
@@ -111,7 +139,7 @@ public class Light extends Button
 		case 2 : setGraphic(state2);
 		}
 		setStyle("");
-	}
+	}*/
 	
 	public int getCurrentState()
 	{
@@ -132,25 +160,21 @@ public class Light extends Button
 	
 	public void setMaxSize()
 	{
-		state0.setFitHeight(size);
-		state0.setFitWidth(size);
-		state1.setFitHeight(size);
-		state1.setFitWidth(size);
-		if(mode == 2) {
-			state2.setFitHeight(size);
-			state2.setFitWidth(size);
+		if(mode == 0) {
+			state0.setFitHeight(size);
+			state0.setFitWidth(size);
+			state1.setFitHeight(size);
+			state1.setFitWidth(size);
 		}
 	}
 	
 	public void setMinSize()
 	{
-		state0.setFitHeight(size-6);
-		state0.setFitWidth(size-6);
-		state1.setFitHeight(size-6);
-		state1.setFitWidth(size-6);
-		if(mode == 2) {
-			state2.setFitHeight(size-6);
-			state2.setFitWidth(size-6);
+		if(mode == 0) {
+			state0.setFitHeight(size-6);
+			state0.setFitWidth(size-6);
+			state1.setFitHeight(size-6);
+			state1.setFitWidth(size-6);
 		}
 	}
 	

@@ -59,7 +59,7 @@ public class Board extends GridPane
 			}
 			if(b.getStyle() != "")
 			{
-				b.setStyle("");
+				b.setBorder("");
 				b.setMaxSize();
 			}
 		}
