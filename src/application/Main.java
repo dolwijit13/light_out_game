@@ -3,6 +3,7 @@ package application;
 import java.io.FileNotFoundException;
 
 import application.Mode.ClassicMode;
+import application.Mode.DrawMode;
 import application.Mode.TriColorMode;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ public class Main extends Application
 	public void start(Stage primaryStage)
 	{
 		ClassicMode.readLevel();
+		DrawMode.readLevel();
 		TriColorMode.readLevel();
 		try
 		{

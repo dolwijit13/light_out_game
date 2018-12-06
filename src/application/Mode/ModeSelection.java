@@ -2,6 +2,7 @@ package application.Mode;
 
 import application.Main;
 import application.LevelSelection.ClassicLevelSelection;
+import application.LevelSelection.DrawLevelSelection;
 import application.LevelSelection.TriColorLevelSelection;
 import application.PlayerData.PlayerInfo;
 import javafx.event.EventHandler;
@@ -78,8 +79,19 @@ public class ModeSelection extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
-				TimerMode timerMode = new TimerMode(1,180,0,0,null);
+				TimerMode timerMode = new TimerMode(1,60,0,0,null);
 				Main.changeScene(timerMode);
+			}
+
+		});
+		
+		drawButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent event)
+			{
+				DrawLevelSelection drawLevelSelection = new DrawLevelSelection();
+				Main.changeScene(drawLevelSelection);
 			}
 
 		});
