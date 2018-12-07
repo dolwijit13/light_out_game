@@ -41,6 +41,10 @@ public class ClassicMode extends Mode
 		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
 		setHelp2Button(((ClassicGameMenu) gameMenu).getHelp2Button());
 		setHelp3Button(((ClassicGameMenu) gameMenu).getHelp3Button());
+		if(level<6)
+		{
+			((ClassicGameMenu) gameMenu).setHelp3Disable();
+		}
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
