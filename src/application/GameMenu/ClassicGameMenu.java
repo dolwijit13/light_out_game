@@ -42,4 +42,9 @@ public class ClassicGameMenu extends GameMenu
 	{
 		return help3Button;
 	}
+	
+	public void setHelp3Disable()
+	{
+		help3Button.setDisable(true);
+	}
 }
