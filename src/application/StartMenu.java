@@ -1,5 +1,6 @@
 package application;
 
+import application.Button.BackButton;
 import application.PlayerData.CreateNewPlayer;
 import application.PlayerData.LeaderBoard;
 import application.PlayerData.LoadingSelection;
@@ -22,17 +23,20 @@ public class StartMenu extends HBox
 	public StartMenu()
 	{
 		super(500);
-		setPadding(new Insets(0,0,0,90));
+		setPadding(new Insets(0, 0, 0, 90));
 		setAlignment(Pos.TOP_LEFT);
-		
+
 		VBox logoVBox = new VBox(0);
 		logoVBox.setPadding(new Insets(200, 0, 0, 0));
 		Button logo = new Button("AU");
 		logo.setPrefHeight(150);
 		logo.setPrefWidth(300);
 		logoVBox.getChildren().add(logo);
-		//logoVBox.setStyle("-fx-border-color: #828282;");
-		
+		// logoVBox.setStyle("-fx-border-color: #828282;");
+
+		VBox rightVBox = new VBox(200);
+		rightVBox.setAlignment(Pos.BOTTOM_RIGHT);
+		rightVBox.setPadding(new Insets(0, 0, 20, 0));
 		VBox menuVBox = new VBox(0);
 		VBox insideMenuVBox = new VBox(30);
 		menuVBox.setPadding(new Insets(200, 0, 0, 0));
@@ -40,14 +44,17 @@ public class StartMenu extends HBox
 		Button newGame = new Button("New Game");
 		Button loadGame = new Button("Load Game");
 		Button leaderboard = new Button("Leaderboard");
-		Button exit = new Button("Exit");
+		BackButton exit = new BackButton(100, 120, 0);
 		menuVBox.getChildren().add(insideMenuVBox);
-		insideMenuVBox.getChildren().addAll(newGame,loadGame,leaderboard,exit);
+		insideMenuVBox.getChildren().addAll(newGame, loadGame, leaderboard);
 		insideMenuVBox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;");
-		
+		rightVBox.getChildren().addAll(menuVBox, exit);
+		// rightVBox.setStyle("-fx-border-color: #123456");
 
-		setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("assets/startmenubackground.png").toString()), null, null, null, null)));
-		getChildren().addAll(logoVBox,menuVBox);
+		setBackground(new Background(new BackgroundImage(
+				new Image(ClassLoader.getSystemResource("assets/startmenubackground.png").toString()), null, null, null,
+				null)));
+		getChildren().addAll(logoVBox, rightVBox);
 
 		newGame.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
@@ -59,7 +66,7 @@ public class StartMenu extends HBox
 			}
 
 		});
-		
+
 		loadGame.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -70,7 +77,7 @@ public class StartMenu extends HBox
 			}
 
 		});
-		
+
 		leaderboard.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -92,5 +99,3 @@ public class StartMenu extends HBox
 		});
 	}
 }
-
-

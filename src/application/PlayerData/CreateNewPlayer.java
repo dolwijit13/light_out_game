@@ -2,6 +2,8 @@ package application.PlayerData;
 
 import application.Main;
 import application.MainMenu;
+import application.Button.BackButton;
+import application.Button.OKButton;
 import application.Button.ToStartMenuButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,38 +48,9 @@ public class CreateNewPlayer extends VBox
 		nameVBox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;");
 		nameVBox.getChildren().addAll(nameLabel,nameField);
 		
-		Button okButton = new Button();
-		ImageView okImageView = new ImageView(new Image(ClassLoader.getSystemResource("assets/ok.png").toString()));
-		okImageView.setFitWidth(120);
-		okImageView.setFitHeight(100);
-		okButton.setGraphic(okImageView);
+		OKButton okButton = new OKButton(100, 120);
 		okButton.setDisable(true);
-		okButton.setStyle("-fx-background-color: transparent");
-		okButton.setOnMouseEntered(new EventHandler<MouseEvent>
-	    () {
-
-	        @Override
-	        public void handle(MouseEvent t) {
-	           okButton.setStyle("-fx-background-color:#dae7f3;");
-	        }
-	    });
-
-	    okButton.setOnMouseExited(new EventHandler<MouseEvent>
-	    () {
-
-	        @Override
-	        public void handle(MouseEvent t) {
-	           okButton.setStyle("-fx-background-color:transparent;");
-	        }
-	    });
-		
-		ToStartMenuButton toStartMenuButton = new ToStartMenuButton("");
-		ImageView backImageView = new ImageView(new Image(ClassLoader.getSystemResource("assets/back.png").toString()));
-		backImageView.setFitWidth(120);
-		backImageView.setFitHeight(100);
-		toStartMenuButton.getButton().setGraphic(backImageView);
-		toStartMenuButton.getButton().setStyle("-fx-background-color: transparent");
-		
+		BackButton toStartMenuButton = new BackButton(100, 120, 0);
 		
 		HBox buttonHbox = new HBox(20);
 		buttonHbox.setAlignment(Pos.CENTER);

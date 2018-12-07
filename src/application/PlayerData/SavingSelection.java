@@ -18,6 +18,9 @@ public class SavingSelection extends LoadingSelection
 	public SavingSelection()
 	{
 		super(false);
+		setStyle("-fx-background-color: #A2C523");
+		upVBox.setStyle("-fx-background-color: #2E4600");
+		
 		OKButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -57,7 +60,7 @@ public class SavingSelection extends LoadingSelection
 			}
 		});
 		
-		returnButton.getButton().setOnAction(new EventHandler<ActionEvent>()
+		returnButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent event)

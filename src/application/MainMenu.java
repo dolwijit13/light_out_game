@@ -1,5 +1,6 @@
 package application;
 
+import application.Button.BackButton;
 import application.Mode.ModeSelection;
 import application.PlayerData.SavingSelection;
 import javafx.event.EventHandler;
@@ -22,7 +23,7 @@ public class MainMenu extends GridPane
 		Button play = new Button("Play");
 		Button gallery = new Button("Gallery");
 		Button howToPlay = new Button("How to play");
-		Button backAndSave = new Button("Back");
+		BackButton backAndSave = new BackButton(100, 120, 0);
 		add(logo, 0, 1);
 		add(play, 0, 2);
 		add(gallery, 0, 3);

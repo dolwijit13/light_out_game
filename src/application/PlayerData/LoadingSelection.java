@@ -2,6 +2,8 @@ package application.PlayerData;
 
 import application.Main;
 import application.MainMenu;
+import application.Button.BackButton;
+import application.Button.OKButton;
 import application.Button.ToStartMenuButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class LoadingSelection extends VBox
 {
@@ -29,6 +32,9 @@ public class LoadingSelection extends VBox
 		public PlayerButton(PlayerInfo playerInfo,Boolean isLoading)
 		{
 			super();
+			
+			setPadding(new Insets(0, 20, 0, 20));
+			
 			this.playerInfo = playerInfo;
 			this.isLoading = isLoading;
 			this.n = playerInfo.n;
@@ -146,32 +152,20 @@ public class LoadingSelection extends VBox
 	protected PlayerButton player4;
 	protected static PlayerButton selectedPlayer;
 	protected Button OKButton;
-	protected ToStartMenuButton returnButton = new ToStartMenuButton("Return",52,585);
+	protected BackButton returnButton;
+	protected VBox upVBox;
 
 	public LoadingSelection(boolean isLoading)
 	{
 		super();
 		selectedPlayer=null;
+		setStyle("-fx-background-color: #E6DF44");
 		
-		HBox playerSelectionHBox = new HBox(5);
-		playerSelectionHBox.setPrefHeight(505);
-		playerSelectionHBox.setPrefWidth(1280);
-		playerSelectionHBox.setStyle("-fx-background-color: #9D6CC8");
-
-		HBox playerSelectionTmpHBox = new HBox();
-		playerSelectionTmpHBox.setPrefHeight(505);
-		playerSelectionTmpHBox.setPrefWidth(128);
-		playerSelectionTmpHBox.setStyle("-fx-background-color: #7B2FBD");
-
-		HBox playerSelectionTmpHBox2 = new HBox();
-		playerSelectionTmpHBox2.setPrefHeight(505);
-		playerSelectionTmpHBox2.setPrefWidth(128);
-		playerSelectionTmpHBox2.setStyle("-fx-background-color: #7B2FBD");
-
 		VBox playerSelectionVBox = new VBox(5);
 		playerSelectionVBox.setPrefHeight(505);
 		playerSelectionVBox.setPrefWidth(1024);
-		playerSelectionVBox.setPadding(new Insets(5, 5, 5, 5));
+		playerSelectionVBox.setPadding(new Insets(5, 150, 5, 150));
+		playerSelectionVBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.3); -fx-background-radius: 10;");
 		
 		PlayerInfo player1Info = new PlayerInfo(1);
 		PlayerInfo player2Info = new PlayerInfo(2);
@@ -185,25 +179,22 @@ public class LoadingSelection extends VBox
 
 		playerSelectionVBox.getChildren().addAll(player1, player2, player3, player4);
 
-		playerSelectionHBox.getChildren().addAll(playerSelectionTmpHBox, playerSelectionVBox, playerSelectionTmpHBox2);
-
-		
-		VBox upVBox = new VBox();
+		upVBox = new VBox();
 		upVBox.setAlignment(Pos.CENTER);
 		upVBox.setPrefHeight(123);
 		
 		Label upLabel = new Label("Select the game slot");
 		upLabel.setStyle("-fx-font-size: 48px; -fx-font-family:\"Arial Black\";");
+		upLabel.setTextFill(Color.web("#FEF3E2"));
 		upVBox.getChildren().add(upLabel);
-		upVBox.setStyle("-fx-background-color: #0D00FF");
+		upVBox.setStyle("-fx-background-color: #F0810F");
 		
-		HBox downHBox = new HBox(20);
-		OKButton = new Button("OK");
-		OKButton.setPrefHeight(52);
-		OKButton.setPrefWidth(585);
+		HBox downHBox = new HBox(100);
+		OKButton = new OKButton(70, 84);
+		returnButton = new BackButton(70, 84, 0);
 		
 		downHBox.getChildren().addAll(returnButton,OKButton);
-		downHBox.setStyle("-fx-background-color: #0D00FF");
+		downHBox.setStyle("-fx-background-color: transparent");
 		downHBox.setPrefHeight(92);
 		downHBox.setAlignment(Pos.CENTER);
 		
@@ -219,7 +210,7 @@ public class LoadingSelection extends VBox
 			}
 		});
 		
-		this.getChildren().addAll(upVBox,playerSelectionHBox,downHBox);
+		this.getChildren().addAll(upVBox,playerSelectionVBox,downHBox);
 	}
 	
 	public static void setSelectedPlayerBorder()
