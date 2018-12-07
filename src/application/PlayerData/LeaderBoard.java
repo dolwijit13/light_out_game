@@ -115,7 +115,7 @@ public class LeaderBoard extends VBox
 			{
 				return this.cleared < o.cleared;
 			}
-			return this.penalty < o.penalty;
+			return this.penalty > o.penalty;
 		}
 	}
 	
