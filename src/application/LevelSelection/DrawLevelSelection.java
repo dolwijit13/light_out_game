@@ -12,7 +12,7 @@ public class DrawLevelSelection extends LevelSelection
 {
 	public DrawLevelSelection()
 	{
-		super(2,5,PlayerInfo.getTriColorPassedLevel()+1);
+		super(2,5,PlayerInfo.getDrawPassedLevel()+1);
 	}
 
 	@Override

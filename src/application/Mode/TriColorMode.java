@@ -119,6 +119,7 @@ public class TriColorMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				gameMenu.addPenalty(999);
+				setPenalty();
 				showPassLevel();
 			}
 		});
