@@ -8,27 +8,32 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
-public class StartMenu extends GridPane
+public class StartMenu extends VBox
 {
 	public StartMenu()
 	{
-		setAlignment(Pos.CENTER);
-		setVgap(10);
-		setHgap(10);
-		setPadding(new Insets(5, 5, 5, 5));
+		super(10);
+		setPadding(new Insets(0,200,0,0));
+		setAlignment(Pos.CENTER_RIGHT);
 		Button logo = new Button("AU");
 		Button newGame = new Button("New Game");
 		Button loadGame = new Button("Load Game");
 		Button leaderboard = new Button("Leaderboard");
 		Button exit = new Button("Exit");
-		add(logo, 0, 1);
-		add(newGame, 0, 2);
-		add(loadGame, 0, 3);
-		add(leaderboard, 0, 4);
-		add(exit, 0, 5);
+		setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("assets/startmenubackground.png").toString()), null, null, null, null)));
+		getChildren().addAll(logo,newGame,loadGame,leaderboard,exit);
 
 		newGame.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
