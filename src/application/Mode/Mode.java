@@ -178,7 +178,6 @@ public abstract class Mode extends StackPane
 	}
 	
 	protected void showHelp3(int maxState, int size) {
-		if(size == 4) return;
 		setActive(false);
 		VBox vBox = new VBox();
 		vBox.setPrefSize(900, 700);

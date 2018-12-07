@@ -170,7 +170,7 @@ public class TriColorMode extends Mode
 		});
 	}
 	
-	private void setHelp3Button(Button help3Button)
+	/*private void setHelp3Button(Button help3Button)
 	{
 		help3Button.setOnAction(new EventHandler<ActionEvent>()
 		{
@@ -187,6 +187,18 @@ public class TriColorMode extends Mode
 					}
 					System.out.println("");
 				}
+			}
+		});
+	}*/
+	
+	private void setHelp3Button(Button help3Button)
+	{
+		help3Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				showHelp3(3,4 + (level-1) / 5);
 			}
 		});
 	}
