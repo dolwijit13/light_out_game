@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class LeaderBoard extends VBox
 {
@@ -132,8 +133,9 @@ public class LeaderBoard extends VBox
 		leaderBoardLebel.setPrefHeight(82);
 		leaderBoardLebel.setPrefWidth(1280);
 		leaderBoardLebel.setAlignment(Pos.CENTER);
+		leaderBoardLebel.setTextFill(Color.web("#FFFFFF"));
 		leaderBoardLebel.setStyle(
-				"-fx-font-size: 48px; -fx-font-family:\"Arial Black\"; -fx-background-color: #0D00FF; -fx-background-radius: 0;");
+				"-fx-font-size: 48px; -fx-font-family:\"Arial Black\"; -fx-background-color: #2A3132; -fx-background-radius: 0;");
 
 		ModeButton classicButton = new ModeButton(0);
 		ModeButton timerButton = new ModeButton(1);

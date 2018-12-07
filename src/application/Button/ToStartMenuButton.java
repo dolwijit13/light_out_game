@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class ToStartMenuButton extends HBox
@@ -16,33 +17,15 @@ public class ToStartMenuButton extends HBox
 		toStartMenuButton = new Button("Start Menu");
 		setAlignment(Pos.CENTER);
 		getChildren().add(toStartMenuButton);
-
-		toStartMenuButton.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				StartMenu startMenu = new StartMenu();
-				Main.changeScene(startMenu);
-			}
-		});
+		setButton();
 	}
 	
 	public ToStartMenuButton(String s)
 	{
-		toStartMenuButton = new Button("Start Menu");
+		toStartMenuButton = new Button(s);
 		setAlignment(Pos.CENTER);
 		getChildren().add(toStartMenuButton);
-
-		toStartMenuButton.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				StartMenu startMenu = new StartMenu();
-				Main.changeScene(startMenu);
-			}
-		});
+		setButton();
 	}
 	
 	public ToStartMenuButton(String s,int h,int w)
@@ -52,7 +35,16 @@ public class ToStartMenuButton extends HBox
 		toStartMenuButton.setPrefHeight(h);
 		toStartMenuButton.setPrefWidth(w);
 		getChildren().add(toStartMenuButton);
-
+		setButton();
+	}
+	
+	public Button getButton()
+	{
+		return toStartMenuButton;
+	}
+	
+	private void setButton()
+	{
 		toStartMenuButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -62,10 +54,23 @@ public class ToStartMenuButton extends HBox
 				Main.changeScene(startMenu);
 			}
 		});
-	}
-	
-	public Button getButton()
-	{
-		return toStartMenuButton;
+		
+		toStartMenuButton.setOnMouseEntered(new EventHandler<MouseEvent>
+	    () {
+
+	        @Override
+	        public void handle(MouseEvent t) {
+	           toStartMenuButton.setStyle("-fx-background-color:#dae7f3;");
+	        }
+	    });
+
+	    toStartMenuButton.setOnMouseExited(new EventHandler<MouseEvent>
+	    () {
+
+	        @Override
+	        public void handle(MouseEvent t) {
+	           toStartMenuButton.setStyle("-fx-background-color:transparent;");
+	        }
+	    });
 	}
 }
