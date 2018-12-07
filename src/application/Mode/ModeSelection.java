@@ -6,20 +6,25 @@ import application.LevelSelection.ClassicLevelSelection;
 import application.LevelSelection.DrawLevelSelection;
 import application.LevelSelection.TriColorLevelSelection;
 import application.PlayerData.PlayerInfo;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class ModeSelection extends VBox
+public class ModeSelection extends StackPane
 {
+	VBox vBox;
 	
 	private class ModeFrame extends VBox
 	{
@@ -34,6 +39,15 @@ public class ModeSelection extends VBox
 			setPrefWidth(400);
 			playButton = new Button("Play");
 			howToPlayButton = new Button("How to play");
+			howToPlayButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+			{
+				@Override
+				public void handle(MouseEvent event)
+				{
+					showHowToPlay(mode);
+				}
+
+			});
 			switch(mode) {
 				case 0:
 					modeName = new Text("CLASSIC MODE");
@@ -104,10 +118,11 @@ public class ModeSelection extends VBox
 
 	public ModeSelection()
 	{
-		super(10);
 		setAlignment(Pos.CENTER);
-		setPadding(new Insets(10, 10, 10, 10));
-		setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
+		vBox = new VBox(10);
+		vBox.setAlignment(Pos.CENTER);
+		vBox.setPadding(new Insets(10, 10, 10, 10));
+		vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
 		Text sceneTitle = new Text("SELECT MODE");
 		sceneTitle.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";-fx-fill: #555;");
 		
@@ -127,8 +142,29 @@ public class ModeSelection extends VBox
 		
 		ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
 		
-		this.getChildren().addAll(sceneTitle,grid,toMainMenuButton);
+		vBox.getChildren().addAll(sceneTitle,grid,toMainMenuButton);
+		
+		getChildren().add(vBox);
 		
 	}
 	
+	private void showHowToPlay(int mode) {
+		vBox.setDisable(true);
+		VBox howToPlay = new VBox(10);
+		howToPlay.setPrefSize(900, 700);
+		howToPlay.setAlignment(Pos.CENTER);
+		Button okButton = new Button("OK");
+		okButton.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				getChildren().remove(howToPlay);
+				vBox.setDisable(false);
+			}
+		});
+		ImageView help3 = new ImageView(new Image(ClassLoader.getSystemResource("assets/howtoplay/"+mode+".png").toString()));
+		howToPlay.getChildren().addAll(help3,okButton);
+		getChildren().add(howToPlay);
+	}
 }
