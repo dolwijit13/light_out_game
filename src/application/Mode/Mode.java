@@ -14,10 +14,16 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public abstract class Mode extends StackPane
 {
@@ -169,5 +175,32 @@ public abstract class Mode extends StackPane
 			Button undoButton = gameMenu.getUndoButton();
 			undoButton.setDisable(true);
 		}
+	}
+	
+	protected void showHelp3(int maxState, int size) {
+		if(size == 4) return;
+		setActive(false);
+		VBox vBox = new VBox();
+		vBox.setPrefSize(900, 700);
+		vBox.setAlignment(Pos.CENTER);
+		Button test = new Button("Continue");
+		test.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				getChildren().remove(vBox);
+				setActive(true);
+			}
+		});
+		System.out.println(size);
+		ImageView help3 = new ImageView(new Image(ClassLoader.getSystemResource("assets/help3/"+maxState+""+size+".png").toString()));
+		vBox.getChildren().addAll(help3,test);
+		getChildren().add(vBox);
+	}
+	
+	private void setActive(boolean active) {
+		this.gameMenu.setDisable(!active);
+		this.board.setDisable(!active);
 	}
 }

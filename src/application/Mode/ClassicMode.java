@@ -40,6 +40,7 @@ public class ClassicMode extends Mode
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
 		setHelp2Button(((ClassicGameMenu) gameMenu).getHelp2Button());
+		setHelp3Button(((ClassicGameMenu) gameMenu).getHelp3Button());
 		for (int i = 0; i < start.length; i++)
 		{
 			int temp = Integer.parseInt(start[i]);
@@ -72,6 +73,18 @@ public class ClassicMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				resetBoard();
+			}
+		});
+	}
+	
+	private void setHelp3Button(Button help3Button)
+	{
+		help3Button.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent arg0)
+			{
+				showHelp3(2,4 + (level-1) / 5);
 			}
 		});
 	}
