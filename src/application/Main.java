@@ -21,6 +21,8 @@ public class Main extends Application
 		ClassicMode.readLevel();
 		DrawMode.readLevel();
 		TriColorMode.readLevel();
+		Audio.load();
+
 		try
 		{
 			StartMenu startMenu = new StartMenu();

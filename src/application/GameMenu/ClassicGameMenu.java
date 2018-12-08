@@ -20,7 +20,7 @@ public class ClassicGameMenu extends GameMenu
 
 	public ClassicGameMenu(int level)
 	{
-		super(level,50,120,120);
+		super(level,37,120,120);
 		HBox helper = new HBox(10);
 		helper.setAlignment(Pos.CENTER);
 		
