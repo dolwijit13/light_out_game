@@ -64,7 +64,7 @@ public class StartMenu extends HBox
 			@Override
 			public void handle(MouseEvent event)
 			{
-				Audio.play("click");
+				Main.playSoundEffect("click");
 				CreateNewPlayer creatNewPlayer = new CreateNewPlayer();
 				Main.changeScene(creatNewPlayer);
 			}
@@ -76,7 +76,7 @@ public class StartMenu extends HBox
 			@Override
 			public void handle(MouseEvent event)
 			{
-				Audio.play("click");
+				Main.playSoundEffect("click");
 				LoadingSelection loadingSelection = new LoadingSelection(true);
 				Main.changeScene(loadingSelection);
 			}

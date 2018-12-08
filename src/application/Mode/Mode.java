@@ -3,6 +3,7 @@ package application.Mode;
 import java.util.Deque;
 import java.util.LinkedList;
 
+import application.Main;
 import application.Button.OKButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
@@ -87,6 +88,7 @@ public abstract class Mode extends StackPane
 		@Override
 		public void handle(MouseEvent event)
 		{
+			Main.playSoundEffect("light");
 			MouseButton button = event.getButton();
 			int n = board.getN();
 			if (button == MouseButton.PRIMARY)
