@@ -19,8 +19,9 @@ public class TimerGameMenu extends GameMenu
 	private int timeLeft;
 	private GraphicsContext gc;
 	
-	public TimerGameMenu(int penalty)
+	public TimerGameMenu(int penalty,int level)
 	{
+		super(level);
 		super.penalty = penalty;
 		canvas = new Canvas(70, 50);
 		gc = canvas.getGraphicsContext2D();
@@ -34,12 +35,11 @@ public class TimerGameMenu extends GameMenu
 		gridPane.add(canvas, 0, 1);
 		gridPane.add(passedLevelText, 1, 0);
 		gridPane.add(passedLevelLabel, 1, 1);
-		gridPane.add(penaltyText, 2, 0);
-		gridPane.add(penaltyLabel, 2, 1);
+		gridPane.add(penaltyLabel, 2, 0);
 		gridPane.setHgap(40);
 		gridPane.setVgap(10);
 		gridPane.setAlignment(Pos.CENTER);
-		getChildren().addAll(logo, gridPane, newPuzzleButton, resetButton, undoButton, pauseButton, toMainMenuButton);
+		getChildren().addAll(levelLabel, gridPane, newPuzzleButton, resetButton, undoButton, pauseButton, toMainMenuButton);
 	}
 	
 	public Button getNewPuzzleButton() {

@@ -1,5 +1,7 @@
 package application.GameMenu;
 
+import application.Button.BackButton;
+import application.Button.GameMenuButton;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -11,21 +13,34 @@ import javafx.scene.layout.HBox;
 public class ClassicGameMenu extends GameMenu
 {
 
-	Button help1Button;
-	Button help2Button;
-	Button help3Button;
+	protected GameMenuButton help1Button;
+	protected GameMenuButton help2Button;
+	protected GameMenuButton help3Button;
+	protected boolean canHelp2;
 
-	public ClassicGameMenu()
+	public ClassicGameMenu(int level)
 	{
+		super(level);
 		HBox helper = new HBox(10);
 		helper.setAlignment(Pos.CENTER);
-		help1Button = new Button("Help 1");
+		
+		help1Button = new GameMenuButton(120, 120, "help1.png");
 		help1Button.setDisable(true);
-		help1Button.setTooltip(new Tooltip("Help1"));
-		help2Button = new Button("Help2");
-		help3Button = new Button("Help 3");
+		help1Button.setTooltip(new Tooltip("Immediately pass the level\n(250 Penalty)"));
+		
+		help2Button = new GameMenuButton(120, 144, "help2.png");
+		help2Button.setTooltip(new Tooltip("Show next should press cell\n(50 Penalty)"));
+		
+		help3Button = new GameMenuButton(120, 132, "help3.png");
+		help3Button.setTooltip(new Tooltip("Show the pattern\n(15 Penalty)"));
+		
 		helper.getChildren().addAll(help1Button, help2Button, help3Button);
-		getChildren().addAll(logo, penaltyText, penaltyLabel, helper, resetButton, undoButton, toMainMenuButton);
+		
+		backButton = new BackButton(100, 120, 40);
+		backHBox.setAlignment(Pos.CENTER_RIGHT);
+		backHBox.getChildren().add(backButton);
+		
+		getChildren().addAll(levelLabel, penaltyLabel, helper, resetAndUndoHBox, backHBox);
 	}
 
 	public Button getHelp1Button()
@@ -46,5 +61,18 @@ public class ClassicGameMenu extends GameMenu
 	public void setHelp3Disable()
 	{
 		help3Button.setDisable(true);
+	}
+	
+	public void setCanHelp2(boolean canHelp2)
+	{
+		this.canHelp2=canHelp2;
+		help2Button.setDisable(!canHelp2);
+	}
+
+	@Override
+	protected void setAllStyle()
+	{
+		setStyle("-fx-background-color: #FFC2C2; -fx-border-color: #FF4343;-fx-border-width: 4px;");
+		levelLabel.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";-fx-background-color: #FF4343;");
 	}
 }

@@ -43,7 +43,7 @@ public class DrawMode extends Mode
 			board.changeColor(temp /n, temp %n, false);
 		}	
 		
-		gameMenu = new DrawGameMenu(n,initalBoard);
+		gameMenu = new DrawGameMenu(n,initalBoard,level+1);
 		passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());

@@ -31,7 +31,7 @@ public class TriColorMode extends Mode
 		int n = 4 + level / 5;
 
 		board = new Board(n, 3, level + 1, mode);
-		gameMenu = new TriColorGameMenu();
+		gameMenu = new TriColorGameMenu(level+1);
 		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
@@ -118,7 +118,7 @@ public class TriColorMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				gameMenu.addPenalty(999);
+				gameMenu.addPenalty(250);
 				setPenalty();
 				showPassLevel();
 			}
@@ -132,7 +132,7 @@ public class TriColorMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				gameMenu.addPenalty(999);
+				gameMenu.addPenalty(50);
 				int n = 4 + (level-1) / 5;
 				ArrayList<Integer> shouldPress = new ArrayList<Integer>();
 				for (int i= 0; i < n; i++)
@@ -198,6 +198,7 @@ public class TriColorMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				gameMenu.addPenalty(15);
 				showHelp3(3,4 + (level-1) / 5);
 			}
 		});

@@ -106,7 +106,7 @@ public class TimerMode extends Mode
 		this.level = level;
 		this.n = (level - 1) / 5;
 		board = new Board(n + 4, 2, level, 1);
-		gameMenu = new TimerGameMenu(0);
+		gameMenu = new TimerGameMenu(0,level);
 		gameMenu.addPenalty(penalty);
 		passLevel = new TimerPassLevel(gameMenu.getPenalty(), passedLevel);
 		pauseMenu = new PauseMenu();

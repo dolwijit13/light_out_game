@@ -10,6 +10,7 @@ public class Board extends GridPane
 	private int n=0;
 	private int curLevel;
 	private int maxState;
+	private boolean canHelp2=true;
 
 	public Board(int n, int maxState, int level, int mode)
 	{
@@ -61,6 +62,7 @@ public class Board extends GridPane
 			{
 				b.setBorder("");
 				b.setMaxSize();
+				canHelp2=true;
 			}
 		}
 	}
@@ -93,6 +95,16 @@ public class Board extends GridPane
 			}
 		}
 		return true;
+	}
+	
+	public void setCanHelp2(boolean canHelp2)
+	{
+		this.canHelp2=canHelp2;
+	}
+	
+	public boolean canHelp2()
+	{
+		return canHelp2;
 	}
 	
 	public int getMaxState()
