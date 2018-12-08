@@ -2,6 +2,7 @@ package application.Mode;
 
 import application.Main;
 import application.Button.BackButton;
+import application.Button.OKButton;
 import application.Button.PictureWithTextButton;
 import application.Button.ToMainMenuButton;
 import application.LevelSelection.ClassicLevelSelection;
@@ -20,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -39,7 +41,7 @@ public class ModeSelection extends StackPane
 			super(13);
 			setAlignment(Pos.TOP_CENTER);
 			setPrefHeight(220);
-			setPrefWidth(400);
+			setPrefWidth(450);
 			//playButton = new Button("Play");
 			VBox buttonVBox = new VBox(13);
 			buttonVBox.setPadding(new Insets(0, 106, 0, 106));
@@ -123,7 +125,30 @@ public class ModeSelection extends StackPane
 			modeName.setPrefWidth(450);
 			getChildren().add(modeName);
 			if(isLocked) {
-				
+				HBox lockedModeHBox = new HBox(10);
+				VBox lockedText = new VBox();
+				lockedText.setAlignment(Pos.CENTER);
+				Label lockedLabel = new Label("Unlock this mode by completing");
+				lockedLabel.setStyle("-fx-font-size: 18px; -fx-font-family:\"Arial Black\";");
+				Label conditionLabel = null;
+				switch(mode) {
+					case 1:
+						conditionLabel = new Label("5 in Classic Mode.");
+						break;
+					case 2:
+						conditionLabel = new Label("10 in Classic Mode.");
+						break;
+					case 3:
+						conditionLabel = new Label("15 in Classic Mode.");
+						break;
+				}
+				conditionLabel.setStyle("-fx-font-size: 18px; -fx-font-family:\"Arial Black\";");
+				lockedText.getChildren().addAll(lockedLabel,conditionLabel);
+				ImageView lockedMode = new ImageView(new Image(ClassLoader.getSystemResource("assets/locked_mode.png").toString()));
+				lockedMode.setFitHeight(116.5);
+				lockedMode.setFitWidth(101.5);
+				lockedModeHBox.getChildren().addAll(lockedMode,lockedText);
+				getChildren().add(lockedModeHBox);
 			}else {
 				getChildren().addAll(buttonVBox);
 			}
@@ -169,10 +194,14 @@ public class ModeSelection extends StackPane
 	
 	private void showHowToPlay(int mode) {
 		vBox.setDisable(true);
-		VBox howToPlay = new VBox(10);
+		VBox okButtonBox = new VBox();
+		okButtonBox.setAlignment(Pos.CENTER_RIGHT);
+		okButtonBox.setPadding(new Insets(0,200,0,0));
+		OKButton okButton = new OKButton(100, 120);
+		okButtonBox.getChildren().add(okButton);
+		VBox howToPlay = new VBox();
 		howToPlay.setPrefSize(900, 700);
 		howToPlay.setAlignment(Pos.CENTER);
-		Button okButton = new Button("OK");
 		okButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
@@ -183,7 +212,7 @@ public class ModeSelection extends StackPane
 			}
 		});
 		ImageView help3 = new ImageView(new Image(ClassLoader.getSystemResource("assets/howtoplay/"+mode+".png").toString()));
-		howToPlay.getChildren().addAll(help3,okButton);
+		howToPlay.getChildren().addAll(help3,okButtonBox);
 		getChildren().add(howToPlay);
 	}
 }
