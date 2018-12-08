@@ -31,7 +31,7 @@ public class MainMenu extends VBox
 		
 		PictureWithTextButton play = new PictureWithTextButton(84, 268, 3, "PLAY");
 		PictureWithTextButton gallery = new PictureWithTextButton(84, 268, 5, "GALLERY");
-		BackButton backAndSave = new BackButton(100, 120, 0);
+		BackButton backAndSave = new BackButton(100, 120, 2);
 		
 		VBox outVBox = new VBox(50);
 		outVBox.setAlignment(Pos.TOP_CENTER);

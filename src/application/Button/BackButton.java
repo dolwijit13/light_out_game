@@ -3,6 +3,8 @@ package application.Button;
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
+import application.Mode.ModeSelection;
+import application.PlayerData.SavingSelection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -46,6 +48,30 @@ public class BackButton extends Button
 				{
 					MainMenu mainMenu = new MainMenu();
 					Main.changeScene(mainMenu);
+				}
+			});
+		}
+		else if(mode == 2)
+		{
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					SavingSelection savingSelection = new SavingSelection();
+					Main.changeScene(savingSelection);
+				}
+			});
+		}
+		else if(mode == 3)
+		{
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					ModeSelection modeSelection = new ModeSelection();
+					Main.changeScene(modeSelection);
 				}
 			});
 		}
