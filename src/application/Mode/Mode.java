@@ -144,7 +144,8 @@ public abstract class Mode extends StackPane
 	{
 		// passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		passLevel.setPenalty(gameMenu.getPenalty());
-		getChildren().add(passLevel);
+		hBox.getChildren().remove(gameMenu);
+		hBox.getChildren().add(passLevel);
 	}
 
 	protected abstract void toNextLevel();
