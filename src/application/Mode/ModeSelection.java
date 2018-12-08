@@ -2,6 +2,7 @@ package application.Mode;
 
 import application.Main;
 import application.Button.BackButton;
+import application.Button.PictureWithTextButton;
 import application.Button.ToMainMenuButton;
 import application.LevelSelection.ClassicLevelSelection;
 import application.LevelSelection.DrawLevelSelection;
@@ -31,16 +32,20 @@ public class ModeSelection extends StackPane
 	private class ModeFrame extends VBox
 	{
 		Label modeName;
-		Button playButton;
-		Button howToPlayButton;
+		PictureWithTextButton playButton;
+		PictureWithTextButton howToPlayButton;
 		public ModeFrame(int mode, boolean isLocked)
 		{
-			super(15);
+			super(13);
 			setAlignment(Pos.TOP_CENTER);
 			setPrefHeight(220);
 			setPrefWidth(400);
-			playButton = new Button("Play");
-			howToPlayButton = new Button("How to play");
+			//playButton = new Button("Play");
+			VBox buttonVBox = new VBox(13);
+			buttonVBox.setPadding(new Insets(0, 106, 0, 106));
+			playButton = new PictureWithTextButton(59, 188, 6, "PLAY",34);
+			howToPlayButton = new PictureWithTextButton(59, 188, 6, "HOW TO PLAY",26);
+			buttonVBox.getChildren().addAll(playButton,howToPlayButton);
 			howToPlayButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 			{
 				@Override
@@ -120,7 +125,7 @@ public class ModeSelection extends StackPane
 			if(isLocked) {
 				
 			}else {
-				getChildren().addAll(playButton,howToPlayButton);
+				getChildren().addAll(buttonVBox);
 			}
 		}
 	}

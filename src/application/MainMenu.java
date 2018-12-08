@@ -29,13 +29,13 @@ public class MainMenu extends VBox
 		setPadding(new Insets(100, 90, 5, 860));
 		Button logo = new Button("AU");
 		
-		PictureWithTextButton play = new PictureWithTextButton(84, 268, 3, "PLAY");
-		PictureWithTextButton gallery = new PictureWithTextButton(84, 268, 5, "GALLERY");
+		PictureWithTextButton play = new PictureWithTextButton(84, 268, 3, "PLAY",40);
+		PictureWithTextButton gallery = new PictureWithTextButton(84, 268, 5, "GALLERY",40);
 		BackButton backAndSave = new BackButton(100, 120, 2);
 		
 		VBox outVBox = new VBox(50);
 		outVBox.setAlignment(Pos.TOP_CENTER);
-		outVBox.setPadding(new Insets(50, 0, 50, 0));
+		outVBox.setPadding(new Insets(50, 50, 50, 50));
 		outVBox.getChildren().addAll(logo,play,gallery);
 		//outVBox.setStyle("-fx-border-color: #828282;");
 		outVBox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;");

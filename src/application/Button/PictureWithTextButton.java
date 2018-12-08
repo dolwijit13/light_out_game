@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class PictureWithTextButton extends StackPane
 {
-	public PictureWithTextButton(int h, int w, int number, String textString)
+	public PictureWithTextButton(int h, int w, int number, String textString,int fontSize)
 	{
 		ImageView state1 = new ImageView(new Image(ClassLoader.getSystemResource("assets/button/"+number+"1.png").toString()));
 		state1.setFitWidth(w);
@@ -23,8 +23,11 @@ public class PictureWithTextButton extends StackPane
 		state2.setFitHeight(h);
 		
 		Text text = new Text(textString);
-		text.setFont(Font.font("Lucida Console", 40));
+		text.setFont(Font.font("Lucida Console", fontSize));
 		text.setFill(Color.BLACK);
+		
+		setPrefHeight(h);
+		setPrefWidth(w);
 
 		setStyle("-fx-background-color: transparent");
 		getChildren().addAll(state1,state2, text);

@@ -44,9 +44,9 @@ public class StartMenu extends HBox
 		menuVBox.setPadding(new Insets(200, 0, 0, 0));
 		insideMenuVBox.setPadding(new Insets(30, 50, 30, 50));
 		
-		PictureWithTextButton newGame = new PictureWithTextButton(84, 268, 1, "NEW GAME");
-		PictureWithTextButton loadGame = new PictureWithTextButton(84, 268, 2, "LOAD GAME");
-		PictureWithTextButton leaderboard = new PictureWithTextButton(84, 300, 4, "LEADERBOARD");
+		PictureWithTextButton newGame = new PictureWithTextButton(84, 268, 1, "NEW GAME",40);
+		PictureWithTextButton loadGame = new PictureWithTextButton(84, 268, 2, "LOAD GAME",40);
+		PictureWithTextButton leaderboard = new PictureWithTextButton(84, 300, 4, "LEADERBOARD",40);
 		BackButton exit = new BackButton(150, 180, 0);
 		menuVBox.getChildren().add(insideMenuVBox);
 		insideMenuVBox.getChildren().addAll(newGame, loadGame, leaderboard);
