@@ -3,6 +3,7 @@ package application.Mode;
 import java.util.Deque;
 import java.util.LinkedList;
 
+import application.Button.OKButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.ClassicGameMenu;
@@ -112,13 +113,10 @@ public abstract class Mode extends StackPane
 			}else if(isWinLevel() && mode == 1){
 				timerNextLevel();
 			}
-			if (board.canHelp1() && gameMenu instanceof ClassicGameMenu)
+			if (gameMenu instanceof ClassicGameMenu)
 			{
-				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(false);
-			}
-			else if (gameMenu instanceof ClassicGameMenu)
-			{
-				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(true);
+				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(!board.canHelp1());
+				((ClassicGameMenu) gameMenu).getHelp2Button().setDisable(!board.canHelp2());
 			}
 			Button undoButton = gameMenu.getUndoButton();
 			undoButton.setDisable(false);
@@ -182,8 +180,8 @@ public abstract class Mode extends StackPane
 		VBox vBox = new VBox();
 		vBox.setPrefSize(900, 700);
 		vBox.setAlignment(Pos.CENTER);
-		Button test = new Button("Continue");
-		test.setOnAction(new EventHandler<ActionEvent>()
+		OKButton okButton = new OKButton(100, 120);
+		okButton.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(ActionEvent arg0)
@@ -194,7 +192,7 @@ public abstract class Mode extends StackPane
 		});
 		System.out.println(size);
 		ImageView help3 = new ImageView(new Image(ClassLoader.getSystemResource("assets/help3/"+maxState+""+size+".png").toString()));
-		vBox.getChildren().addAll(help3,test);
+		vBox.getChildren().addAll(help3,okButton);
 		getChildren().add(vBox);
 	}
 	

@@ -32,7 +32,7 @@ public class ClassicMode extends Mode
 		int n = 4 + level / 5;
 
 		board = new Board(n, 2, level + 1,0);
-		gameMenu = new ClassicGameMenu();
+		gameMenu = new ClassicGameMenu(level+1);
 		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setRestartButton(passLevel.getRestartButton());
@@ -88,6 +88,7 @@ public class ClassicMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				gameMenu.addPenalty(15);
 				showHelp3(2,4 + (level-1) / 5);
 			}
 		});
@@ -100,7 +101,7 @@ public class ClassicMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				gameMenu.addPenalty(999);
+				gameMenu.addPenalty(250);
 				setPenalty();
 				showPassLevel();
 			}
@@ -114,8 +115,10 @@ public class ClassicMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				gameMenu.addPenalty(999);
+				gameMenu.addPenalty(50);
 				BoardSolver boardSolver;
+				board.setCanHelp2(false);
+				help2Button.setDisable(true);
 				try
 				{
 					boardSolver = new BoardSolver(board);

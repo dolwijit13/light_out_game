@@ -134,6 +134,10 @@ public class Light extends Button
 		borderStyle = border;
 		setStyle(colorStyle+borderStyle);
 	}
+	
+	public String getBorderStyle() {
+		return borderStyle;
+	}
 
 	/*public void setCurrentState(int currentState)
 	{

@@ -3,6 +3,9 @@ package application.Button;
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
+import application.LevelSelection.ClassicLevelSelection;
+import application.LevelSelection.DrawLevelSelection;
+import application.LevelSelection.TriColorLevelSelection;
 import application.Mode.ModeSelection;
 import application.PlayerData.SavingSelection;
 import javafx.event.ActionEvent;
@@ -72,6 +75,54 @@ public class BackButton extends Button
 				{
 					ModeSelection modeSelection = new ModeSelection();
 					Main.changeScene(modeSelection);
+				}
+			});
+		}
+		else if(mode == 40)
+		{
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					ClassicLevelSelection classicLevelSelection = new ClassicLevelSelection();
+					Main.changeScene(classicLevelSelection);
+				}
+			});
+		}
+		else if(mode == 41)
+		{
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					ModeSelection modeSelection = new ModeSelection();
+					Main.changeScene(modeSelection);
+				}
+			});
+		}
+		else if(mode == 42)
+		{
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					DrawLevelSelection drawLevelSelection = new DrawLevelSelection();
+					Main.changeScene(drawLevelSelection);
+				}
+			});
+		}
+		else if(mode == 43)
+		{
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					TriColorLevelSelection triColorLevelSelection = new TriColorLevelSelection();
+					Main.changeScene(triColorLevelSelection);
 				}
 			});
 		}

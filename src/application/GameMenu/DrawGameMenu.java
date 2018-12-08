@@ -47,8 +47,9 @@ public class DrawGameMenu extends GameMenu
 		}
 	}
 
-	public DrawGameMenu(int n,ArrayList<Integer>initalBoard)
+	public DrawGameMenu(int n,ArrayList<Integer>initalBoard,int level)
 	{
+		super(level);
 		MiniBoard miniBoard = new MiniBoard(n, initalBoard);
 
 		HBox helper = new HBox(10);
@@ -56,7 +57,7 @@ public class DrawGameMenu extends GameMenu
 		help2Button = new Button("Help2");
 		help3Button = new Button("Help 3");
 		helper.getChildren().addAll(help2Button, help3Button);
-		getChildren().addAll(logo, miniBoard, penaltyText, penaltyLabel, helper, resetButton, undoButton, toMainMenuButton);
+		getChildren().addAll(levelLabel, miniBoard, penaltyLabel, helper, resetButton, undoButton, toMainMenuButton);
 	}
 
 	public Button getHelp2Button()
