@@ -26,7 +26,7 @@ public abstract class PassLevel extends VBox
 	protected GameMenuButton restartButton;
 	protected GameMenuButton toNextLevelButton;
 	
-	protected BackButton toLevelSelectionButton;
+	protected HBox toLevelSelectionHBox;
 
 	protected Label clearLevelLabel;
 	protected Label penaltyLabel;
@@ -45,6 +45,7 @@ public abstract class PassLevel extends VBox
 		setAlignment(Pos.TOP_CENTER);
 		setPadding(new Insets(0, 0, 0, 0));
 		setPrefWidth(540);
+		setMaxHeight(700);
 		setStyle("-fx-background-color: "+color1[mode]+"; -fx-border-color: "+color0[mode]+";-fx-border-width: 4px;");
 
 		congrats = new ImageView(new Image(ClassLoader.getSystemResource("assets/congrats.png").toString()));
@@ -61,9 +62,8 @@ public abstract class PassLevel extends VBox
 		penaltyLabel.setAlignment(Pos.CENTER);
 		penaltyLabel.setStyle("-fx-font-size: 32px; -fx-font-fill: black; -fx-font-family:\"Arial Black\";");
 		
-		restartButton = new GameMenuButton(120,120,"reset.png");
-		toNextLevelButton = new GameMenuButton(120,120,"next.png");
-		toLevelSelectionButton = new BackButton(100,120,40+mode);
+		restartButton = new GameMenuButton(100,100,"reset.png");
+		toNextLevelButton = new GameMenuButton(100,100,"next.png");
 		
 		getChildren().addAll(clearLevelLabel,congrats,penaltyLabel);
 		
@@ -80,7 +80,10 @@ public abstract class PassLevel extends VBox
 			unlockPictureLabel.setStyle("-fx-font-size: 24px; -fx-font-fill: black; -fx-font-family:\"Arial Black\";");
 			hBox.getChildren().addAll(restartButton, toNextLevelButton);
 			unlockLabel.getChildren().addAll(unlockLevelLabel,unlockPictureLabel);
-			getChildren().addAll(hBox,toLevelSelectionButton);
+			if(mode != 0) {
+				unlockLabel.getChildren().remove(unlockPictureLabel);
+			}
+			getChildren().addAll(hBox);
 		}
 		else
 		{
@@ -89,8 +92,13 @@ public abstract class PassLevel extends VBox
 			unlockPictureLabel.setStyle("-fx-font-size: 24px; -fx-font-fill: black; -fx-font-family:\"Arial Black\";");
 			hBox.getChildren().add(restartButton);
 			unlockLabel.getChildren().addAll(unlockPictureLabel);
-			getChildren().addAll(hBox,toLevelSelectionButton);
+			getChildren().addAll(hBox);
 		}
+		
+		BackButton toLevelSelectionButton = new BackButton(100,120,40+mode);
+		toLevelSelectionHBox = new HBox();
+		toLevelSelectionHBox.setAlignment(Pos.BOTTOM_RIGHT);
+		toLevelSelectionHBox.getChildren().add(toLevelSelectionButton);
 	}
 	
 	public GameMenuButton getToNextLevelButton()

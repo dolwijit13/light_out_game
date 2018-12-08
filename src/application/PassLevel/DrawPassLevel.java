@@ -7,10 +7,11 @@ public class DrawPassLevel extends PassLevel
 	public DrawPassLevel(int level, int penalty)
 	{
 		super(2,level, penalty, 10);
-		if (PlayerInfo.getClassicPassedLevel() < level)
+		if (PlayerInfo.getDrawPassedLevel() < level)
 		{
 			getChildren().add(unlockLabel);
 		}
+		getChildren().add(toLevelSelectionHBox);
 	}
 
 }

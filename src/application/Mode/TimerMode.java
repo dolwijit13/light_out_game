@@ -50,7 +50,7 @@ public class TimerMode extends Mode
 			vBox.setPrefHeight(640);
 			setPadding(new Insets(50,50,50,50));
 
-			resumeButton = new GameMenuButton(100,100,"pause.png");
+			resumeButton = new GameMenuButton(100,100,"next.png");
 			resumeButton.setTooltip(new Tooltip("Resume"));
 			restartButton = new GameMenuButton(100,100,"reset.png");
 			restartButton.setTooltip(new Tooltip("Restart\n(Unsaved progress will be lost)"));
@@ -62,7 +62,7 @@ public class TimerMode extends Mode
 			pauseMenuLabel.setAlignment(Pos.CENTER);
 			pauseMenuLabel.setStyle("-fx-font-size: 48px; -fx-font-family:\"Arial Black\"; -fx-background-color: #FFD728;");
 			 
-			hBox.getChildren().addAll(resumeButton, restartButton, backButton);
+			hBox.getChildren().addAll(backButton, restartButton, resumeButton);
 			vBox.getChildren().addAll(pauseMenuLabel, hBox);
 			
 			hBox.setAlignment(Pos.CENTER);
