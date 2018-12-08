@@ -2,6 +2,8 @@ package application.GameMenu;
 
 import java.util.ArrayList;
 
+import application.Button.BackButton;
+import application.Button.GameMenuButton;
 import application.GameLogic.Light;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,7 +15,6 @@ import javafx.scene.layout.HBox;
 public class DrawGameMenu extends GameMenu
 {
 	Button help2Button;
-	Button help3Button;
 	
 	private class MiniBoard extends GridPane
 	{
@@ -49,15 +50,21 @@ public class DrawGameMenu extends GameMenu
 
 	public DrawGameMenu(int n,ArrayList<Integer>initalBoard,int level)
 	{
-		super(level);
+		super(level,10,100,100);
 		MiniBoard miniBoard = new MiniBoard(n, initalBoard);
 
 		HBox helper = new HBox(10);
 		helper.setAlignment(Pos.CENTER);
-		help2Button = new Button("Help2");
-		help3Button = new Button("Help 3");
-		helper.getChildren().addAll(help2Button, help3Button);
-		getChildren().addAll(levelLabel, miniBoard, penaltyLabel, helper, resetButton, undoButton, toMainMenuButton);
+		help2Button = new GameMenuButton(100,120,"help2.png");
+		help2Button.setTooltip(new Tooltip("Show next should press cell\n(50 Penalty)"));
+		helper.getChildren().addAll(help2Button);
+		
+		backButton = new BackButton(100, 120, 42);
+		backButton.setTooltip(new Tooltip("Back to Level Selection\n(Unsaved progress will be lost)"));
+		backHBox.setAlignment(Pos.CENTER_RIGHT);
+		backHBox.getChildren().add(backButton);
+		
+		getChildren().addAll(levelLabel, miniBoard, penaltyLabel, helper, resetAndUndoHBox, backHBox);
 	}
 
 	public Button getHelp2Button()
@@ -65,10 +72,10 @@ public class DrawGameMenu extends GameMenu
 		return help2Button;
 	}
 
-	public Button getHelp3Button()
+	@Override
+	protected void setAllStyle()
 	{
-		return help3Button;
+		setStyle("-fx-background-color: #99C99A; -fx-border-color: #2BCA2F;-fx-border-width: 4px;");
+		levelLabel.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";-fx-background-color: #2BCA2F;");
 	}
-	
-	
 }

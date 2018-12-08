@@ -17,15 +17,15 @@ public abstract class GameMenu extends VBox
 	protected Label levelLabel = new Label("LEVEL : 0");
 	protected Label penaltyLabel = new Label("PENALTY : 0");
 	protected int penalty = 0;
-	protected GameMenuButton resetButton = new GameMenuButton(120,120,"reset.png");
-	protected GameMenuButton undoButton = new GameMenuButton(120,120,"undo.png");
+	protected GameMenuButton resetButton;
+	protected GameMenuButton undoButton;
 	protected BackButton backButton;
 	protected HBox resetAndUndoHBox;
 	protected HBox backHBox;
 
-	public GameMenu(int level)
+	public GameMenu(int level,int gap,int hButton,int wButton)
 	{
-		super(50);
+		super(gap);
 		levelLabel.setText("LEVEL : " + level);
 		setAlignment(Pos.TOP_CENTER);
 		setPadding(new Insets(0, 0, 0, 0));
@@ -41,6 +41,8 @@ public abstract class GameMenu extends VBox
 		penaltyLabel.setAlignment(Pos.CENTER);
 		penaltyLabel.setTextFill(Color.web("#000000"));
 		
+		resetButton = new GameMenuButton(hButton,wButton,"reset.png");
+		undoButton = new GameMenuButton(hButton,wButton,"undo.png");
 		resetButton.setTooltip(new Tooltip("reset the board"));
 		undoButton.setTooltip(new Tooltip("undo the board\n(Maximum stack 5 times)"));
 		resetAndUndoHBox = new HBox(20);

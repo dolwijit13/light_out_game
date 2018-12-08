@@ -3,6 +3,8 @@ package application.Mode;
 import java.util.Random;
 
 import application.Main;
+import application.Button.BackButton;
+import application.Button.GameMenuButton;
 import application.Button.ToMainMenuButton;
 import application.GameLogic.Board;
 import application.GameMenu.TimerGameMenu;
@@ -16,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -33,33 +36,41 @@ public class TimerMode extends Mode
 
 	private class PauseMenu extends VBox {
 		
-		protected Button restartButton;
-		protected Button resumeButton;
-		protected ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
-		protected Text pauseMenuText;
-		protected VBox vBox = new VBox(10);
-		protected HBox hBox = new HBox(10);
+		protected GameMenuButton restartButton;
+		protected GameMenuButton resumeButton;
+		protected BackButton backButton;
+		protected Label pauseMenuLabel;
+		protected VBox vBox = new VBox(120);
+		protected HBox hBox = new HBox(30);
 		
 		public PauseMenu() {
 			super(10);
 			setAlignment(Pos.CENTER);
 			vBox.setAlignment(Pos.CENTER);
-			vBox.setPrefHeight(360);
-			vBox.setPrefWidth(640);
-			vBox.setPadding(new Insets(10,100,10,100));
+			vBox.setPrefHeight(640);
+			setPadding(new Insets(50,50,50,50));
 
-			resumeButton = new Button("Resume");
-			restartButton = new Button("Restart");
-			pauseMenuText = new Text("PAUSE MENU");
-			
-			hBox.getChildren().addAll(resumeButton, restartButton, toMainMenuButton);
-			vBox.getChildren().addAll(pauseMenuText, hBox);
+			resumeButton = new GameMenuButton(100,100,"pause.png");
+			resumeButton.setTooltip(new Tooltip("Resume"));
+			restartButton = new GameMenuButton(100,100,"reset.png");
+			restartButton.setTooltip(new Tooltip("Restart\n(Unsaved progress will be lost)"));
+			backButton = new BackButton(100, 120, 41);
+			backButton.setTooltip(new Tooltip("Back to Mode Selection\n(Unsaved progress will be lost)"));
+			pauseMenuLabel = new Label("PAUSE MENU");
+			pauseMenuLabel.setPrefWidth(1180);
+			pauseMenuLabel.setPrefHeight(100);
+			pauseMenuLabel.setAlignment(Pos.CENTER);
+			pauseMenuLabel.setStyle("-fx-font-size: 48px; -fx-font-family:\"Arial Black\"; -fx-background-color: #FFD728;");
+			 
+			hBox.getChildren().addAll(resumeButton, restartButton, backButton);
+			vBox.getChildren().addAll(pauseMenuLabel, hBox);
 			
 			hBox.setAlignment(Pos.CENTER);
-
-			vBox.setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID,
-			  CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-			vBox.setBackground(new Background(new BackgroundFill(Color.PAPAYAWHIP, null, null)));
+			
+			vBox.setAlignment(Pos.TOP_CENTER);
+			vBox.setPadding(new Insets(100,0,0,0));
+			vBox.setStyle("-fx-background-color: #FFED9F; -fx-border-color: #FFD728; -fx-border-width: 4px;");
+			
 			getChildren().add(vBox);
 		}
 	};
@@ -212,7 +223,7 @@ public class TimerMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				timerThread.interrupt();
-				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty() + 500, passedLevel, null);
+				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty() + 200, passedLevel, null);
 				Main.changeScene(timerMode);
 			}
 		});

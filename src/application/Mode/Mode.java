@@ -7,6 +7,7 @@ import application.Button.OKButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.ClassicGameMenu;
+import application.GameMenu.DrawGameMenu;
 import application.GameMenu.GameMenu;
 import application.PassLevel.PassLevel;
 import application.PlayerData.PlayerInfo;
@@ -117,6 +118,10 @@ public abstract class Mode extends StackPane
 			{
 				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(!board.canHelp1());
 				((ClassicGameMenu) gameMenu).getHelp2Button().setDisable(!board.canHelp2());
+			}
+			if(gameMenu instanceof DrawGameMenu)
+			{
+				((DrawGameMenu) gameMenu).getHelp2Button().setDisable(!board.canHelp2());
 			}
 			Button undoButton = gameMenu.getUndoButton();
 			undoButton.setDisable(false);
