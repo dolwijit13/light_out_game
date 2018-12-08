@@ -1,6 +1,7 @@
 package application.Mode;
 
 import application.Main;
+import application.Button.BackButton;
 import application.Button.ToMainMenuButton;
 import application.LevelSelection.ClassicLevelSelection;
 import application.LevelSelection.DrawLevelSelection;
@@ -11,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,14 +30,14 @@ public class ModeSelection extends StackPane
 	
 	private class ModeFrame extends VBox
 	{
-		Text modeName;
+		Label modeName;
 		Button playButton;
 		Button howToPlayButton;
 		public ModeFrame(int mode, boolean isLocked)
 		{
-			super(10);
-			setAlignment(Pos.CENTER);
-			setPrefHeight(250);
+			super(15);
+			setAlignment(Pos.TOP_CENTER);
+			setPrefHeight(220);
 			setPrefWidth(400);
 			playButton = new Button("Play");
 			howToPlayButton = new Button("How to play");
@@ -50,7 +52,8 @@ public class ModeSelection extends StackPane
 			});
 			switch(mode) {
 				case 0:
-					modeName = new Text("CLASSIC MODE");
+					modeName = new Label("CLASSIC MODE");
+					modeName.setStyle("-fx-font-size: 30px; -fx-font-family:\"Arial Black\"; -fx-background-color: #FF4343; -fx-background-radius: 10;");
 					playButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 					{
 						@Override
@@ -61,10 +64,11 @@ public class ModeSelection extends StackPane
 						}
 
 					});
-					setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+					setStyle("-fx-background-color: #FFC2C2; -fx-background-radius: 10;");
 					break;
 				case 1:
-					modeName = new Text("TIMER MODE");
+					modeName = new Label("TIMER MODE");
+					modeName.setStyle("-fx-font-size: 30px; -fx-font-family:\"Arial Black\"; -fx-background-color: #FFD728; -fx-background-radius: 10;");
 					playButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 					{
 						@Override
@@ -75,10 +79,11 @@ public class ModeSelection extends StackPane
 						}
 
 					});
-					setBackground(new Background(new BackgroundFill(Color.YELLOW, null, null)));
+					setStyle("-fx-background-color: #FFED9F; -fx-background-radius: 10;");
 					break;
 				case 2:
-					modeName = new Text("DRAW MODE");
+					modeName = new Label("DRAW MODE");
+					modeName.setStyle("-fx-font-size: 30px; -fx-font-family:\"Arial Black\"; -fx-background-color: #2BCA2F; -fx-background-radius: 10;");
 					playButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 					{
 						@Override
@@ -89,10 +94,11 @@ public class ModeSelection extends StackPane
 						}
 
 					});
-					setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+					setStyle("-fx-background-color: #99C99A; -fx-background-radius: 10;");
 					break;
 				case 3:
-					modeName = new Text("TRICOLOR MODE");
+					modeName = new Label("TRICOLOR MODE");
+					modeName.setStyle("-fx-font-size: 30px; -fx-font-family:\"Arial Black\"; -fx-background-color: #3F94FF; -fx-background-radius: 10;");
 					playButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 					{
 						@Override
@@ -103,10 +109,13 @@ public class ModeSelection extends StackPane
 						}
 
 					});
-					setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
+					setStyle("-fx-background-color: #95C4FF; -fx-background-radius: 10;");
 					break;
 			}
-			modeName.setStyle("-fx-font-size: 20px; -fx-text-fill: white; -fx-font-family:\"Arial Black\";-fx-fill: #555;");
+			//modeName.setStyle("-fx-font-size: 20px; -fx-text-fill: white; -fx-font-family:\"Arial Black\";");
+			modeName.setAlignment(Pos.CENTER);
+			modeName.setPrefHeight(60);
+			modeName.setPrefWidth(450);
 			getChildren().add(modeName);
 			if(isLocked) {
 				
@@ -119,17 +128,22 @@ public class ModeSelection extends StackPane
 	public ModeSelection()
 	{
 		setAlignment(Pos.CENTER);
-		vBox = new VBox(10);
-		vBox.setAlignment(Pos.CENTER);
-		vBox.setPadding(new Insets(10, 10, 10, 10));
-		vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, null, null)));
-		Text sceneTitle = new Text("SELECT MODE");
-		sceneTitle.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";-fx-fill: #555;");
+		vBox = new VBox();
+		vBox.setAlignment(Pos.TOP_CENTER);
+		//vBox.setPadding(new Insets(10, 10, 10, 10));
+		vBox.setBackground(new Background(new BackgroundFill(Color.web("#9D9D9D"), null, null)));
+		Label sceneTitle = new Label("SELECT MODE");
+		sceneTitle.setPrefHeight(150);
+		sceneTitle.setPrefWidth(1280);
+		sceneTitle.setAlignment(Pos.CENTER);
+		sceneTitle.setStyle("-fx-font-size: 48px; -fx-text-fill: white; -fx-font-family:\"Arial Black\"; -fx-background-color: #4F4F4F; -fx-background-radius: 0;");
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
-		grid.setVgap(15);
-		grid.setHgap(15);
+		grid.setPadding(new Insets(0,0,10,0));
+		grid.setVgap(10);
+		grid.setHgap(10);
+		grid.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);");;
 		
 		ModeFrame classicFrame = new ModeFrame(0,false);
 		ModeFrame timerFrame = new ModeFrame(1,PlayerInfo.getClassicPassedLevel() < 5);
@@ -140,9 +154,9 @@ public class ModeSelection extends StackPane
 		grid.add(drawFrame, 1, 2);
 		grid.add(triColorFrame, 2, 2);
 		
-		ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
+		BackButton backButton = new BackButton(100,120,1);
 		
-		vBox.getChildren().addAll(sceneTitle,grid,toMainMenuButton);
+		vBox.getChildren().addAll(sceneTitle,grid,backButton);
 		
 		getChildren().add(vBox);
 		
