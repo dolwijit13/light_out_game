@@ -7,28 +7,39 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.VBox;
 
-public class MainMenu extends GridPane
+public class MainMenu extends VBox
 {
 	public MainMenu()
 	{
+		super(150);
+		setBackground(new Background(new BackgroundImage(
+				new Image(ClassLoader.getSystemResource("assets/MainMenu.png").toString()), null, null, null,
+				null)));
+		
 		//System.out.println(PlayerInfo.getSelectedPlayerInfo().name);
-		setAlignment(Pos.CENTER);
-		setVgap(10);
-		setHgap(10);
-		setPadding(new Insets(5, 5, 5, 5));
+		
+		setAlignment(Pos.TOP_RIGHT);
+		setPadding(new Insets(150, 90, 5, 860));
 		Button logo = new Button("AU");
 		Button play = new Button("Play");
 		Button gallery = new Button("Gallery");
-		Button howToPlay = new Button("How to play");
 		BackButton backAndSave = new BackButton(100, 120, 0);
-		add(logo, 0, 1);
-		add(play, 0, 2);
-		add(gallery, 0, 3);
-		add(howToPlay, 0, 4);
-		add(backAndSave, 0, 5);
+		
+		VBox outVBox = new VBox(50);
+		outVBox.setAlignment(Pos.TOP_CENTER);
+		outVBox.setPadding(new Insets(50, 0, 50, 0));
+		outVBox.getChildren().addAll(logo,play,gallery);
+		//outVBox.setStyle("-fx-border-color: #828282;");
+		outVBox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;");
+		
+		getChildren().addAll(outVBox,backAndSave);
+		
 		play.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
