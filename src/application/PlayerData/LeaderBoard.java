@@ -222,8 +222,8 @@ public class LeaderBoard extends VBox
 	public void setColor(ModeButton modeButton,int buttonMode)
 	{
 		//0 are more colorful
-		String color0[] = {"#FF0000","#FFD000","#00C905","#00C7C9"};
-		String color1[] = {"#FFABAB","#FFED9F","#99C99A","#A3C7C7"};
+		String color0[] = {"#FF4343","#FFD728","#2BCA2F","#3F94FF"};
+		String color1[] = {"#FFC2C2","#FFED9F","#99C99A","#95C4FF"};
 		
 		String oldStyle = "-fx-font-size: 24px; -fx-font-family:\"Arial Black\"; -fx-background-radius: 0; ";
 		

@@ -45,19 +45,19 @@ public class Light extends Button
 			break;
 		case 1:
 			//for timer
-			color0 = "#FF6969";
+			color0 = "#444444";
 			color1 = "#69B6FF";
 			break;
 		case 2:
 			//for draw
-			color0 = "#FF6969";
+			color0 = "#444444";
 			color1 = "#69B6FF";
 			break;
 		case 3:
 			//for
-			color0 = "#FF6969";
+			color0 = "#444444";
 			color1 = "#69B6FF";
-			color2 = "#FFFA4F";
+			color2 = "#FF6969";
 			break;
 		default:
 			break;

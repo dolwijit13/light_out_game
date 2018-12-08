@@ -42,6 +42,12 @@ public class StartMenu extends HBox
 		menuVBox.setPadding(new Insets(200, 0, 0, 0));
 		insideMenuVBox.setPadding(new Insets(30, 100, 30, 100));
 		Button newGame = new Button("New Game");
+		ImageView backImageView = new ImageView(new Image(ClassLoader.getSystemResource("assets/button/button.png").toString()));
+		backImageView.setFitWidth(67);
+		backImageView.setFitHeight(21);
+		newGame.setGraphic(backImageView);
+		newGame.setStyle("-fx-background-color: transparent");
+		
 		Button loadGame = new Button("Load Game");
 		Button leaderboard = new Button("Leaderboard");
 		BackButton exit = new BackButton(100, 120, 0);
