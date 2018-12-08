@@ -102,6 +102,17 @@ public class ClassicMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				gameMenu.addPenalty(250);
+				int n=board.getN();
+				for(int i=0 ;i<n;i++)
+				{
+					for(int j=0;j<n;j++)
+					{
+						if(board.getLight(i, j).getCurrentState()!=0)
+						{
+							board.getLight(i, j).changeColor();
+						}
+					}
+				}
 				setPenalty();
 				showPassLevel();
 			}
