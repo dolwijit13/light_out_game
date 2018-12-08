@@ -20,7 +20,7 @@ public class ClassicGameMenu extends GameMenu
 
 	public ClassicGameMenu(int level)
 	{
-		super(level);
+		super(level,50,120,120);
 		HBox helper = new HBox(10);
 		helper.setAlignment(Pos.CENTER);
 		
@@ -36,11 +36,17 @@ public class ClassicGameMenu extends GameMenu
 		
 		helper.getChildren().addAll(help1Button, help2Button, help3Button);
 		
-		backButton = new BackButton(100, 120, 40);
-		backHBox.setAlignment(Pos.CENTER_RIGHT);
-		backHBox.getChildren().add(backButton);
+		addBackButton();
 		
 		getChildren().addAll(levelLabel, penaltyLabel, helper, resetAndUndoHBox, backHBox);
+	}
+
+	protected void addBackButton()
+	{
+		backButton = new BackButton(100, 120, 40);
+		backButton.setTooltip(new Tooltip("Back to Level Selection\n(Unsaved progress will be lost)"));
+		backHBox.setAlignment(Pos.CENTER_RIGHT);
+		backHBox.getChildren().add(backButton);
 	}
 
 	public Button getHelp1Button()

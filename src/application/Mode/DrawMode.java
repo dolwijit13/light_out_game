@@ -50,7 +50,6 @@ public class DrawMode extends Mode
 		setRestartButton(passLevel.getRestartButton());
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp2Button(((DrawGameMenu) gameMenu).getHelp2Button());
-		setHelp3Button(((DrawGameMenu) gameMenu).getHelp3Button());
 		
 		for (int i = 0; i < start.length; i++)
 		{
@@ -155,7 +154,7 @@ public class DrawMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
-				gameMenu.addPenalty(999);
+				gameMenu.addPenalty(50);
 				int n = 4 + (level - 1) / 5;
 				ArrayList<Integer> shouldPress = new ArrayList<Integer>();
 				for (int i = 0; i < n; i++)
@@ -168,8 +167,6 @@ public class DrawMode extends Mode
 						}
 					}
 				}
-
-				// *
 				Random rand = new Random();
 				int sz = shouldPress.size();
 				int idx = shouldPress.get(rand.nextInt(sz));
@@ -178,33 +175,8 @@ public class DrawMode extends Mode
 				String style = light.getStyle();
 				light.setMinSize();
 				light.setBorder("-fx-border-color: #000080; -fx-border-width: 3px;");
-				// */
-
-				/*
-				 * for(int i=0;i<shouldPress.size();i++) { int tmp=shouldPress.get(i); int
-				 * x=tmp/n; int y=tmp%n; board.changeColor(x, y, true); }
-				 */
-			}
-		});
-	}
-
-	private void setHelp3Button(Button help3Button)
-	{
-		help3Button.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent arg0)
-			{
-				gameMenu.addPenalty(999);
-				int n = 4 + (level - 1) / 5;
-				for (int i = 0; i < n; i++)
-				{
-					for (int j = 0; j < n; j++)
-					{
-						System.out.print(board.getLight(i, j).isShouldPress() + " ");
-					}
-					System.out.println("");
-				}
+				
+				help2Button.setDisable(true);
 			}
 		});
 	}
