@@ -77,6 +77,7 @@ public class TimerMode extends Mode
 	{
 		mode = 1;
 		passedLevelThread = new Thread(() -> {
+			gameMenu.setDisable(true);
 			for(int i = 0; i < (n+4)*(n+4); i++)
 			{
 				try
@@ -93,6 +94,7 @@ public class TimerMode extends Mode
 					break;
 				}
 			}
+			gameMenu.setDisable(false);
 			javafx.application.Platform.runLater(new Runnable() {
 	            @Override public void run() {
 	                toNextLevel();

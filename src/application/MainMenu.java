@@ -1,6 +1,7 @@
 package application;
 
 import application.Button.BackButton;
+import application.Button.PictureWithTextButton;
 import application.Mode.ModeSelection;
 import application.PlayerData.SavingSelection;
 import javafx.event.EventHandler;
@@ -17,7 +18,7 @@ public class MainMenu extends VBox
 {
 	public MainMenu()
 	{
-		super(150);
+		super(100);
 		setBackground(new Background(new BackgroundImage(
 				new Image(ClassLoader.getSystemResource("assets/MainMenu.png").toString()), null, null, null,
 				null)));
@@ -25,10 +26,11 @@ public class MainMenu extends VBox
 		//System.out.println(PlayerInfo.getSelectedPlayerInfo().name);
 		
 		setAlignment(Pos.TOP_RIGHT);
-		setPadding(new Insets(150, 90, 5, 860));
+		setPadding(new Insets(100, 90, 5, 860));
 		Button logo = new Button("AU");
-		Button play = new Button("Play");
-		Button gallery = new Button("Gallery");
+		
+		PictureWithTextButton play = new PictureWithTextButton(84, 268, 3, "PLAY");
+		PictureWithTextButton gallery = new PictureWithTextButton(84, 268, 5, "GALLERY");
 		BackButton backAndSave = new BackButton(100, 120, 0);
 		
 		VBox outVBox = new VBox(50);

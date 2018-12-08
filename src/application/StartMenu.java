@@ -1,6 +1,7 @@
 package application;
 
 import application.Button.BackButton;
+import application.Button.PictureWithTextButton;
 import application.PlayerData.CreateNewPlayer;
 import application.PlayerData.LeaderBoard;
 import application.PlayerData.LoadingSelection;
@@ -34,23 +35,19 @@ public class StartMenu extends HBox
 		logoVBox.getChildren().add(logo);
 		// logoVBox.setStyle("-fx-border-color: #828282;");
 
-		VBox rightVBox = new VBox(200);
+		VBox rightVBox = new VBox(10);
+		//rightVBox.setStyle("-fx-border-color: #828282;");
 		rightVBox.setAlignment(Pos.BOTTOM_RIGHT);
-		rightVBox.setPadding(new Insets(0, 0, 20, 0));
+		rightVBox.setPadding(new Insets(0, 50, 20, 0));
 		VBox menuVBox = new VBox(0);
 		VBox insideMenuVBox = new VBox(30);
 		menuVBox.setPadding(new Insets(200, 0, 0, 0));
-		insideMenuVBox.setPadding(new Insets(30, 100, 30, 100));
-		Button newGame = new Button("New Game");
-		ImageView backImageView = new ImageView(new Image(ClassLoader.getSystemResource("assets/button/button.png").toString()));
-		backImageView.setFitWidth(67);
-		backImageView.setFitHeight(21);
-		newGame.setGraphic(backImageView);
-		newGame.setStyle("-fx-background-color: transparent");
+		insideMenuVBox.setPadding(new Insets(30, 50, 30, 50));
 		
-		Button loadGame = new Button("Load Game");
-		Button leaderboard = new Button("Leaderboard");
-		BackButton exit = new BackButton(100, 120, 0);
+		PictureWithTextButton newGame = new PictureWithTextButton(84, 268, 1, "NEW GAME");
+		PictureWithTextButton loadGame = new PictureWithTextButton(84, 268, 2, "LOAD GAME");
+		PictureWithTextButton leaderboard = new PictureWithTextButton(84, 300, 4, "LEADERBOARD");
+		BackButton exit = new BackButton(150, 180, 0);
 		menuVBox.getChildren().add(insideMenuVBox);
 		insideMenuVBox.getChildren().addAll(newGame, loadGame, leaderboard);
 		insideMenuVBox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;");
