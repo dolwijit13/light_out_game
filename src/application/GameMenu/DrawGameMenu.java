@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
 import application.GameLogic.Light;
+import application.LevelSelection.DrawLevelSelection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -59,7 +60,7 @@ public class DrawGameMenu extends GameMenu
 		help2Button.setTooltip(new Tooltip("Show next should press cell\n(50 Penalty)"));
 		helper.getChildren().addAll(help2Button);
 		
-		backButton = new BackButton(100, 120, 42);
+		backButton = new BackButton(100, 120, new DrawLevelSelection());
 		backButton.setTooltip(new Tooltip("Back to Level Selection\n(Unsaved progress will be lost)"));
 		backHBox.setAlignment(Pos.CENTER_RIGHT);
 		backHBox.getChildren().add(backButton);

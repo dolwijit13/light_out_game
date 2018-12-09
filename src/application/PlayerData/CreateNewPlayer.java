@@ -2,17 +2,14 @@ package application.PlayerData;
 
 import application.Main;
 import application.MainMenu;
+import application.StartMenu;
 import application.Button.BackButton;
 import application.Button.OKButton;
-import application.Button.ToStartMenuButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -50,7 +47,7 @@ public class CreateNewPlayer extends VBox
 		
 		OKButton okButton = new OKButton(100, 120);
 		okButton.setDisable(true);
-		BackButton toStartMenuButton = new BackButton(100, 120, 0);
+		BackButton toStartMenuButton = new BackButton(100, 120, new StartMenu());
 		
 		HBox buttonHbox = new HBox(20);
 		buttonHbox.setAlignment(Pos.CENTER);
@@ -67,6 +64,7 @@ public class CreateNewPlayer extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
+				OKButton.playSoundEffect();
 				PlayerInfo playerInfo = new PlayerInfo(nameField.getText());
 				PlayerInfo.setSelectedPlayerInfo(playerInfo);
 				MainMenu mainMenu = new MainMenu();

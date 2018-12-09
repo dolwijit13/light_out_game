@@ -5,6 +5,7 @@ import java.util.Optional;
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
+import application.Button.OKButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -21,11 +22,12 @@ public class SavingSelection extends LoadingSelection
 		setStyle("-fx-background-color: #A2C523");
 		upVBox.setStyle("-fx-background-color: #2E4600");
 		
-		OKButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+		okButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
 			public void handle(MouseEvent event)
 			{
+				OKButton.playSoundEffect();
 				PlayerButton selectedPlayer = LoadingSelection.selectedPlayer;
 				int n=selectedPlayer.n;
 				if(!selectedPlayer.name.equals(" "))

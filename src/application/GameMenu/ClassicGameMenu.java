@@ -2,6 +2,7 @@ package application.GameMenu;
 
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
+import application.LevelSelection.ClassicLevelSelection;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -43,7 +44,7 @@ public class ClassicGameMenu extends GameMenu
 
 	protected void addBackButton()
 	{
-		backButton = new BackButton(100, 120, 40);
+		backButton = new BackButton(100, 120, new ClassicLevelSelection());
 		backButton.setTooltip(new Tooltip("Back to Level Selection\n(Unsaved progress will be lost)"));
 		backHBox.setAlignment(Pos.CENTER_RIGHT);
 		backHBox.getChildren().add(backButton);

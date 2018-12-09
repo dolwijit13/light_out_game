@@ -2,6 +2,7 @@ package application.GameMenu;
 
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
+import application.Mode.ModeSelection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
@@ -62,7 +63,7 @@ public class TimerGameMenu extends GameMenu
 		newAndPauseHBox.setAlignment(Pos.CENTER);
 		newAndPauseHBox.getChildren().addAll(newPuzzleButton,pauseButton);
 		
-		backButton = new BackButton(100, 120, 41);
+		backButton = new BackButton(100, 120, new ModeSelection());
 		backHBox.setAlignment(Pos.CENTER_RIGHT);
 		backHBox.getChildren().add(backButton);
 		

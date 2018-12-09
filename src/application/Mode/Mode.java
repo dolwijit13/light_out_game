@@ -195,6 +195,7 @@ public abstract class Mode extends StackPane
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				OKButton.playSoundEffect();
 				getChildren().remove(vBox);
 				setActive(true);
 			}

@@ -1,10 +1,10 @@
 package application.Mode;
 
 import application.Main;
+import application.MainMenu;
 import application.Button.BackButton;
 import application.Button.OKButton;
 import application.Button.PictureWithTextButton;
-import application.Button.ToMainMenuButton;
 import application.LevelSelection.ClassicLevelSelection;
 import application.LevelSelection.DrawLevelSelection;
 import application.LevelSelection.TriColorLevelSelection;
@@ -184,7 +184,7 @@ public class ModeSelection extends StackPane
 		grid.add(drawFrame, 1, 2);
 		grid.add(triColorFrame, 2, 2);
 		
-		BackButton backButton = new BackButton(100,120,1);
+		BackButton backButton = new BackButton(100,120,new MainMenu());
 		
 		vBox.getChildren().addAll(sceneTitle,grid,backButton);
 		
@@ -207,6 +207,7 @@ public class ModeSelection extends StackPane
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				OKButton.playSoundEffect();
 				getChildren().remove(howToPlay);
 				vBox.setDisable(false);
 			}

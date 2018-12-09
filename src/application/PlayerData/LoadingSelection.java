@@ -2,13 +2,12 @@ package application.PlayerData;
 
 import application.Main;
 import application.MainMenu;
+import application.StartMenu;
 import application.Button.BackButton;
 import application.Button.OKButton;
-import application.Button.ToStartMenuButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -151,7 +150,7 @@ public class LoadingSelection extends VBox
 	protected PlayerButton player3;
 	protected PlayerButton player4;
 	protected static PlayerButton selectedPlayer;
-	protected Button OKButton;
+	protected OKButton okButton;
 	protected BackButton returnButton;
 	protected VBox upVBox;
 
@@ -190,20 +189,21 @@ public class LoadingSelection extends VBox
 		upVBox.setStyle("-fx-background-color: #F0810F");
 		
 		HBox downHBox = new HBox(100);
-		OKButton = new OKButton(70, 84);
-		returnButton = new BackButton(70, 84, 0);
+		okButton = new OKButton(70, 84);
+		returnButton = new BackButton(70, 84, new StartMenu());
 		
-		downHBox.getChildren().addAll(returnButton,OKButton);
+		downHBox.getChildren().addAll(returnButton,okButton);
 		downHBox.setStyle("-fx-background-color: transparent");
 		downHBox.setPrefHeight(92);
 		downHBox.setAlignment(Pos.CENTER);
 		
-		OKButton.setDisable(true);
-		OKButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+		okButton.setDisable(true);
+		okButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
 			public void handle(MouseEvent event)
 			{
+				OKButton.playSoundEffect();
 				PlayerInfo.setSelectedPlayerInfo(selectedPlayer.playerInfo);
 				MainMenu mainMenu = new MainMenu();
 				Main.changeScene(mainMenu);
@@ -231,7 +231,7 @@ public class LoadingSelection extends VBox
 	
 	public void setOKDisable(Boolean disable)
 	{
-		OKButton.setDisable(disable);
+		okButton.setDisable(disable);
 	}
 	
 	public static PlayerButton getSelectedPlayer()

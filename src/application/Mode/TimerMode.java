@@ -5,13 +5,10 @@ import java.util.Random;
 import application.Main;
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
-import application.Button.ToMainMenuButton;
 import application.GameLogic.Board;
 import application.GameMenu.TimerGameMenu;
-import application.PassLevel.ClassicPassLevel;
 import application.PassLevel.TimerPassLevel;
 import application.PlayerData.PlayerInfo;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,17 +16,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class TimerMode extends Mode
 {
@@ -54,7 +42,7 @@ public class TimerMode extends Mode
 			resumeButton.setTooltip(new Tooltip("Resume"));
 			restartButton = new GameMenuButton(100,100,"reset.png");
 			restartButton.setTooltip(new Tooltip("Restart\n(Unsaved progress will be lost)"));
-			backButton = new BackButton(100, 120, 41);
+			backButton = new BackButton(100, 120, new ModeSelection());
 			backButton.setTooltip(new Tooltip("Back to Mode Selection\n(Unsaved progress will be lost)"));
 			pauseMenuLabel = new Label("PAUSE MENU");
 			pauseMenuLabel.setPrefWidth(1180);

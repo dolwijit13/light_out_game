@@ -1,7 +1,7 @@
 package application.LevelSelection;
 
 import application.Button.BackButton;
-import application.Button.ToMainMenuButton;
+import application.Mode.ModeSelection;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public abstract class LevelSelection extends VBox
 {
@@ -81,7 +80,7 @@ public abstract class LevelSelection extends VBox
 			}
 		}
 		
-		BackButton backButton = new BackButton(100, 120, 3);
+		BackButton backButton = new BackButton(100, 120, new ModeSelection());
 		getChildren().addAll(selectLabel, grid, backButton);
 	}
 	

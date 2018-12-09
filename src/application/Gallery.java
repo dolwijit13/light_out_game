@@ -1,22 +1,16 @@
 package application;
 
 import application.Button.BackButton;
-import application.Button.ToMainMenuButton;
 import application.PlayerData.PlayerInfo;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class Gallery extends VBox
 {
@@ -61,7 +55,7 @@ public class Gallery extends VBox
 			}
 		}
 
-		BackButton backButton = new BackButton(100,120,1);
+		BackButton backButton = new BackButton(100,120,new MainMenu());
 		getChildren().addAll(sceneTitle, grid, backButton);
 	}
 

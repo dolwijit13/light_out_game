@@ -3,8 +3,8 @@ package application.PlayerData;
 import java.util.ArrayList;
 
 import application.Main;
+import application.StartMenu;
 import application.Button.BackButton;
-import application.Button.ToStartMenuButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -175,7 +175,7 @@ public class LeaderBoard extends VBox
 		//ToStartMenuButton toStartMenuButton = new ToStartMenuButton();
 		//toStartMenuButton.setPrefHeight(55);
 		//toStartMenuButton.setAlignment(Pos.CENTER_RIGHT);
-		BackButton toStartMenuButton = new BackButton(100, 120, 0);
+		BackButton toStartMenuButton = new BackButton(100, 120, new StartMenu());
 		this.getChildren().addAll(leaderBoardLebel, modeButtonHBox, playerLabelVBox, toStartMenuButton);
 	
 		classicButton.setOnMouseClicked(new EventHandler<MouseEvent>()

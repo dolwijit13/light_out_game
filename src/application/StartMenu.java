@@ -47,7 +47,7 @@ public class StartMenu extends HBox
 		PictureWithTextButton newGame = new PictureWithTextButton(84, 268, 1, "NEW GAME",40);
 		PictureWithTextButton loadGame = new PictureWithTextButton(84, 268, 2, "LOAD GAME",40);
 		PictureWithTextButton leaderboard = new PictureWithTextButton(84, 300, 4, "LEADERBOARD",40);
-		BackButton exit = new BackButton(150, 180, 0);
+		BackButton exit = new BackButton(150, 180, null);
 		menuVBox.getChildren().add(insideMenuVBox);
 		insideMenuVBox.getChildren().addAll(newGame, loadGame, leaderboard);
 		insideMenuVBox.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;");
@@ -92,15 +92,6 @@ public class StartMenu extends HBox
 				Main.changeScene(leaderBoard);
 			}
 
-		});
-
-		exit.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent event)
-			{
-				Main.exit();
-			}
 		});
 	}
 }

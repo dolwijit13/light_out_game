@@ -1,6 +1,7 @@
 package application.GameMenu;
 
 import application.Button.BackButton;
+import application.LevelSelection.TriColorLevelSelection;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
 
@@ -14,7 +15,7 @@ public class TriColorGameMenu extends ClassicGameMenu
 	@Override
 	protected void addBackButton()
 	{
-		backButton = new BackButton(100, 120, 43);
+		backButton = new BackButton(100, 120, new TriColorLevelSelection());
 		backButton.setTooltip(new Tooltip("Back to Level Selection\n(Unsaved progress will be lost)"));
 		backHBox.setAlignment(Pos.CENTER_RIGHT);
 		backHBox.getChildren().add(backButton);

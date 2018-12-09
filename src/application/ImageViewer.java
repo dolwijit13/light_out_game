@@ -2,19 +2,16 @@ package application;
 
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
-import application.Button.ToMainMenuButton;
 import application.PlayerData.PlayerInfo;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 
 public class ImageViewer extends VBox {
 	public ImageViewer(int level) {
@@ -41,7 +38,7 @@ public class ImageViewer extends VBox {
 		controlBox.setAlignment(Pos.CENTER);
 		GameMenuButton previousImageButton = new GameMenuButton(80,80,"prev.png");
 		GameMenuButton nextImageButton = new GameMenuButton(80,80,"next.png");
-		BackButton backButton = new BackButton(80,96,5);
+		BackButton backButton = new BackButton(80,96,new Gallery());
 		controlBox.getChildren().addAll(previousImageButton, backButton, nextImageButton);
 		
 		int unlockedImages = PlayerInfo.getClassicPassedLevel();

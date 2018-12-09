@@ -1,150 +1,71 @@
 package application.Button;
 
-import application.Gallery;
 import application.Main;
-import application.MainMenu;
-import application.StartMenu;
-import application.LevelSelection.ClassicLevelSelection;
-import application.LevelSelection.DrawLevelSelection;
-import application.LevelSelection.TriColorLevelSelection;
-import application.Mode.ModeSelection;
-import application.PlayerData.SavingSelection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
-public class BackButton extends Button
+public class BackButton extends Button implements Clickable
 {
 	// 0 -> StartMenu
 	// 1 -> MainMenu
-	private int mode;
+	private Pane pane;
 
-	public BackButton(int h, int w, int mode)
+	public BackButton(int h, int w, Pane pane)
 	{
 		super("");
 		ImageView backImageView = new ImageView(new Image(ClassLoader.getSystemResource("assets/back.png").toString()));
 		backImageView.setFitWidth(w);
 		backImageView.setFitHeight(h);
 		setGraphic(backImageView);
-		setStyle("-fx-background-color: transparent");
 
-		if(mode == 0)
+		if(pane == null) //special case
 		{
 			setOnAction(new EventHandler<ActionEvent>()
 			{
 				@Override
 				public void handle(ActionEvent event)
 				{
-					StartMenu startMenu = new StartMenu();
-					Main.changeScene(startMenu);
+					Main.exit();
 				}
 			});
 		}
-		else if(mode == 1)
+		else
 		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					MainMenu mainMenu = new MainMenu();
-					Main.changeScene(mainMenu);
-				}
-			});
+			this.pane = pane;
+			setOnClick();
 		}
-		else if(mode == 2)
-		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					SavingSelection savingSelection = new SavingSelection();
-					Main.changeScene(savingSelection);
-				}
-			});
-		}
-		else if(mode == 3)
-		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					ModeSelection modeSelection = new ModeSelection();
-					Main.changeScene(modeSelection);
-				}
-			});
-		}
-		else if(mode == 40)
-		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					ClassicLevelSelection classicLevelSelection = new ClassicLevelSelection();
-					Main.changeScene(classicLevelSelection);
-				}
-			});
-		}
-		else if(mode == 41)
-		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					ModeSelection modeSelection = new ModeSelection();
-					Main.changeScene(modeSelection);
-				}
-			});
-		}
-		else if(mode == 42)
-		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					DrawLevelSelection drawLevelSelection = new DrawLevelSelection();
-					Main.changeScene(drawLevelSelection);
-				}
-			});
-		}
-		else if(mode == 43)
-		{
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					TriColorLevelSelection triColorLevelSelection = new TriColorLevelSelection();
-					Main.changeScene(triColorLevelSelection);
-				}
-			});
-		}
-		else if(mode == 5) {
-			setOnAction(new EventHandler<ActionEvent>()
-			{
-				@Override
-				public void handle(ActionEvent event)
-				{
-					Gallery gallery = new Gallery();
-					Main.changeScene(gallery);
-				}
-			});
-		}
+		setOnMouseEnteredAndExited();
+	}
 
+	@Override
+	public void setOnClick()
+	{
+		setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override
+			public void handle(ActionEvent event)
+			{
+				Main.playSoundEffect("click.wav");
+				Main.changeScene(pane);
+			}
+		});
+	}
+
+	@Override
+	public void setOnMouseEnteredAndExited()
+	{
+		setStyle(onMouseExitedStyle);
 		setOnMouseEntered(new EventHandler<MouseEvent>()
 		{
 			@Override
 			public void handle(MouseEvent t)
 			{
-				setStyle("-fx-background-color:#dae7f3;");
+				setStyle(onMouseEnteredStyle);
 			}
 		});
 
@@ -153,7 +74,7 @@ public class BackButton extends Button
 			@Override
 			public void handle(MouseEvent t)
 			{
-				setStyle("-fx-background-color:transparent;");
+				setStyle(onMouseExitedStyle);
 			}
 		});
 	}

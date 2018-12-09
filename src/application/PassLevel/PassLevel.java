@@ -2,24 +2,17 @@ package application.PassLevel;
 
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
-import application.Button.ToMainMenuButton;
-import application.PlayerData.PlayerInfo;
+import application.LevelSelection.ClassicLevelSelection;
+import application.LevelSelection.DrawLevelSelection;
+import application.LevelSelection.TriColorLevelSelection;
+import application.Mode.ModeSelection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 public abstract class PassLevel extends VBox
 {
@@ -95,7 +88,12 @@ public abstract class PassLevel extends VBox
 			getChildren().addAll(hBox);
 		}
 		
-		BackButton toLevelSelectionButton = new BackButton(100,120,40+mode);
+		BackButton toLevelSelectionButton =null;
+		if(mode==0) toLevelSelectionButton = new BackButton(100,120,new ClassicLevelSelection());
+		if(mode==1) toLevelSelectionButton = new BackButton(100,120,new ModeSelection());
+		if(mode==2) toLevelSelectionButton = new BackButton(100,120,new DrawLevelSelection());
+		if(mode==3) toLevelSelectionButton = new BackButton(100,120,new TriColorLevelSelection());
+		
 		toLevelSelectionHBox = new HBox();
 		toLevelSelectionHBox.setAlignment(Pos.BOTTOM_RIGHT);
 		toLevelSelectionHBox.getChildren().add(toLevelSelectionButton);
