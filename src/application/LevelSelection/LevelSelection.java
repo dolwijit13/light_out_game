@@ -1,6 +1,5 @@
 package application.LevelSelection;
 
-import application.Main;
 import application.Button.BackButton;
 import application.Mode.ModeSelection;
 import javafx.event.EventHandler;
@@ -13,47 +12,39 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public abstract class LevelSelection extends VBox
-{
-	public class LevelButton extends Button
-	{
+public abstract class LevelSelection extends VBox {
+	protected class LevelButton extends Button {
 		private int level;
-		public LevelButton(int level)
-		{
-			super(""+level);
+
+		public LevelButton(int level) {
+			super("" + level);
 			this.level = level;
 			setPrefHeight(120);
 			setPrefWidth(240);
 			setLevelButton(this);
-			setButtonStyle(this,0);
-			
-			setOnMouseEntered(new EventHandler<MouseEvent>()
-			{
+			setButtonStyle(this, 0);
+
+			setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
-				public void handle(MouseEvent t)
-				{
+				public void handle(MouseEvent t) {
 					setButtonStyle((Button) t.getSource(), 1);
 				}
 			});
 
-			setOnMouseExited(new EventHandler<MouseEvent>()
-			{
+			setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
-				public void handle(MouseEvent t)
-				{
+				public void handle(MouseEvent t) {
 					setButtonStyle((Button) t.getSource(), 0);
 				}
 			});
 		}
-		
-		public int getLevel()
-		{
+
+		public int getLevel() {
 			return level;
 		}
 	}
-	
-	public LevelSelection(int n,int m,int maxLevelCanPlay)
-	{
+
+	public LevelSelection(int n, int m, int maxLevelCanPlay) {
 		super(10);
 		setAlignment(Pos.TOP_CENTER);
 		Label selectLabel = new Label("SELECT LEVEL");
@@ -63,30 +54,29 @@ public abstract class LevelSelection extends VBox
 		selectLabel.setAlignment(Pos.CENTER);
 		selectLabel.setTextFill(Color.web("#000000"));
 		GridPane grid = new GridPane();
-		grid.setPadding(new Insets(10,10,10,10));
+		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setVgap(15);
 		grid.setHgap(15);
-	
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < m; j++)
-			{
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
 				int curLevel = (i * m + j + 1);
 				LevelButton levelButton = new LevelButton(curLevel);
 				grid.add(levelButton, j, i);
-				if(curLevel > maxLevelCanPlay)
-				{
+				if (curLevel > maxLevelCanPlay) {
 					levelButton.setDisable(true);
 				}
 			}
 		}
-		
+
 		BackButton backButton = new BackButton(100, 120, new ModeSelection());
 		getChildren().addAll(selectLabel, grid, backButton);
 	}
-	
-	public abstract void setLevelButton(LevelButton levelButton);
+
+	protected abstract void setLevelButton(LevelButton levelButton);
+
 	protected abstract void setLabelStyle(Label selectLabel);
-	protected abstract void setButtonStyle(Button levelButton,int mode);
+
+	protected abstract void setButtonStyle(Button levelButton, int mode);
 
 }
