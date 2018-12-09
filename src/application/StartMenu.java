@@ -92,6 +92,7 @@ public class StartMenu extends HBox
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(0);
 				Main.changeScene(leaderBoard);
 			}
