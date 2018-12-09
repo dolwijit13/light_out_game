@@ -1,7 +1,6 @@
 package application.Button;
 
 import application.Main;
-import application.Mode.ModeSelection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

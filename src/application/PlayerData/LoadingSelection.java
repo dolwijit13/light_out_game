@@ -33,6 +33,9 @@ public class LoadingSelection extends VBox
 			super();
 			
 			setPadding(new Insets(0, 20, 0, 20));
+			setPrefHeight(112);
+			setPrefWidth(1008);
+			setStyle("-fx-border-color: #606060; -fx-border-width: 4px;");
 			
 			this.playerInfo = playerInfo;
 			this.isLoading = isLoading;
@@ -47,7 +50,7 @@ public class LoadingSelection extends VBox
 			nameLabel.setPrefHeight(44);
 			nameLabel.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";");
 			
-			Label classicLabel;
+			Label classicLabel; 
 			if(classicLastPassedLevel==0)
 			{
 				classicLabel = new Label("Classic : -");
@@ -103,11 +106,7 @@ public class LoadingSelection extends VBox
 			drawTriColorHBox.getChildren().addAll(drawLabel, triColorLabel);
 			drawTriColorHBox.setPrefHeight(28);
 
-			this.getChildren().addAll(nameLabel, classicTimerHBox, drawTriColorHBox);
-			//this.setStyle("-fx-background-color: #ff123456");
-			setPrefHeight(112);
-			setPrefWidth(1008);
-			this.setStyle("-fx-border-color: #606060; -fx-border-width: 4px;");
+			getChildren().addAll(nameLabel, classicTimerHBox, drawTriColorHBox);
 			
 			this.setOnMouseClicked(new EventHandler<MouseEvent>()
 			{
@@ -117,7 +116,7 @@ public class LoadingSelection extends VBox
 					Main.playSoundEffect("click.wav");
 					PlayerButton source = (PlayerButton)event.getSource();
 					PlayerButton selectedPlayer = LoadingSelection.getSelectedPlayer();
-					if(source.name.length()<4 && isLoading)
+					if(source.name.length()<3 && isLoading)
 					{
 						LoadingSelection.setSelectedPlayerBorder();
 						setOKDisable(true);
@@ -214,14 +213,14 @@ public class LoadingSelection extends VBox
 		this.getChildren().addAll(upVBox,playerSelectionVBox,downHBox);
 	}
 	
-	public static void setSelectedPlayerBorder()
+	protected static void setSelectedPlayerBorder()
 	{
 		if(selectedPlayer == null)
 			return;
 		selectedPlayer.setStyle("-fx-border-color: #606060; -fx-border-width: 4px;");
 	}
 	
-	public static void setSelectedPlayer(PlayerButton o)
+	protected static void setSelectedPlayer(PlayerButton o)
 	{
 		selectedPlayer=o;
 		if(o!=null)
@@ -230,12 +229,12 @@ public class LoadingSelection extends VBox
 		}
 	}
 	
-	public void setOKDisable(Boolean disable)
+	protected void setOKDisable(Boolean disable)
 	{
 		okButton.setDisable(disable);
 	}
 	
-	public static PlayerButton getSelectedPlayer()
+	protected static PlayerButton getSelectedPlayer()
 	{
 		return selectedPlayer;
 	}

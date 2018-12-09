@@ -1,7 +1,5 @@
 package application.PlayerData;
 
-import java.util.Optional;
-
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
@@ -11,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -30,13 +27,13 @@ public class CreateNewPlayer extends VBox
 		setStyle("-fx-background-color: #7DA3A1");
 		
 		VBox upVBox = new VBox();
+		upVBox.setAlignment(Pos.CENTER);
+		upVBox.setStyle("-fx-background-color: #324851");
 		Label upLabel = new Label("Create New Player");
 		upLabel.setStyle("-fx-font-size: 64px; -fx-font-family:\"Arial Black\";");
-		upVBox.setAlignment(Pos.CENTER);
 		upLabel.setTextFill(Color.web("#B7B8B6"));
 		upLabel.setPrefHeight(120);
 		upVBox.getChildren().add(upLabel);
-		upVBox.setStyle("-fx-background-color: #324851");
 		
 		VBox nameVBox = new VBox(20);
 		Label nameLabel = new Label("What's youre name?");
@@ -58,11 +55,6 @@ public class CreateNewPlayer extends VBox
 		buttonHbox.getChildren().addAll(toStartMenuButton,okButton);
 		this.getChildren().addAll(upVBox,nameVBox,buttonHbox);
 		
-		/*nameField.textProperty().addListener((observable, oldValue, newValue) -> 
-		{
-		    okButton.setDisable(isBadName(newValue));
-		});*/
-		
 		okButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -78,7 +70,7 @@ public class CreateNewPlayer extends VBox
 				} catch (BadNameException e) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("Invalid name");
-					alert.setHeaderText("The naem you entered is invalid!");
+					alert.setHeaderText("The name you entered is invalid!");
 					alert.setContentText(e.getMessage());
 					alert.showAndWait();
 				}

@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class PictureWithTextButton extends StackPane implements Clickable
@@ -34,6 +33,7 @@ public class PictureWithTextButton extends StackPane implements Clickable
 		setPrefHeight(h);
 		setPrefWidth(w);
 
+		
 		getChildren().addAll(state1,state2, text);
 		
 		state2.setVisible(false);

@@ -19,7 +19,6 @@ public class GameMenuButton extends Button implements Clickable
 		setPrefWidth(w);
 		
 		setGraphic(imageView);
-		getChildren().addAll(imageView);
 		
 		setOnClick();
 		setOnMouseEnteredAndExited();

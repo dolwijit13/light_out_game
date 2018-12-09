@@ -2,6 +2,7 @@ package application.PlayerData;
 
 import java.util.ArrayList;
 
+
 import application.Main;
 import application.StartMenu;
 import application.Button.BackButton;
@@ -172,9 +173,6 @@ public class LeaderBoard extends VBox
 			playerLabelVBox.getChildren().add(playerLabels.get(i));
 		}
 
-		//ToStartMenuButton toStartMenuButton = new ToStartMenuButton();
-		//toStartMenuButton.setPrefHeight(55);
-		//toStartMenuButton.setAlignment(Pos.CENTER_RIGHT);
 		BackButton toStartMenuButton = new BackButton(100, 120, new StartMenu());
 		this.getChildren().addAll(leaderBoardLebel, modeButtonHBox, playerLabelVBox, toStartMenuButton);
 	
