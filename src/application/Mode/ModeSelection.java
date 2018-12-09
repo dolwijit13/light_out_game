@@ -138,13 +138,13 @@ public class ModeSelection extends StackPane
 				Label conditionLabel = null;
 				switch(mode) {
 					case 1:
-						conditionLabel = new Label("5 in Classic Mode.");
+						conditionLabel = new Label("level 5 in Classic Mode.");
 						break;
 					case 2:
-						conditionLabel = new Label("10 in Classic Mode.");
+						conditionLabel = new Label("level 10 in Classic Mode.");
 						break;
 					case 3:
-						conditionLabel = new Label("15 in Classic Mode.");
+						conditionLabel = new Label("level 15 in Classic Mode.");
 						break;
 				}
 				conditionLabel.setStyle("-fx-font-size: 18px; -fx-font-family:\"Arial Black\";");

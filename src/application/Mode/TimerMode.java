@@ -284,6 +284,7 @@ public class TimerMode extends Mode
 	@Override
 	public void timerNextLevel() {
 		timerThread.interrupt();
+		Main.playSoundEffect("congrats.mp3");
 		disableBoard();
 		passedLevelThread.start();
 	}
