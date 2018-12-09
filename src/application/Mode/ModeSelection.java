@@ -173,7 +173,7 @@ public class ModeSelection extends StackPane
 		grid.setPadding(new Insets(0,0,10,0));
 		grid.setVgap(10);
 		grid.setHgap(10);
-		grid.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);");;
+		grid.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);");
 		
 		ModeFrame classicFrame = new ModeFrame(0,false);
 		ModeFrame timerFrame = new ModeFrame(1,PlayerInfo.getClassicPassedLevel() < 5);

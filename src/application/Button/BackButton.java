@@ -1,5 +1,6 @@
 package application.Button;
 
+import application.Gallery;
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
@@ -123,6 +124,17 @@ public class BackButton extends Button
 				{
 					TriColorLevelSelection triColorLevelSelection = new TriColorLevelSelection();
 					Main.changeScene(triColorLevelSelection);
+				}
+			});
+		}
+		else if(mode == 5) {
+			setOnAction(new EventHandler<ActionEvent>()
+			{
+				@Override
+				public void handle(ActionEvent event)
+				{
+					Gallery gallery = new Gallery();
+					Main.changeScene(gallery);
 				}
 			});
 		}

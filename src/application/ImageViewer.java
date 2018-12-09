@@ -1,11 +1,14 @@
 package application;
 
+import application.Button.BackButton;
+import application.Button.GameMenuButton;
 import application.Button.ToMainMenuButton;
 import application.PlayerData.PlayerInfo;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,26 +18,40 @@ import javafx.scene.text.Text;
 
 public class ImageViewer extends VBox {
 	public ImageViewer(int level) {
-		super(10);
-		setAlignment(Pos.CENTER);
-		setPadding(new Insets(10, 10, 10, 10));
-		Text sceneTitle = new Text("LEVEL " + level);
-		sceneTitle.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";-fx-fill: #555;");
+		super();
+		setStyle("-fx-background-color: #886ABB;");
+		setAlignment(Pos.TOP_CENTER);
 		
+		Label sceneTitle = new Label("LEVEL " + level);
+		sceneTitle.setPrefWidth(1280);
+		sceneTitle.setPrefHeight(50);
+		sceneTitle.setAlignment(Pos.CENTER);
+		sceneTitle.setStyle("-fx-font-size: 40px; -fx-text-fill: white; -fx-font-family:\"Arial Black\"; -fx-background-color: #4200B6; -fx-background-radius: 0;");
+		
+		VBox image = new VBox();
 		ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+level+"/full.png").toString()));
-		imageView.setFitHeight(590);
-		imageView.setFitWidth(590);
+		imageView.setFitHeight(550);
+		imageView.setFitWidth(550);
+		image.setPadding(new Insets(10,0,10,0));
+		image.setAlignment(Pos.CENTER);
+		image.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5);");
+		image.getChildren().add(imageView);
 		
-		HBox hBox = new HBox(15);
-		hBox.setAlignment(Pos.CENTER);
-		Button previousImageButton = new Button("Previous");
-		Button nextImageButton = new Button("Next");
-		ToMainMenuButton toMainMenuButton = new ToMainMenuButton();
-		hBox.getChildren().addAll(previousImageButton, toMainMenuButton, nextImageButton);
+		HBox controlBox = new HBox(15);
+		controlBox.setAlignment(Pos.CENTER);
+		GameMenuButton previousImageButton = new GameMenuButton(80,80,"prev.png");
+		GameMenuButton nextImageButton = new GameMenuButton(80,80,"next.png");
+		BackButton backButton = new BackButton(80,96,5);
+		controlBox.getChildren().addAll(previousImageButton, backButton, nextImageButton);
 		
 		int unlockedImages = PlayerInfo.getClassicPassedLevel();
-		if(level - 1 == 0) previousImageButton.setDisable(true);
-		if(level + 1 > unlockedImages) nextImageButton.setDisable(true);
+		if(level - 1 == 0) {
+			previousImageButton.setVisible(false);
+		}
+		if(level + 1 > unlockedImages) 
+		{
+			nextImageButton.setVisible(false);
+		}
 		
 		previousImageButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
@@ -56,6 +73,6 @@ public class ImageViewer extends VBox {
 			}
 		});
 		
-		getChildren().addAll(sceneTitle, imageView, hBox);
+		getChildren().addAll(sceneTitle, image, controlBox);
 	}
 }
