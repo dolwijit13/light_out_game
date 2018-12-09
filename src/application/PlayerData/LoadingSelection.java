@@ -114,6 +114,7 @@ public class LoadingSelection extends VBox
 				@Override
 				public void handle(MouseEvent event)
 				{
+					Main.playSoundEffect("click.wav");
 					PlayerButton source = (PlayerButton)event.getSource();
 					PlayerButton selectedPlayer = LoadingSelection.getSelectedPlayer();
 					if(source.name.length()<4 && isLoading)

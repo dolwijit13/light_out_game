@@ -183,6 +183,7 @@ public class LeaderBoard extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(0);
 				Main.changeScene(leaderBoard);
 			}
@@ -193,6 +194,7 @@ public class LeaderBoard extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(1);
 				Main.changeScene(leaderBoard);
 			}
@@ -203,6 +205,7 @@ public class LeaderBoard extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(2);
 				Main.changeScene(leaderBoard);
 			}
@@ -213,6 +216,7 @@ public class LeaderBoard extends VBox
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(3);
 				Main.changeScene(leaderBoard);
 			}

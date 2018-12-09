@@ -23,17 +23,21 @@ public class StartMenu extends HBox
 {
 	public StartMenu()
 	{
-		super(500);
-		setPadding(new Insets(0, 0, 0, 90));
+		super(340);
+		setPadding(new Insets(0, 0, 0, 40));
 		setAlignment(Pos.TOP_LEFT);
 
 		VBox logoVBox = new VBox(0);
-		logoVBox.setPadding(new Insets(200, 0, 0, 0));
-		Button logo = new Button("AU");
-		logo.setPrefHeight(150);
-		logo.setPrefWidth(300);
-		logoVBox.getChildren().add(logo);
-		// logoVBox.setStyle("-fx-border-color: #828282;");
+		logoVBox.setPadding(new Insets(120, 0, 0, 0));
+		VBox insideLogoVBox = new VBox();
+		insideLogoVBox.setPadding(new Insets(30, 30, 30, 30));
+		ImageView logo = new ImageView(new Image(ClassLoader.getSystemResource("assets/logo.png").toString()));
+		logo.setFitHeight(126);
+		logo.setFitWidth(406);
+		insideLogoVBox.getChildren().add(logo);
+		insideLogoVBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-radius: 10;");
+		logoVBox.getChildren().add(insideLogoVBox);
+		//logoVBox.setStyle("-fx-border-color: #828282;");
 
 		VBox rightVBox = new VBox(10);
 		//rightVBox.setStyle("-fx-border-color: #828282;");

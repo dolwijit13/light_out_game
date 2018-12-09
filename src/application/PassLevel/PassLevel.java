@@ -89,10 +89,10 @@ public abstract class PassLevel extends VBox
 		}
 		
 		BackButton toLevelSelectionButton =null;
-		if(mode==0) toLevelSelectionButton = new BackButton(100,120,new ClassicLevelSelection());
+		if(mode==0) toLevelSelectionButton = new BackButton(100,120,new ClassicLevelSelection(1));
 		if(mode==1) toLevelSelectionButton = new BackButton(100,120,new ModeSelection());
-		if(mode==2) toLevelSelectionButton = new BackButton(100,120,new DrawLevelSelection());
-		if(mode==3) toLevelSelectionButton = new BackButton(100,120,new TriColorLevelSelection());
+		if(mode==2) toLevelSelectionButton = new BackButton(100,120,new DrawLevelSelection(1));
+		if(mode==3) toLevelSelectionButton = new BackButton(100,120,new TriColorLevelSelection(1));
 		
 		toLevelSelectionHBox = new HBox();
 		toLevelSelectionHBox.setAlignment(Pos.BOTTOM_RIGHT);

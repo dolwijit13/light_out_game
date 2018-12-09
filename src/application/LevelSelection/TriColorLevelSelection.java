@@ -15,6 +15,11 @@ public class TriColorLevelSelection extends LevelSelection
 	{
 		super(2,5,PlayerInfo.getTriColorPassedLevel()+1);
 	}
+	
+	public TriColorLevelSelection(int tmp) //for passLevel
+	{
+		super(2,5,PlayerInfo.getClassicPassedLevel()+2);
+	}
 
 	@Override
 	public void setLevelButton(LevelButton levelButton)
@@ -24,6 +29,7 @@ public class TriColorLevelSelection extends LevelSelection
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				int level = levelButton.getLevel();
 				TriColorMode triColorMode = new TriColorMode(level);
 				Main.changeScene(triColorMode);

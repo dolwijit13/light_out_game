@@ -5,6 +5,7 @@ import java.util.Optional;
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
+import application.Button.BackButton;
 import application.Button.OKButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -67,6 +68,7 @@ public class SavingSelection extends LoadingSelection
 			@Override
 			public void handle(ActionEvent event)
 			{
+				BackButton.playSoundEffect();
 				MainMenu mainMenu = new MainMenu();
 				Main.changeScene(mainMenu);
 			}

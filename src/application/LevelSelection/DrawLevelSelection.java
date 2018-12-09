@@ -16,6 +16,11 @@ public class DrawLevelSelection extends LevelSelection
 	{
 		super(2,5,PlayerInfo.getDrawPassedLevel()+1);
 	}
+	
+	public DrawLevelSelection(int tmp) //for passLevel
+	{
+		super(2,5,PlayerInfo.getClassicPassedLevel()+2);
+	}
 
 	@Override
 	public void setLevelButton(LevelButton levelButton)
@@ -25,6 +30,7 @@ public class DrawLevelSelection extends LevelSelection
 			@Override
 			public void handle(MouseEvent event)
 			{
+				Main.playSoundEffect("click.wav");
 				int level = levelButton.getLevel();
 				DrawMode drawMode = new DrawMode(level);
 				Main.changeScene(drawMode);

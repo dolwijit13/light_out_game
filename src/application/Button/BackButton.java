@@ -50,10 +50,15 @@ public class BackButton extends Button implements Clickable
 			@Override
 			public void handle(ActionEvent event)
 			{
-				Main.playSoundEffect("click.wav");
+				BackButton.playSoundEffect();
 				Main.changeScene(pane);
 			}
 		});
+	}
+	
+	public static void playSoundEffect() //In case of Override
+	{
+		Main.playSoundEffect("click.wav");
 	}
 
 	@Override

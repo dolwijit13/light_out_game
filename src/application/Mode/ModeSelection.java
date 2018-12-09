@@ -53,6 +53,7 @@ public class ModeSelection extends StackPane
 				@Override
 				public void handle(MouseEvent event)
 				{
+					PictureWithTextButton.playSoundEffect();
 					showHowToPlay(mode);
 				}
 
@@ -66,6 +67,7 @@ public class ModeSelection extends StackPane
 						@Override
 						public void handle(MouseEvent event)
 						{
+							PictureWithTextButton.playSoundEffect();
 							ClassicLevelSelection classicLevelSelection = new ClassicLevelSelection();
 							Main.changeScene(classicLevelSelection);
 						}
@@ -81,6 +83,7 @@ public class ModeSelection extends StackPane
 						@Override
 						public void handle(MouseEvent event)
 						{
+							PictureWithTextButton.playSoundEffect();
 							TimerMode timerMode = new TimerMode(1,60,0,0,null);
 							Main.changeScene(timerMode);
 						}
@@ -96,6 +99,7 @@ public class ModeSelection extends StackPane
 						@Override
 						public void handle(MouseEvent event)
 						{
+							PictureWithTextButton.playSoundEffect();
 							DrawLevelSelection drawLevelSelection = new DrawLevelSelection();
 							Main.changeScene(drawLevelSelection);
 						}
@@ -111,6 +115,7 @@ public class ModeSelection extends StackPane
 						@Override
 						public void handle(MouseEvent event)
 						{
+							PictureWithTextButton.playSoundEffect();
 							TriColorLevelSelection triColorLevelSelection = new TriColorLevelSelection();
 							Main.changeScene(triColorLevelSelection);
 						}
