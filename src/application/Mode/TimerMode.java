@@ -198,6 +198,7 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				GameMenuButton.playSoundEffect();
 				resetBoard();
 			}
 		});
@@ -210,6 +211,7 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				GameMenuButton.playSoundEffect();
 				timerThread.interrupt();
 				TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty() + 200, passedLevel, null);
 				Main.changeScene(timerMode);
@@ -225,6 +227,7 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				GameMenuButton.playSoundEffect();
 				getChildren().remove(pauseMenu);
 				timerThread.resume();
 				passedLevelThread.resume();
@@ -262,6 +265,7 @@ public class TimerMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				GameMenuButton.playSoundEffect();
 				timerThread.interrupt();
 				TimerMode timerMode = new TimerMode(1, 60, 0, 0, null);
 				Main.changeScene(timerMode);

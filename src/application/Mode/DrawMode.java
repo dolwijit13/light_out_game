@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import application.Main;
+import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.DrawGameMenu;
@@ -142,6 +143,7 @@ public class DrawMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				GameMenuButton.playSoundEffect();
 				resetBoard();
 			}
 		});

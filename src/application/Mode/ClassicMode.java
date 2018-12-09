@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import application.Main;
+import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameLogic.BoardSolver;
 import application.GameMenu.ClassicGameMenu;
@@ -76,6 +77,7 @@ public class ClassicMode extends Mode
 			@Override
 			public void handle(ActionEvent arg0)
 			{
+				GameMenuButton.playSoundEffect();
 				resetBoard();
 			}
 		});
