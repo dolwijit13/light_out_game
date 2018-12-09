@@ -10,6 +10,7 @@ import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.DrawGameMenu;
+import application.PassLevel.ClassicPassLevel;
 import application.PassLevel.DrawPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -45,10 +46,7 @@ public class DrawMode extends Mode
 		}	
 		
 		gameMenu = new DrawGameMenu(n,initalBoard,level+1);
-		passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
-		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
-		setRestartButton(passLevel.getRestartButton());
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp2Button(((DrawGameMenu) gameMenu).getHelp2Button());
 		
@@ -205,5 +203,18 @@ public class DrawMode extends Mode
 		}
 		//return false;
 		return true;
+	}
+	
+	@Override
+	public void showPassLevel()
+	{
+		passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		setToNextLevelButton(passLevel.getToNextLevelButton());
+		setRestartButton(passLevel.getRestartButton());
+		Main.playSoundEffect("congrats.mp3");
+		disableBoard();
+		passLevel.setPenalty(gameMenu.getPenalty());
+		hBox.getChildren().remove(gameMenu);
+		hBox.getChildren().add(passLevel);
 	}
 }

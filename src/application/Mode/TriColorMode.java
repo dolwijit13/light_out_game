@@ -10,6 +10,7 @@ import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.TriColorGameMenu;
+import application.PassLevel.TimerPassLevel;
 import application.PassLevel.TriColorPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -33,10 +34,7 @@ public class TriColorMode extends Mode
 
 		board = new Board(n, 3, level + 1, mode);
 		gameMenu = new TriColorGameMenu(level+1);
-		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
-		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setResetButton(gameMenu.getResetButton());
-		setRestartButton(passLevel.getRestartButton());
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp1Button(((TriColorGameMenu) gameMenu).getHelp1Button());
 		setHelp2Button(((TriColorGameMenu) gameMenu).getHelp2Button());
@@ -219,6 +217,19 @@ public class TriColorMode extends Mode
 				showHelp3(3,4 + (level-1) / 5);
 			}
 		});
+	}
+	
+	@Override
+	public void showPassLevel()
+	{
+		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		setToNextLevelButton(passLevel.getToNextLevelButton());
+		setRestartButton(passLevel.getRestartButton());
+		Main.playSoundEffect("congrats.mp3");
+		disableBoard();
+		passLevel.setPenalty(gameMenu.getPenalty());
+		hBox.getChildren().remove(gameMenu);
+		hBox.getChildren().add(passLevel);
 	}
 
 }

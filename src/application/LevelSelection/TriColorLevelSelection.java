@@ -15,11 +15,6 @@ public class TriColorLevelSelection extends LevelSelection
 	{
 		super(2,5,PlayerInfo.getTriColorPassedLevel()+1);
 	}
-	
-	public TriColorLevelSelection(int tmp) //for passLevel
-	{
-		super(2,5,PlayerInfo.getClassicPassedLevel()+2);
-	}
 
 	@Override
 	public void setLevelButton(LevelButton levelButton)

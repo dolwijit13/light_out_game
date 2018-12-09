@@ -21,22 +21,6 @@ public class PlayerInfo
 
 	protected int triColorPassedLevel; // number of passed level in tricolor mode
 	protected byte[] triColorPenalty; // penalty of each tricolor mode level (1-??)
-
-	public PlayerInfo(int n, String name, int classicLastPassedLevel, byte[] classicPenalty,
-			int timerPassedLevel, int timerPenalty, int drawPassedLevel, byte[] drawPenalty,
-			int triColorPassedLevel, byte[] triColorPenalty)
-	{
-		this.n = n;
-		this.name = name;
-		this.classicPassedLevel = classicLastPassedLevel;
-		this.classicPenalty = classicPenalty;
-		this.timerPassedLevel = timerPassedLevel;
-		this.timerPenalty = timerPenalty;
-		this.drawPassedLevel = drawPassedLevel;
-		this.drawPenalty = drawPenalty;
-		this.triColorPassedLevel = triColorPassedLevel;
-		this.triColorPenalty = triColorPenalty;
-	}
 	
 	public PlayerInfo(String name) throws BadNameException
 	{
@@ -143,12 +127,12 @@ public class PlayerInfo
 		}
 	}
 
-	public static void setTimerPenalty(int newLevel)
+	public static void setTimerPenalty(int newPenalty)
 	{
-		int lastLevel=getDrawPassedLevel();
-		if(newLevel > lastLevel)
+		int lastPenalty=getTimerPenalty();
+		if(newPenalty > lastPenalty)
 		{
-			selectedPlayerInfo.timerPenalty = newLevel;
+			selectedPlayerInfo.timerPenalty = newPenalty;
 		}
 	}
 
@@ -195,7 +179,7 @@ public class PlayerInfo
 		return selectedPlayerInfo.n;
 	}
 
-	public String getName()
+	public static String getName()
 	{
 		return selectedPlayerInfo.name;
 	}

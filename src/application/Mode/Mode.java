@@ -10,6 +10,7 @@ import application.GameLogic.Light;
 import application.GameMenu.ClassicGameMenu;
 import application.GameMenu.DrawGameMenu;
 import application.GameMenu.GameMenu;
+import application.PassLevel.ClassicPassLevel;
 import application.PassLevel.PassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -147,14 +148,7 @@ public abstract class Mode extends StackPane
 		return true;
 	}
 
-	public void showPassLevel()
-	{
-		Main.playSoundEffect("congrats.mp3");
-		disableBoard();
-		passLevel.setPenalty(gameMenu.getPenalty());
-		hBox.getChildren().remove(gameMenu);
-		hBox.getChildren().add(passLevel);
-	}
+	public abstract void showPassLevel();
 
 	protected abstract void toNextLevel();
 

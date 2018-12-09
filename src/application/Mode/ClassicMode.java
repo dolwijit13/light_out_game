@@ -34,9 +34,6 @@ public class ClassicMode extends Mode
 
 		board = new Board(n, 2, level + 1,0);
 		gameMenu = new ClassicGameMenu(level+1);
-		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
-		setToNextLevelButton(passLevel.getToNextLevelButton());
-		setRestartButton(passLevel.getRestartButton());
 		setResetButton(gameMenu.getResetButton());
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp1Button(((ClassicGameMenu) gameMenu).getHelp1Button());
@@ -179,5 +176,18 @@ public class ClassicMode extends Mode
 	{
 		PlayerInfo.setClassicPassedLevel(level);
 		PlayerInfo.setClassicPenalty(level, gameMenu.getPenalty());
+	}
+
+	@Override
+	public void showPassLevel()
+	{
+		passLevel = new ClassicPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		setToNextLevelButton(passLevel.getToNextLevelButton());
+		setRestartButton(passLevel.getRestartButton());
+		Main.playSoundEffect("congrats.mp3");
+		disableBoard();
+		passLevel.setPenalty(gameMenu.getPenalty());
+		hBox.getChildren().remove(gameMenu);
+		hBox.getChildren().add(passLevel);
 	}
 }

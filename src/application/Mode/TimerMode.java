@@ -7,6 +7,7 @@ import application.Button.BackButton;
 import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameMenu.TimerGameMenu;
+import application.PassLevel.DrawPassLevel;
 import application.PassLevel.TimerPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -107,12 +108,10 @@ public class TimerMode extends Mode
 		board = new Board(n + 4, 2, level, 1);
 		gameMenu = new TimerGameMenu(0,level);
 		gameMenu.addPenalty(penalty);
-		passLevel = new TimerPassLevel(gameMenu.getPenalty(), passedLevel);
 		pauseMenu = new PauseMenu();
 		setPauseButton(((TimerGameMenu) gameMenu).getPauseButton());
 		setResumeButton(pauseMenu.resumeButton);
 		setRestartButton(pauseMenu.restartButton);
-		setRestartButton(passLevel.getRestartButton());
 		((TimerGameMenu) gameMenu).setPassedLevelLabel(passedLevel);
 		setNewPuzzleButton(((TimerGameMenu) gameMenu).getNewPuzzleButton());
 		setResetButton(gameMenu.getResetButton());
@@ -294,5 +293,18 @@ public class TimerMode extends Mode
 		timerThread.interrupt();
 		TimerMode timerMode = new TimerMode(level, timeLeft, gameMenu.getPenalty(), passedLevel, pressed);
 		Main.changeScene(timerMode);
+	}
+	
+	@Override
+	public void showPassLevel()
+	{
+		passLevel = new TimerPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		setToNextLevelButton(passLevel.getToNextLevelButton());
+		setRestartButton(passLevel.getRestartButton());
+		Main.playSoundEffect("congrats.mp3");
+		disableBoard();
+		passLevel.setPenalty(gameMenu.getPenalty());
+		hBox.getChildren().remove(gameMenu);
+		hBox.getChildren().add(passLevel);
 	}
 }

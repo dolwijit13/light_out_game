@@ -15,11 +15,6 @@ public class ClassicLevelSelection extends LevelSelection
 		super(4,5,PlayerInfo.getClassicPassedLevel()+1);
 	}
 	
-	public ClassicLevelSelection(int tmp) //for passLevel
-	{
-		super(4,5,PlayerInfo.getClassicPassedLevel()+2);
-	}
-	
 	public void setLevelButton(LevelButton levelButton)
 	{
 		levelButton.setOnMouseClicked(new EventHandler<MouseEvent>()

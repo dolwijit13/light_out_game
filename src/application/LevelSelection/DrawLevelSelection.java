@@ -16,11 +16,6 @@ public class DrawLevelSelection extends LevelSelection
 	{
 		super(2,5,PlayerInfo.getDrawPassedLevel()+1);
 	}
-	
-	public DrawLevelSelection(int tmp) //for passLevel
-	{
-		super(2,5,PlayerInfo.getClassicPassedLevel()+2);
-	}
 
 	@Override
 	public void setLevelButton(LevelButton levelButton)
