@@ -18,6 +18,7 @@ public class Main extends Application
 	private static Stage stage;
 	private static MediaPlayer bgmMediaPlayer;
 	private static MediaPlayer soundEffectMediaPlayer;
+	private static Thread bgmThread;
 
 	@Override
 	public void start(Stage primaryStage)
@@ -45,6 +46,9 @@ public class Main extends Application
 	public static void changeScene(Pane pane)
 	{
 		Main.pane = pane;
+		/*if(pane instanceof MainMenu) {
+			setBGM(".....");
+		}*/
 		Scene scene = new Scene(pane, 1280, 720);
 		stage.setScene(scene);
 	}
@@ -56,13 +60,14 @@ public class Main extends Application
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
+		setBGM("bgm.mp3");
 		launch(args);
 	}
 	
 	public static void playSoundEffect(String sound) {
 		Thread soundEffectThread = new Thread(() -> {
 			try {
-				Media soundEffect = new Media(ClassLoader.getSystemResource("assets/sounds/"+sound+".wav").toString());
+				Media soundEffect = new Media(ClassLoader.getSystemResource("assets/sounds/"+sound).toString());
 				soundEffectMediaPlayer = new MediaPlayer(soundEffect);
 				soundEffectMediaPlayer.setCycleCount(1);
 				soundEffectMediaPlayer.play();
@@ -73,10 +78,14 @@ public class Main extends Application
 		soundEffectThread.start();
 	}
 	
-	public static void playBGM(String sound) {
-		Thread bgmThread = new Thread(() -> {
+	public static void setBGM(String sound) {
+		if(bgmThread != null) {
+			bgmThread.interrupt();
+			bgmMediaPlayer.stop();
+		}
+		bgmThread = new Thread(() -> {
 			try {
-				Media bgm = new Media(ClassLoader.getSystemResource("assets/sounds/"+sound+".wav").toString());
+				Media bgm = new Media(ClassLoader.getSystemResource("assets/sounds/"+sound).toString());
 				bgmMediaPlayer = new MediaPlayer(bgm);
 				bgmMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				bgmMediaPlayer.play();

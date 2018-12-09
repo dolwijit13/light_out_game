@@ -88,7 +88,7 @@ public abstract class Mode extends StackPane
 		@Override
 		public void handle(MouseEvent event)
 		{
-			Main.playSoundEffect("light");
+			Main.playSoundEffect("light.wav");
 			MouseButton button = event.getButton();
 			int n = board.getN();
 			if (button == MouseButton.PRIMARY)
@@ -149,7 +149,8 @@ public abstract class Mode extends StackPane
 
 	public void showPassLevel()
 	{
-		// passLevel = new PassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		Main.playSoundEffect("congrats.mp3");
+		disableBoard();
 		passLevel.setPenalty(gameMenu.getPenalty());
 		hBox.getChildren().remove(gameMenu);
 		hBox.getChildren().add(passLevel);
@@ -207,5 +208,15 @@ public abstract class Mode extends StackPane
 	private void setActive(boolean active) {
 		this.gameMenu.setDisable(!active);
 		this.board.setDisable(!active);
+	}
+	
+	protected void disableBoard() {
+		for (int i = 0; i < board.getN(); i++)
+		{
+			for (int j = 0; j < board.getN(); j++)
+			{
+				board.getLight(i, j).setOnMouseClicked(null);
+			}
+		}
 	}
 }

@@ -43,8 +43,8 @@ public abstract class GameMenu extends VBox
 		
 		resetButton = new GameMenuButton(hButton,wButton,"reset.png");
 		undoButton = new GameMenuButton(hButton,wButton,"undo.png");
-		resetButton.setTooltip(new Tooltip("reset the board"));
-		undoButton.setTooltip(new Tooltip("undo the board\n(Maximum stack 5 times)"));
+		resetButton.setTooltip(new Tooltip("Reset the board"));
+		undoButton.setTooltip(new Tooltip("Undo the board\n(Maximum stack 5 times)"));
 		resetAndUndoHBox = new HBox(20);
 		resetAndUndoHBox.setAlignment(Pos.CENTER);
 		resetAndUndoHBox.getChildren().addAll(resetButton,undoButton);

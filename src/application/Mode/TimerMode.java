@@ -292,13 +292,7 @@ public class TimerMode extends Mode
 	@Override
 	public void timerNextLevel() {
 		timerThread.interrupt();
-		for (int i = 0; i < n + 4; i++)
-		{
-			for (int j = 0; j < n + 4; j++)
-			{
-				board.getLight(i, j).setOnMouseClicked(null);
-			}
-		}
+		disableBoard();
 		passedLevelThread.start();
 	}
 
