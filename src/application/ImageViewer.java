@@ -47,11 +47,11 @@ public class ImageViewer extends VBox {
 		});
 
 		GameMenuButton nextImageButton = new GameMenuButton(80, 80, "next.png");
-		previousImageButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		nextImageButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
-				ImageViewer imageViewer = new ImageViewer(level - 1);
+				ImageViewer imageViewer = new ImageViewer(level + 1);
 				Main.changeScene(imageViewer);
 			}
 		});
