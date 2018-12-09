@@ -1,5 +1,7 @@
 package application.PlayerData;
 
+import java.util.Optional;
+
 import application.Main;
 import application.MainMenu;
 import application.StartMenu;
@@ -8,8 +10,11 @@ import application.Button.OKButton;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,7 +51,6 @@ public class CreateNewPlayer extends VBox
 		nameVBox.getChildren().addAll(nameLabel,nameField);
 		
 		OKButton okButton = new OKButton(100, 120);
-		okButton.setDisable(true);
 		BackButton toStartMenuButton = new BackButton(100, 120, new StartMenu());
 		
 		HBox buttonHbox = new HBox(20);
@@ -54,10 +58,10 @@ public class CreateNewPlayer extends VBox
 		buttonHbox.getChildren().addAll(toStartMenuButton,okButton);
 		this.getChildren().addAll(upVBox,nameVBox,buttonHbox);
 		
-		nameField.textProperty().addListener((observable, oldValue, newValue) -> 
+		/*nameField.textProperty().addListener((observable, oldValue, newValue) -> 
 		{
 		    okButton.setDisable(isBadName(newValue));
-		});
+		});*/
 		
 		okButton.setOnMouseClicked(new EventHandler<MouseEvent>()
 		{
@@ -65,26 +69,20 @@ public class CreateNewPlayer extends VBox
 			public void handle(MouseEvent event)
 			{
 				OKButton.playSoundEffect();
-				PlayerInfo playerInfo = new PlayerInfo(nameField.getText());
-				PlayerInfo.setSelectedPlayerInfo(playerInfo);
-				MainMenu mainMenu = new MainMenu();
-				Main.changeScene(mainMenu);
+				try {
+					PlayerInfo playerInfo;
+					playerInfo = new PlayerInfo(nameField.getText());
+					PlayerInfo.setSelectedPlayerInfo(playerInfo);
+					MainMenu mainMenu = new MainMenu();
+					Main.changeScene(mainMenu);
+				} catch (BadNameException e) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Invalid name");
+					alert.setHeaderText("The naem you entered is invalid!");
+					alert.setContentText(e.getMessage());
+					alert.showAndWait();
+				}
 			}
 		});
-	}
-	
-	private boolean isBadName(String name)
-	{
-		if(name.length()<3) return true;
-		if(name.length()>8) return true;
-		for(int i=0;i<name.length();i++)
-		{
-			char c=name.charAt(i);
-			if(!(('a'<=c && c<='z') || ('A'<=c && c<='Z') || ('0'<=c && c<='9')))
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 }

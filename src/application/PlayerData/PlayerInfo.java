@@ -38,8 +38,19 @@ public class PlayerInfo
 		this.triColorPenalty = triColorPenalty;
 	}
 	
-	public PlayerInfo(String name)
+	public PlayerInfo(String name) throws BadNameException
 	{
+		if(name.length()<3 || name.length()>8) {
+			throw new BadNameException("A name must be in length 3 to 8");
+		}
+		for(int i=0;i<name.length();i++)
+		{
+			char c=name.charAt(i);
+			if(!(('a'<=c && c<='z') || ('A'<=c && c<='Z') || ('0'<=c && c<='9')))
+			{
+				throw new BadNameException("A name must contain only A-Z, a-z, 0-9");
+			}
+		}
 		this.n = 0;
 		this.name = name;
 		this.classicPassedLevel = 0;
