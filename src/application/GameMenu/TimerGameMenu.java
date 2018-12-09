@@ -89,10 +89,10 @@ public class TimerGameMenu extends GameMenu
 		return gc;
 	}
 	public void drawCurrentTimeString(GraphicsContext gc){
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.web("#323232"));
 		gc.setFont(new Font("Arial Black",24));
 		gc.clearRect(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-		gc.fillText("" + this.timeLeft, 0, this.canvas.getWidth() / 2);
+		gc.fillText("" + this.timeLeft, 15, 27);
 	}
 
 	@Override
