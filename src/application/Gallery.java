@@ -52,7 +52,7 @@ public class Gallery extends VBox {
 				});
 				if (curLevel <= unlockedImages) {
 					imageView.setImage(new Image(
-							ClassLoader.getSystemResource("classic/" + curLevel + "/thumbnail.png").toString()));
+							ClassLoader.getSystemResource("assets/classic/" + curLevel + "/thumbnail.png").toString()));
 					imageView.setDisable(false);
 				} else {
 					imageView.setImage(new Image(ClassLoader.getSystemResource("assets/locked_image.png").toString()));

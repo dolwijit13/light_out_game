@@ -27,7 +27,7 @@ public class ImageViewer extends VBox {
 				"-fx-font-size: 40px; -fx-text-fill: white; -fx-font-family:\"Arial Black\"; -fx-background-color: #4200B6;");
 
 		ImageView imageView = new ImageView(
-				new Image(ClassLoader.getSystemResource("classic/" + level + "/full.png").toString()));
+				new Image(ClassLoader.getSystemResource("assets/classic/" + level + "/full.png").toString()));
 		imageView.setFitHeight(550);
 		imageView.setFitWidth(550);
 		VBox image = new VBox();
