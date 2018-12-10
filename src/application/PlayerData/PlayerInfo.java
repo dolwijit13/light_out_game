@@ -20,7 +20,7 @@ public class PlayerInfo {
 
 	protected int triColorPassedLevel; // number of passed level in tricolor mode
 	protected byte[] triColorPenalty; // penalty of each tricolor mode level (1-??)
-
+	
 	public PlayerInfo(String name) throws BadNameException {
 		if (name.length() < 3 || name.length() > 8) {
 			throw new BadNameException("A name must be in length 3 to 8");
@@ -95,11 +95,10 @@ public class PlayerInfo {
 	}
 
 	public static void setClassicPenalty(int level, int newPenalty) {
-		int oldPenalty = selectedPlayerInfo.classicPenalty[(level - 1) * 2] * 256
-				+ selectedPlayerInfo.classicPenalty[(level - 1) * 2 + 1];
+		int oldPenalty = selectedPlayerInfo.classicPenalty[(level - 1) * 2] * 128 + selectedPlayerInfo.classicPenalty[(level - 1) * 2 + 1];
 		if (oldPenalty > newPenalty || oldPenalty == 0) {
-			byte a = (byte) (newPenalty / 256);
-			byte b = (byte) (newPenalty % 256);
+			byte a = (byte) (newPenalty / 128);
+			byte b = (byte) (newPenalty % 128);
 			selectedPlayerInfo.classicPenalty[(level - 1) * 2] = a;
 			selectedPlayerInfo.classicPenalty[(level - 1) * 2 + 1] = b;
 		}
@@ -124,11 +123,11 @@ public class PlayerInfo {
 	}
 
 	public static void setDrawPenalty(int level, int newPenalty) {
-		int oldPenalty = selectedPlayerInfo.drawPenalty[(level - 1) * 2] * 256
+		int oldPenalty = selectedPlayerInfo.drawPenalty[(level - 1) * 2] * 128
 				+ selectedPlayerInfo.drawPenalty[(level - 1) * 2 + 1];
 		if (oldPenalty > newPenalty || oldPenalty == 0) {
-			byte a = (byte) (newPenalty / 256);
-			byte b = (byte) (newPenalty % 256);
+			byte a = (byte) (newPenalty / 128);
+			byte b = (byte) (newPenalty % 128);
 			selectedPlayerInfo.drawPenalty[(level - 1) * 2] = a;
 			selectedPlayerInfo.drawPenalty[(level - 1) * 2 + 1] = b;
 		}
@@ -142,11 +141,11 @@ public class PlayerInfo {
 	}
 
 	public static void setTriColorPenalty(int level, int newPenalty) {
-		int oldPenalty = selectedPlayerInfo.triColorPenalty[(level - 1) * 2] * 256
+		int oldPenalty = selectedPlayerInfo.triColorPenalty[(level - 1) * 2] * 128
 				+ selectedPlayerInfo.triColorPenalty[(level - 1) * 2 + 1];
 		if (oldPenalty > newPenalty || oldPenalty == 0) {
-			byte a = (byte) (newPenalty / 256);
-			byte b = (byte) (newPenalty % 256);
+			byte a = (byte) (newPenalty / 128);
+			byte b = (byte) (newPenalty % 128);
 			selectedPlayerInfo.triColorPenalty[(level - 1) * 2] = a;
 			selectedPlayerInfo.triColorPenalty[(level - 1) * 2 + 1] = b;
 		}
@@ -196,7 +195,7 @@ public class PlayerInfo {
 		int ans = 0;
 		for (int i = 0; i < 40; i++) {
 			if (i % 2 == 0) {
-				ans += classicPenalty[i] * 256;
+				ans += classicPenalty[i] * 128;
 			} else {
 				ans += classicPenalty[i];
 			}
@@ -208,7 +207,7 @@ public class PlayerInfo {
 		int ans = 0;
 		for (int i = 0; i < 20; i++) {
 			if (i % 2 == 0) {
-				ans += drawPenalty[i] * 256;
+				ans += drawPenalty[i] * 128;
 			} else {
 				ans += drawPenalty[i];
 			}
@@ -220,7 +219,7 @@ public class PlayerInfo {
 		int ans = 0;
 		for (int i = 0; i < 20; i++) {
 			if (i % 2 == 0) {
-				ans += triColorPenalty[i] * 256;
+				ans += triColorPenalty[i] * 128;
 			} else {
 				ans += triColorPenalty[i];
 			}

@@ -126,13 +126,13 @@ public class LeaderBoard extends VBox {
 		VBox playerLabelVBox = new VBox(3);
 		playerLabelVBox.setPadding(new Insets(3, 3, 0, 3));
 		ArrayList<PlayerLabel> playerLabels = new ArrayList<PlayerLabel>();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 1; i <= 4; i++) {
 			playerLabels.add(new PlayerLabel(i, mode));
 		}
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4 - 1; j++) {
-				PlayerLabel tmp1 = playerLabels.get(j);
-				PlayerLabel tmp2 = playerLabels.get(j + 1);
+		for (int i = 1; i <= 4; i++) {
+			for (int j = 1; j <= 4 - 1; j++) {
+				PlayerLabel tmp1 = playerLabels.get(j-1);
+				PlayerLabel tmp2 = playerLabels.get(j);
 				if (tmp1.isLessThan(tmp2)) {
 					playerLabels.set(j, tmp2);
 					playerLabels.set(j + 1, tmp1);
