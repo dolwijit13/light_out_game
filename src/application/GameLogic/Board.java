@@ -56,11 +56,12 @@ public class Board extends GridPane
 			{
 				changeColor(x, y + 1, false);
 			}
-			if(b.getStyle() != "")
+			if(b.getBorderStyle() != "")
 			{
 				b.setBorder("");
 				b.setMaxSize();
 				canHelp2=true;
+				System.out.println("a");
 			}
 		}
 	}

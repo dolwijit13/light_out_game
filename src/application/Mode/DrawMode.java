@@ -10,7 +10,6 @@ import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.DrawGameMenu;
-import application.PassLevel.ClassicPassLevel;
 import application.PassLevel.DrawPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -201,7 +200,6 @@ public class DrawMode extends Mode
 				}
 			}
 		}
-		//return false;
 		return true;
 	}
 	

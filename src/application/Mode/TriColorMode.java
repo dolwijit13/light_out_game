@@ -10,7 +10,6 @@ import application.Button.GameMenuButton;
 import application.GameLogic.Board;
 import application.GameLogic.Light;
 import application.GameMenu.TriColorGameMenu;
-import application.PassLevel.TimerPassLevel;
 import application.PassLevel.TriColorPassLevel;
 import application.PlayerData.PlayerInfo;
 import javafx.event.ActionEvent;
@@ -148,6 +147,8 @@ public class TriColorMode extends Mode
 			public void handle(ActionEvent arg0)
 			{
 				gameMenu.addPenalty(50);
+				board.setCanHelp2(false);
+				help2Button.setDisable(true);
 				int n = 4 + (level-1) / 5;
 				ArrayList<Integer> shouldPress = new ArrayList<Integer>();
 				for (int i= 0; i < n; i++)
@@ -161,50 +162,16 @@ public class TriColorMode extends Mode
 					}
 				}
 				
-				//*
 				Random rand = new Random();
 				int sz = shouldPress.size();
 				int idx = shouldPress.get(rand.nextInt(sz));
 				int i = idx / n, j = idx % n;
 				Light light = board.getLight(i, j);
-				String style = light.getStyle();
 				light.setMinSize();
 				light.setBorder("-fx-border-color: #000080; -fx-border-width: 3px;");
-				//*/
-				
-				/*
-				for(int i=0;i<shouldPress.size();i++)
-				{
-					int tmp=shouldPress.get(i);
-					int x=tmp/n;
-					int y=tmp%n;
-					board.changeColor(x, y, true);
-				}
-				*/
 			}
 		});
 	}
-	
-	/*private void setHelp3Button(Button help3Button)
-	{
-		help3Button.setOnAction(new EventHandler<ActionEvent>()
-		{
-			@Override
-			public void handle(ActionEvent arg0)
-			{
-				gameMenu.addPenalty(999);
-				int n = 4 + (level-1) / 5;
-				for(int i=0;i<n;i++)
-				{
-					for(int j=0;j<n;j++)
-					{
-						System.out.print(board.getLight(i, j).isShouldPress()+" ");
-					}
-					System.out.println("");
-				}
-			}
-		});
-	}*/
 	
 	private void setHelp3Button(Button help3Button)
 	{
