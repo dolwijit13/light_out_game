@@ -171,9 +171,8 @@ public class DrawMode extends Mode
 				int idx = shouldPress.get(rand.nextInt(sz));
 				int i = idx / n, j = idx % n;
 				Light light = board.getLight(i, j);
-				String style = light.getStyle();
 				light.setMinSize();
-				light.setBorder("-fx-border-color: #000080; -fx-border-width: 3px;");
+				light.setBorder("-fx-border-color: #FF0000; -fx-border-width: 3px;");
 				
 				help2Button.setDisable(true);
 			}

@@ -61,7 +61,6 @@ public class Board extends GridPane
 				b.setBorder("");
 				b.setMaxSize();
 				canHelp2=true;
-				System.out.println("a");
 			}
 		}
 	}
