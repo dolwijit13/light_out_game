@@ -16,10 +16,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class StartMenu extends HBox
-{
-	public StartMenu()
-	{
+public class StartMenu extends HBox {
+	public StartMenu() {
 		super(340);
 		setPadding(new Insets(0, 0, 0, 40));
 		setAlignment(Pos.TOP_LEFT);
@@ -42,10 +40,10 @@ public class StartMenu extends HBox
 		VBox insideMenuVBox = new VBox(30);
 		menuVBox.setPadding(new Insets(200, 0, 0, 0));
 		insideMenuVBox.setPadding(new Insets(30, 50, 30, 50));
-		
-		PictureWithTextButton newGameButton = new PictureWithTextButton(84, 268, 1, "NEW GAME",40);
-		PictureWithTextButton loadGameButton = new PictureWithTextButton(84, 268, 2, "LOAD GAME",40);
-		PictureWithTextButton leaderboardButton = new PictureWithTextButton(84, 300, 4, "LEADERBOARD",40);
+
+		PictureWithTextButton newGameButton = new PictureWithTextButton(84, 268, 1, "NEW GAME", 40);
+		PictureWithTextButton loadGameButton = new PictureWithTextButton(84, 268, 2, "LOAD GAME", 40);
+		PictureWithTextButton leaderboardButton = new PictureWithTextButton(84, 300, 4, "LEADERBOARD", 40);
 		BackButton exitButton = new BackButton(150, 180, null);
 		menuVBox.getChildren().add(insideMenuVBox);
 		insideMenuVBox.getChildren().addAll(newGameButton, loadGameButton, leaderboardButton);
@@ -57,11 +55,9 @@ public class StartMenu extends HBox
 				null)));
 		getChildren().addAll(logoVBox, rightVBox);
 
-		newGameButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+		newGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				CreateNewPlayer creatNewPlayer = new CreateNewPlayer();
 				Main.changeScene(creatNewPlayer);
@@ -69,11 +65,9 @@ public class StartMenu extends HBox
 
 		});
 
-		loadGameButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+		loadGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				LoadingSelection loadingSelection = new LoadingSelection(true);
 				Main.changeScene(loadingSelection);
@@ -81,11 +75,9 @@ public class StartMenu extends HBox
 
 		});
 
-		leaderboardButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+		leaderboardButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(0);
 				Main.changeScene(leaderBoard);

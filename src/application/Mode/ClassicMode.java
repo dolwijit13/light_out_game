@@ -24,8 +24,8 @@ public class ClassicMode extends Mode {
 	public ClassicMode(int level) {
 		mode = 0;
 		this.level = level;
-		
-		int n = 4 + (level-1) / 5;
+
+		int n = 4 + (level - 1) / 5;
 		board = new Board(n, 2, level, 0);
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
@@ -66,7 +66,7 @@ public class ClassicMode extends Mode {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	protected void toNextLevel() {
 		ClassicMode nextLevel = new ClassicMode(board.getCurLevel() + 1);

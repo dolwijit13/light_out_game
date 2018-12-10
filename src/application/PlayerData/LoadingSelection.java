@@ -14,10 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class LoadingSelection extends VBox
-{
-	protected class PlayerButton extends VBox
-	{
+public class LoadingSelection extends VBox {
+	protected class PlayerButton extends VBox {
 		protected PlayerInfo playerInfo;
 		protected boolean isLoading;
 		protected int n;
@@ -27,16 +25,14 @@ public class LoadingSelection extends VBox
 		protected int drawPassedLevel; // number of passed level in draw mode
 		protected int triColorPassedLevel; // number of passed level in tricolor mode
 
-		
-		public PlayerButton(PlayerInfo playerInfo,Boolean isLoading)
-		{
+		public PlayerButton(PlayerInfo playerInfo, Boolean isLoading) {
 			super();
-			
+
 			setPadding(new Insets(0, 20, 0, 20));
 			setPrefHeight(112);
 			setPrefWidth(1008);
 			setStyle("-fx-border-color: #606060; -fx-border-width: 4px;");
-			
+
 			this.playerInfo = playerInfo;
 			this.isLoading = isLoading;
 			this.n = playerInfo.n;
@@ -49,50 +45,38 @@ public class LoadingSelection extends VBox
 			Label nameLabel = new Label(name);
 			nameLabel.setPrefHeight(44);
 			nameLabel.setStyle("-fx-font-size: 32px; -fx-font-family:\"Arial Black\";");
-			
-			Label classicLabel; 
-			if(classicLastPassedLevel==0)
-			{
+
+			Label classicLabel;
+			if (classicLastPassedLevel == 0) {
 				classicLabel = new Label("Classic : -");
-			}
-			else
-			{
+			} else {
 				classicLabel = new Label("Classic : " + classicLastPassedLevel);
 			}
 			classicLabel.setPrefWidth(500);
 			classicLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
 			Label timerLabel;
-			if(timerPassedLevel==0)
-			{
+			if (timerPassedLevel == 0) {
 				timerLabel = new Label("Timer : -");
-			}
-			else
-			{
+			} else {
 				timerLabel = new Label("Timer : " + timerPassedLevel);
 			}
 			timerLabel.setPrefWidth(500);
 			timerLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
 			Label drawLabel;
-			if(drawPassedLevel==0)
-			{
+			if (drawPassedLevel == 0) {
 				drawLabel = new Label("Draw : -");
-			}
-			else
-			{
+			} else {
 				drawLabel = new Label("Draw : " + drawPassedLevel);
 			}
 			drawLabel.setPrefWidth(500);
 			drawLabel.setStyle("-fx-font-size: 24px; -fx-font-family:\"Arial Black\";");
 
 			Label triColorLabel = new Label("TriColor : " + triColorPassedLevel);
-			if(triColorPassedLevel==0)
-			{
+			if (triColorPassedLevel == 0) {
 				triColorLabel = new Label("TriColor : -");
-			}
-			else
-			{
+			} else {
 				triColorLabel = new Label("TriColor : " + triColorPassedLevel);
 			}
 			triColorLabel.setPrefWidth(500);
@@ -107,36 +91,29 @@ public class LoadingSelection extends VBox
 			drawTriColorHBox.setPrefHeight(28);
 
 			getChildren().addAll(nameLabel, classicTimerHBox, drawTriColorHBox);
-			
-			this.setOnMouseClicked(new EventHandler<MouseEvent>()
-			{
+
+			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
-				public void handle(MouseEvent event)
-				{
+				public void handle(MouseEvent event) {
 					Main.playSoundEffect("click.wav");
-					PlayerButton source = (PlayerButton)event.getSource();
+					PlayerButton source = (PlayerButton) event.getSource();
 					PlayerButton selectedPlayer = LoadingSelection.getSelectedPlayer();
-					if(source.name.length()<3 && isLoading)
-					{
+					if (source.name.length() < 3 && isLoading) {
 						LoadingSelection.setSelectedPlayerBorder();
 						setOKDisable(true);
 						LoadingSelection.setSelectedPlayer(null);
 						return;
 					}
-					if(selectedPlayer == null)
-					{
+					if (selectedPlayer == null) {
 						setOKDisable(false);
 						LoadingSelection.setSelectedPlayer(source);
 						return;
 					}
 					LoadingSelection.setSelectedPlayerBorder();
-					if(!(selectedPlayer.name.equals(source.name) && selectedPlayer.n == source.n))
-					{
+					if (!(selectedPlayer.name.equals(source.name) && selectedPlayer.n == source.n)) {
 						setOKDisable(false);
 						LoadingSelection.setSelectedPlayer(source);
-					}
-					else
-					{
+					} else {
 						setOKDisable(true);
 						LoadingSelection.setSelectedPlayer(null);
 					}
@@ -154,88 +131,80 @@ public class LoadingSelection extends VBox
 	protected BackButton returnButton;
 	protected VBox upVBox;
 
-	public LoadingSelection(boolean isLoading)
-	{
+	public LoadingSelection(boolean isLoading) {
 		super();
-		selectedPlayer=null;
+		selectedPlayer = null;
 		setStyle("-fx-background-color: #E6DF44");
-		
+
 		VBox playerSelectionVBox = new VBox(5);
 		playerSelectionVBox.setPrefHeight(505);
 		playerSelectionVBox.setPrefWidth(1024);
 		playerSelectionVBox.setPadding(new Insets(5, 150, 5, 150));
 		playerSelectionVBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.3); -fx-background-radius: 10;");
-		
+
 		PlayerInfo player1Info = new PlayerInfo(1);
 		PlayerInfo player2Info = new PlayerInfo(2);
 		PlayerInfo player3Info = new PlayerInfo(3);
 		PlayerInfo player4Info = new PlayerInfo(4);
 
-		this.player1 = new PlayerButton(player1Info,isLoading);
-		this.player2 = new PlayerButton(player2Info,isLoading);
-		this.player3 = new PlayerButton(player3Info,isLoading);
-		this.player4 = new PlayerButton(player4Info,isLoading);
+		this.player1 = new PlayerButton(player1Info, isLoading);
+		this.player2 = new PlayerButton(player2Info, isLoading);
+		this.player3 = new PlayerButton(player3Info, isLoading);
+		this.player4 = new PlayerButton(player4Info, isLoading);
 
 		playerSelectionVBox.getChildren().addAll(player1, player2, player3, player4);
 
 		upVBox = new VBox();
 		upVBox.setAlignment(Pos.CENTER);
 		upVBox.setPrefHeight(123);
-		
+
 		Label upLabel = new Label("Select the game slot");
 		upLabel.setStyle("-fx-font-size: 48px; -fx-font-family:\"Arial Black\";");
 		upLabel.setTextFill(Color.web("#FEF3E2"));
 		upVBox.getChildren().add(upLabel);
 		upVBox.setStyle("-fx-background-color: #F0810F");
-		
+
 		HBox downHBox = new HBox(100);
 		okButton = new OKButton(70, 84);
 		returnButton = new BackButton(70, 84, new StartMenu());
-		
-		downHBox.getChildren().addAll(returnButton,okButton);
+
+		downHBox.getChildren().addAll(returnButton, okButton);
 		downHBox.setStyle("-fx-background-color: transparent");
 		downHBox.setPrefHeight(92);
 		downHBox.setAlignment(Pos.CENTER);
-		
+
 		okButton.setDisable(true);
-		okButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+		okButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				OKButton.playSoundEffect();
 				PlayerInfo.setSelectedPlayerInfo(selectedPlayer.playerInfo);
 				MainMenu mainMenu = new MainMenu();
 				Main.changeScene(mainMenu);
 			}
 		});
-		
-		this.getChildren().addAll(upVBox,playerSelectionVBox,downHBox);
+
+		this.getChildren().addAll(upVBox, playerSelectionVBox, downHBox);
 	}
-	
-	protected static void setSelectedPlayerBorder()
-	{
-		if(selectedPlayer == null)
+
+	protected static void setSelectedPlayerBorder() {
+		if (selectedPlayer == null)
 			return;
 		selectedPlayer.setStyle("-fx-border-color: #606060; -fx-border-width: 4px;");
 	}
-	
-	protected static void setSelectedPlayer(PlayerButton o)
-	{
-		selectedPlayer=o;
-		if(o!=null)
-		{
+
+	protected static void setSelectedPlayer(PlayerButton o) {
+		selectedPlayer = o;
+		if (o != null) {
 			o.setStyle("-fx-border-color: #000000; -fx-border-width: 4px;");
 		}
 	}
-	
-	protected void setOKDisable(Boolean disable)
-	{
+
+	protected void setOKDisable(Boolean disable) {
 		okButton.setDisable(disable);
 	}
-	
-	protected static PlayerButton getSelectedPlayer()
-	{
+
+	protected static PlayerButton getSelectedPlayer() {
 		return selectedPlayer;
 	}
 

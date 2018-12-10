@@ -18,8 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class Main extends Application
-{
+public class Main extends Application {
 	public static Pane pane;
 	private static Stage stage;
 	private static MediaPlayer bgmMediaPlayer;
@@ -28,14 +27,12 @@ public class Main extends Application
 	private static String oldSound = "";
 
 	@Override
-	public void start(Stage primaryStage)
-	{
+	public void start(Stage primaryStage) {
 		ClassicMode.readLevel();
 		DrawMode.readLevel();
 		TriColorMode.readLevel();
 
-		try
-		{
+		try {
 			primaryStage.setTitle("Is Next Picture A Doggo?");
 			StartMenu startMenu = new StartMenu();
 			stage = primaryStage;
@@ -44,80 +41,66 @@ public class Main extends Application
 			stage.getIcons().add(new Image(ClassLoader.getSystemResource("assets/icon.png").toString()));
 			stage.setTitle("IsNextPictureADoggo?");
 			stage.show();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void changeScene(Pane pane)
-	{
+	public static void changeScene(Pane pane) {
 		Main.pane = pane;
 		if (pane instanceof ModeSelection)
-			setBGM("menu.mp3",1);
+			setBGM("menu.mp3", 1);
 		else if (pane instanceof ClassicLevelSelection)
-			setBGM("classicMode.mp3",0.5);
+			setBGM("classicMode.mp3", 0.5);
 		else if (pane instanceof TimerMode)
-			setBGM("timerMode.mp3",0.3);
+			setBGM("timerMode.mp3", 0.3);
 		else if (pane instanceof DrawLevelSelection)
-			setBGM("drawMode.mp3",0.8);
+			setBGM("drawMode.mp3", 0.8);
 		else if (pane instanceof TriColorLevelSelection)
-			setBGM("triColorMode.mp3",0.5); 
+			setBGM("triColorMode.mp3", 0.5);
 		Scene scene = new Scene(pane, 1280, 720);
 		stage.setScene(scene);
 	}
 
-	public static void exit()
-	{
+	public static void exit() {
 		stage.close();
 	}
 
-	public static void main(String[] args) throws FileNotFoundException
-	{
-		setBGM("menu.mp3",1);
+	public static void main(String[] args) throws FileNotFoundException {
+		setBGM("menu.mp3", 1);
 		launch(args);
 	}
 
-	public static void playSoundEffect(String sound)
-	{
+	public static void playSoundEffect(String sound) {
 		Thread soundEffectThread = new Thread(() -> {
-			try
-			{
+			try {
 				Media soundEffect = new Media(ClassLoader.getSystemResource("assets/sounds/" + sound).toString());
 				soundEffectMediaPlayer = new MediaPlayer(soundEffect);
 				soundEffectMediaPlayer.setCycleCount(1);
 				soundEffectMediaPlayer.play();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
 		soundEffectThread.start();
 	}
 
-	public static void setBGM(String sound, double volumn)
-	{
+	public static void setBGM(String sound, double volumn) {
 		if (sound == oldSound)
 			return;
-		if (bgmThread != null)
-		{
+		if (bgmThread != null) {
 			bgmThread.interrupt();
 			bgmMediaPlayer.stop();
 		}
 		oldSound = sound;
 		bgmThread = new Thread(() -> {
-			try
-			{
+			try {
 				Media bgm = new Media(ClassLoader.getSystemResource("assets/sounds/" + sound).toString());
 				bgmMediaPlayer = new MediaPlayer(bgm);
 				bgmMediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 				bgmMediaPlayer.setVolume(volumn);
 				bgmMediaPlayer.play();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});

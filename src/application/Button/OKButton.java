@@ -7,56 +7,46 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class OKButton extends Button implements Clickable
-{
-	public OKButton(int h, int w)
-	{
+public class OKButton extends Button implements Clickable {
+	public OKButton(int h, int w) {
 		ImageView okImageView = new ImageView(new Image(ClassLoader.getSystemResource("assets/ok.png").toString()));
 		okImageView.setFitWidth(w);
 		okImageView.setFitHeight(h);
 
 		setGraphic(okImageView);
-		
+
 		setOnClick();
 		setOnMouseEnteredAndExited();
 	}
 
 	@Override
-	public void setOnClick()
-	{
-		setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+	public void setOnClick() {
+		setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				OKButton.playSoundEffect();
 			}
 		});
 	}
-	
-	public static void playSoundEffect() //In case of Override
+
+	public static void playSoundEffect() // In case of Override
 	{
 		Main.playSoundEffect("click.wav");
 	}
 
 	@Override
-	public void setOnMouseEnteredAndExited()
-	{
+	public void setOnMouseEnteredAndExited() {
 		setStyle(onMouseExitedStyle);
-		setOnMouseEntered(new EventHandler<MouseEvent>()
-		{
+		setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent t)
-			{
+			public void handle(MouseEvent t) {
 				setStyle(onMouseEnteredStyle);
 			}
 		});
 
-		setOnMouseExited(new EventHandler<MouseEvent>()
-		{
+		setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent t)
-			{
+			public void handle(MouseEvent t) {
 				setStyle(onMouseExitedStyle);
 			}
 		});

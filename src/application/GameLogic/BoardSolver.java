@@ -6,8 +6,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BoardSolver
-{
+public class BoardSolver {
 	private InputStream inversedMFile;
 	private Board board;
 	private Light[][] inversedM;
@@ -15,79 +14,61 @@ public class BoardSolver
 	private ArrayList<Integer> shouldPress;
 	private ArrayList<Light> boardVector;
 
-	public BoardSolver(Board board) throws FileNotFoundException
-	{
+	public BoardSolver(Board board) throws FileNotFoundException {
 		inversedMFile = BoardSolver.class.getClassLoader().getResourceAsStream("BoardSolver_inversedM.txt");
 		this.board = board;
 		n = board.getN();
 		read_inversedM();
 		shouldPress = new ArrayList<Integer>();
 		boardVector = new ArrayList<Light>();
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
 				boardVector.add(board.getLight(i, j));
 			}
 		}
 		find_ShouldPress();
 	}
 
-	private void read_inversedM()
-	{
+	private void read_inversedM() {
 		inversedM = new Light[n * n][n * n];
 
-		try
-		{
+		try {
 			int cnt = 0;
-			while ((inversedMFile.read() - '0') != n)
-			{
+			while ((inversedMFile.read() - '0') != n) {
 				cnt++;
 			}
-			for (int i = 0; i < n * n; i++)
-			{
-				for (int j = 0; j < n * n; j++)
-				{
+			for (int i = 0; i < n * n; i++) {
+				for (int j = 0; j < n * n; j++) {
 					int tmp = inversedMFile.read();
-					while (!('0' <= tmp && tmp <= '9'))
-					{
+					while (!('0' <= tmp && tmp <= '9')) {
 						tmp = inversedMFile.read();
 					}
 					tmp -= '0';
 					inversedM[i][j] = new Light(tmp, 2);
 				}
 			}
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	private void find_ShouldPress()
-	{
-		for (int i = 0; i < n * n; i++)
-		{
-			Light ans = new Light(0,2);
-			for (int j = 0; j < n * n; j++)
-			{
+	private void find_ShouldPress() {
+		for (int i = 0; i < n * n; i++) {
+			Light ans = new Light(0, 2);
+			for (int j = 0; j < n * n; j++) {
 				ans = ans.plus(inversedM[i][j].multiply(boardVector.get(j)));
 			}
-			if (ans.getCurrentState() !=0)
+			if (ans.getCurrentState() != 0)
 				shouldPress.add(i);
 		}
 	}
 
-	public void printInversedM()
-	{
-		for (int i = 0; i < n * n; i++)
-		{
-			for (int j = 0; j < n * n; j++)
-			{
-				if(j%n==0 && j!=0)
-				{
+	public void printInversedM() {
+		for (int i = 0; i < n * n; i++) {
+			for (int j = 0; j < n * n; j++) {
+				if (j % n == 0 && j != 0) {
 					System.out.print("\t");
 				}
 				System.out.print(inversedM[i][j].getCurrentState() + " ");
@@ -96,8 +77,7 @@ public class BoardSolver
 		}
 	}
 
-	public void showShouldPress()
-	{
+	public void showShouldPress() {
 		Random rand = new Random();
 		int sz = shouldPress.size();
 		int idx = shouldPress.get(rand.nextInt(sz));
