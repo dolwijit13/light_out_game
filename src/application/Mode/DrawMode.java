@@ -64,7 +64,7 @@ public class DrawMode extends Mode
 			}
 		}
 
-		hBox.getChildren().addAll(board, gameMenu);
+		modeHBox.getChildren().addAll(board, gameMenu);
 	}
 
 	public static void readLevel()
@@ -208,13 +208,13 @@ public class DrawMode extends Mode
 	@Override
 	public void showPassLevel()
 	{
-		passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		DrawPassLevel passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setRestartButton(passLevel.getRestartButton());
 		Main.playSoundEffect("congrats.mp3");
 		disableBoard();
 		passLevel.setPenalty(gameMenu.getPenalty());
-		hBox.getChildren().remove(gameMenu);
-		hBox.getChildren().add(passLevel);
+		modeHBox.getChildren().remove(gameMenu);
+		modeHBox.getChildren().add(passLevel);
 	}
 }
