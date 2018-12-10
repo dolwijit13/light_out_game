@@ -3,7 +3,7 @@
   realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="application.Gallery" project="light_out_game" 
     file="/light_out_game/src/application/Gallery.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="265" x="8" y="30"/>    
+    <position height="-1" width="-1" x="272" y="65"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="application.ImageViewer" project="light_out_game" 
     file="/light_out_game/src/application/ImageViewer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="122" y="241"/>    
+    <position height="-1" width="-1" x="108" y="66"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="application.Main" project="light_out_game" 
     file="/light_out_game/src/application/Main.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="181" y="451"/>    
+    <position height="-1" width="-1" x="161" y="310"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="application.GameLogic.Board" project="light_out_game" 
     file="/light_out_game/src/application/GameLogic/Board.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="503" y="645"/>    
+    <position height="-1" width="-1" x="160" y="658"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="application.GameMenu.ClassicGameMenu" project="light_out_game" 
     file="/light_out_game/src/application/GameMenu/ClassicGameMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="536" y="978"/>    
+    <position height="-1" width="-1" x="507" y="868"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="application.GameMenu.DrawGameMenu.MiniBoard" project="light_out_game" 
     file="/light_out_game/src/application/GameMenu/DrawGameMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="621" y="1388"/>    
+    <position height="-1" width="-1" x="533" y="1398"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="application.GameMenu.DrawGameMenu" project="light_out_game" 
     file="/light_out_game/src/application/GameMenu/DrawGameMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="585" y="1241"/>    
+    <position height="-1" width="-1" x="560" y="1237"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="application.GameMenu.TimerGameMenu" project="light_out_game" 
     file="/light_out_game/src/application/GameMenu/TimerGameMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="288" x="77" y="1064"/>    
+    <position height="-1" width="-1" x="218" y="1142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="application.GameMenu.TriColorGameMenu" project="light_out_game" 
     file="/light_out_game/src/application/GameMenu/TriColorGameMenu.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="236" y="914"/>    
+    <position height="-1" width="-1" x="395" y="633"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -230,7 +230,7 @@
   </class>  
   <class id="26" language="java" name="application.Mode.ClassicMode" project="light_out_game" 
     file="/light_out_game/src/application/Mode/ClassicMode.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="173" y="1565"/>    
+    <position height="-1" width="-1" x="201" y="1499"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -239,7 +239,7 @@
   </class>  
   <class id="27" language="java" name="application.Mode.TriColorMode" project="light_out_game" 
     file="/light_out_game/src/application/Mode/TriColorMode.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="856" y="1891"/>    
+    <position height="-1" width="-1" x="857" y="1932"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -293,7 +293,7 @@
   </class>  
   <class id="33" language="java" name="application.PassLevel.PassLevel" project="light_out_game" 
     file="/light_out_game/src/application/PassLevel/PassLevel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="285" width="268" x="691" y="2077"/>    
+    <position height="-1" width="-1" x="815" y="2259"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -417,114 +417,114 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="47">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <generalization id="48">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="25"/>  
-  </generalization>  
-  <realization id="49">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <nesting id="51">    
-    <end type="SOURCE" refId="43"/>    
-    <end type="TARGET" refId="42"/>  
-  </nesting>  
-  <generalization id="52">    
+  <generalization id="47">    
     <end type="SOURCE" refId="26"/>    
     <end type="TARGET" refId="25"/>  
   </generalization>  
-  <nesting id="53">    
-    <end type="SOURCE" refId="43"/>    
-    <end type="TARGET" refId="41"/>  
-  </nesting>  
-  <generalization id="54">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <nesting id="55">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="16"/>  
-  </nesting>  
-  <generalization id="56">    
-    <end type="SOURCE" refId="46"/>    
-    <end type="TARGET" refId="44"/>  
-  </generalization>  
-  <generalization id="57">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="58">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <generalization id="59">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="33"/>  
-  </generalization>  
-  <generalization id="60">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <nesting id="61">    
-    <end type="SOURCE" refId="44"/>    
-    <end type="TARGET" refId="45"/>  
-  </nesting>  
-  <nesting id="62">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="31"/>  
-  </nesting>  
-  <generalization id="63">    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="33"/>  
-  </generalization>  
-  <generalization id="64">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="21"/>  
-  </generalization>  
-  <realization id="65">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <generalization id="66">    
+  <generalization id="48">    
     <end type="SOURCE" refId="37"/>    
     <end type="TARGET" refId="33"/>  
   </generalization>  
-  <generalization id="67">    
+  <nesting id="49">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
+  </nesting>  
+  <nesting id="50">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="41"/>  
+  </nesting>  
+  <nesting id="51">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="31"/>  
+  </nesting>  
+  <generalization id="52">    
     <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="21"/>  
   </generalization>  
-  <generalization id="68">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="33"/>  
-  </generalization>  
-  <generalization id="69">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="25"/>  
-  </generalization>  
-  <nesting id="70">    
+  <nesting id="53">    
     <end type="SOURCE" refId="28"/>    
     <end type="TARGET" refId="29"/>  
   </nesting>  
-  <nesting id="71">    
+  <nesting id="54">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="42"/>  
+  </nesting>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <nesting id="60">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="20"/>  
   </nesting>  
-  <generalization id="72">    
-    <end type="SOURCE" refId="30"/>    
+  <realization id="61">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <realization id="64">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="28"/>    
     <end type="TARGET" refId="25"/>  
   </generalization>  
-  <realization id="73">    
+  <realization id="66">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <generalization id="67">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
+  <generalization id="68">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="69">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <nesting id="70">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="45"/>  
+  </nesting>  
+  <realization id="71">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="7"/>  
   </realization>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="44"/>  
+  </generalization>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
