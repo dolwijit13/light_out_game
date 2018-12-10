@@ -32,10 +32,10 @@ public abstract class Mode extends StackPane {
 	protected final EventHandler<MouseEvent> mouseClick = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
-			Main.playSoundEffect("light.wav");
 			MouseButton button = event.getButton();
 			int n = board.getN();
 			if (button == MouseButton.PRIMARY) {
+				Main.playSoundEffect("light.wav");
 				Light b = (Light) event.getSource();
 				int ID = Integer.parseInt(b.getId());
 				int x = ID / n, y = ID % n;

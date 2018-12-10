@@ -131,11 +131,11 @@ public class LeaderBoard extends VBox {
 		}
 		for (int i = 1; i <= 4; i++) {
 			for (int j = 1; j <= 4 - 1; j++) {
-				PlayerLabel tmp1 = playerLabels.get(j-1);
+				PlayerLabel tmp1 = playerLabels.get(j - 1);
 				PlayerLabel tmp2 = playerLabels.get(j);
 				if (tmp1.isLessThan(tmp2)) {
-					playerLabels.set(j, tmp2);
-					playerLabels.set(j + 1, tmp1);
+					playerLabels.set(j - 1, tmp2);
+					playerLabels.set(j, tmp1);
 				}
 			}
 		}
