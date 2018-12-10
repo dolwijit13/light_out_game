@@ -96,8 +96,8 @@ public class ClassicMode extends Mode {
 						}
 					}
 				}
-				setPenalty();
 				showPassLevel();
+				setPenalty();
 			}
 		});
 	}

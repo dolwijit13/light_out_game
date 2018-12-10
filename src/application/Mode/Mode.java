@@ -45,8 +45,8 @@ public abstract class Mode extends StackPane {
 					undoDeq.removeFirst();
 				gameMenu.addPenalty(5);
 				if (isWinLevel() && mode != 1) {
-					setPenalty();
 					showPassLevel();
+					setPenalty();
 				} else if (isWinLevel() && mode == 1) {
 					timerNextLevel();
 				}

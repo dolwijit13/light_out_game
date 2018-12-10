@@ -99,7 +99,6 @@ public class TriColorMode extends Mode {
 			@Override
 			public void handle(ActionEvent arg0) {
 				gameMenu.addPenalty(250);
-				setPenalty();
 				int n = board.getN();
 				for (int i = 0; i < n; i++) {
 					for (int j = 0; j < n; j++) {
@@ -112,6 +111,7 @@ public class TriColorMode extends Mode {
 					}
 				}
 				showPassLevel();
+				setPenalty();
 			}
 		});
 	}
