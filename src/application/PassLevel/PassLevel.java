@@ -1,16 +1,20 @@
 package application.PassLevel;
 
+import application.Main;
 import application.Button.BackButton;
 import application.Button.GameMenuButton;
 import application.LevelSelection.ClassicLevelSelection;
 import application.LevelSelection.DrawLevelSelection;
 import application.LevelSelection.TriColorLevelSelection;
 import application.Mode.ModeSelection;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public abstract class PassLevel extends VBox {
@@ -77,18 +81,26 @@ public abstract class PassLevel extends VBox {
 			getChildren().addAll(buttonHBox);
 		}
 
-		BackButton backButton = null;
-		if (mode == 0)
-			backButton = new BackButton(100, 120, new ClassicLevelSelection());
-		if (mode == 1)
-			backButton = new BackButton(100, 120, new ModeSelection());
-		if (mode == 2)
-			backButton = new BackButton(100, 120, new DrawLevelSelection());
-		if (mode == 3)
-			backButton = new BackButton(100, 120, new TriColorLevelSelection());
+		BackButton backButton = new BackButton(100, 120, new ModeSelection());
 
 		backHBox = new HBox();
 		backHBox.setAlignment(Pos.BOTTOM_RIGHT);
+		backButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Pane pane = new ModeSelection();
+				if (mode == 0)
+					pane = new ClassicLevelSelection();
+				if (mode == 1)
+					pane = new ModeSelection();
+				if (mode == 2)
+					pane = new DrawLevelSelection();
+				if (mode == 3)
+					pane = new TriColorLevelSelection();
+				BackButton.playSoundEffect();
+				Main.changeScene(pane);
+			}
+		});
 		backHBox.getChildren().add(backButton);
 	}
 
