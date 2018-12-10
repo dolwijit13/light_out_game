@@ -53,7 +53,7 @@ public class TriColorMode extends Mode
 			}
 		}
 
-		hBox.getChildren().addAll(board, gameMenu);
+		modeHBox.getChildren().addAll(board, gameMenu);
 	}
 
 	public static void readLevel()
@@ -222,14 +222,14 @@ public class TriColorMode extends Mode
 	@Override
 	public void showPassLevel()
 	{
-		passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
+		TriColorPassLevel passLevel = new TriColorPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setRestartButton(passLevel.getRestartButton());
 		Main.playSoundEffect("congrats.mp3");
 		disableBoard();
 		passLevel.setPenalty(gameMenu.getPenalty());
-		hBox.getChildren().remove(gameMenu);
-		hBox.getChildren().add(passLevel);
+		modeHBox.getChildren().remove(gameMenu);
+		modeHBox.getChildren().add(passLevel);
 	}
 
 }

@@ -13,6 +13,7 @@ import application.Mode.TriColorMode;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -40,8 +41,9 @@ public class Main extends Application
 			stage = primaryStage;
 			changeScene(startMenu);
 			stage.setResizable(false);
+			stage.getIcons().add(new Image(ClassLoader.getSystemResource("assets/icon.png").toString()));
+			stage.setTitle("IsNextPictureADoggo?");
 			stage.show();
-
 		}
 		catch (Exception e)
 		{
