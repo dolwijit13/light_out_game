@@ -2,7 +2,6 @@ package application.PlayerData;
 
 import java.util.ArrayList;
 
-
 import application.Main;
 import application.StartMenu;
 import application.Button.BackButton;
@@ -16,81 +15,61 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class LeaderBoard extends VBox
-{
-	private class ModeButton extends Button
-	{
-		public ModeButton(int mode)
-		{
+public class LeaderBoard extends VBox {
+	private class ModeButton extends Button {
+		public ModeButton(int mode) {
 			super();
-			if (mode == 0)
-			{
+			if (mode == 0) {
 				this.setText("Classic");
-			}
-			else if (mode == 1)
-			{
+			} else if (mode == 1) {
 				this.setText("Timer");
-			}
-			else if (mode == 2)
-			{
+			} else if (mode == 2) {
 				this.setText("Draw");
-			}
-			else if (mode == 3)
-			{
+			} else if (mode == 3) {
 				this.setText("TriColor");
 			}
 
 			setPrefHeight(70);
 			setPrefWidth(320);
-			setColor(this,mode);
+			setColor(this, mode);
 		}
 	}
 
-	private class PlayerLabel extends HBox
-	{
+	private class PlayerLabel extends HBox {
 		protected int mode;
 		protected int cleared;
 		protected int penalty;
-		public PlayerLabel(int n,int mode)
-		{
+
+		public PlayerLabel(int n, int mode) {
 			super(50);
-			this.mode=mode;
+			this.mode = mode;
 
 			PlayerInfo playerInfo = new PlayerInfo(n);
 			setPadding(new Insets(5, 5, 5, 50));
 			setPrefHeight(127 - 3);
 			setPrefWidth(1280 - 6);
 			setAlignment(Pos.CENTER_LEFT);
-			
-			if (playerInfo.name.length() < 3)
-			{
+
+			if (playerInfo.name.length() < 3) {
 				cleared = -1;
 				penalty = 999999;
 				return;
 			}
 			setStyle("-fx-border-color: #828282; -fx-border-width: 3px;");
-			
-			if(mode==0)
-			{
+
+			if (mode == 0) {
 				cleared = playerInfo.classicPassedLevel;
 				penalty = playerInfo.getAllClassicPenalty();
-			}
-			else if(mode==1)
-			{
+			} else if (mode == 1) {
 				cleared = playerInfo.timerPassedLevel;
 				penalty = playerInfo.timerPenalty;
-			}
-			else if(mode==2)
-			{
+			} else if (mode == 2) {
 				cleared = playerInfo.drawPassedLevel;
 				penalty = playerInfo.getAllDrawPenalty();
-			}
-			else if(mode==3)
-			{
+			} else if (mode == 3) {
 				cleared = playerInfo.triColorPassedLevel;
 				penalty = playerInfo.getAllTriColorPenalty();
 			}
-			
 
 			String name = playerInfo.name;
 			String clearedString = "Cleared : " + cleared;
@@ -99,33 +78,30 @@ public class LeaderBoard extends VBox
 			Label nLabel = new Label(name);
 			nLabel.setStyle("-fx-font-size: 48px; -fx-font-family:\"Arial Black\"; ");
 			nLabel.setPrefWidth(382);
-			
+
 			Label clearedLabel = new Label(clearedString);
 			clearedLabel.setStyle("-fx-font-size: 36px; -fx-font-family:\"Arial Black\"; ");
 			clearedLabel.setPrefWidth(240);
-			
+
 			Label penaltyLabel = new Label(penaltyString);
 			penaltyLabel.setStyle("-fx-font-size: 36px; -fx-font-family:\"Arial Black\"; ");
 
-			this.getChildren().addAll(nLabel, clearedLabel,penaltyLabel);
+			this.getChildren().addAll(nLabel, clearedLabel, penaltyLabel);
 		}
-		
-		public boolean isLessThan(PlayerLabel o)
-		{
-			if(this.mode != o.mode)
+
+		public boolean isLessThan(PlayerLabel o) {
+			if (this.mode != o.mode)
 				return false;
-			if(this.cleared != o.cleared)
-			{
+			if (this.cleared != o.cleared) {
 				return this.cleared < o.cleared;
 			}
 			return this.penalty > o.penalty;
 		}
 	}
-	
+
 	private int mode;
 
-	public LeaderBoard(int mode)
-	{
+	public LeaderBoard(int mode) {
 		super(0);
 		this.mode = mode;
 		setPrefHeight(720);
@@ -149,91 +125,76 @@ public class LeaderBoard extends VBox
 
 		VBox playerLabelVBox = new VBox(3);
 		playerLabelVBox.setPadding(new Insets(3, 3, 0, 3));
-		ArrayList<PlayerLabel>playerLabels = new ArrayList<PlayerLabel>();
-		for (int i = 0; i < 4; i++)
-		{
+		ArrayList<PlayerLabel> playerLabels = new ArrayList<PlayerLabel>();
+		for (int i = 0; i < 4; i++) {
 			playerLabels.add(new PlayerLabel(i, mode));
 		}
-		for(int i=0;i<4;i++)
-		{
-			for(int j=0;j<4-1;j++)
-			{
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4 - 1; j++) {
 				PlayerLabel tmp1 = playerLabels.get(j);
-				PlayerLabel tmp2 = playerLabels.get(j+1);
-				if(tmp1.isLessThan(tmp2))
-				{
+				PlayerLabel tmp2 = playerLabels.get(j + 1);
+				if (tmp1.isLessThan(tmp2)) {
 					playerLabels.set(j, tmp2);
-					playerLabels.set(j+1, tmp1);
+					playerLabels.set(j + 1, tmp1);
 				}
 			}
 		}
-		
-		for(int i=0;i<4;i++)
-		{
+
+		for (int i = 0; i < 4; i++) {
 			playerLabelVBox.getChildren().add(playerLabels.get(i));
 		}
 
 		BackButton toStartMenuButton = new BackButton(100, 120, new StartMenu());
 		this.getChildren().addAll(leaderBoardLebel, modeButtonHBox, playerLabelVBox, toStartMenuButton);
-	
-		classicButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+
+		classicButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(0);
 				Main.changeScene(leaderBoard);
 			}
 		});
-		
-		timerButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+
+		timerButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(1);
 				Main.changeScene(leaderBoard);
 			}
 		});
-		
-		drawButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+
+		drawButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(2);
 				Main.changeScene(leaderBoard);
 			}
 		});
-		
-		triColorButton.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
+
+		triColorButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event)
-			{
+			public void handle(MouseEvent event) {
 				Main.playSoundEffect("click.wav");
 				LeaderBoard leaderBoard = new LeaderBoard(3);
 				Main.changeScene(leaderBoard);
 			}
 		});
 	}
-	
-	public void setColor(ModeButton modeButton,int buttonMode)
-	{
-		//0 are more colorful
-		String color0[] = {"#FF4343","#FFD728","#2BCA2F","#3F94FF"};
-		String color1[] = {"#FFC2C2","#FFED9F","#99C99A","#95C4FF"};
-		
+
+	public void setColor(ModeButton modeButton, int buttonMode) {
+		// 0 are more colorful
+		String color0[] = { "#FF4343", "#FFD728", "#2BCA2F", "#3F94FF" };
+		String color1[] = { "#FFC2C2", "#FFED9F", "#99C99A", "#95C4FF" };
+
 		String oldStyle = "-fx-font-size: 24px; -fx-font-family:\"Arial Black\"; -fx-background-radius: 0; ";
-		
-		if(this.mode==buttonMode)
-		{
-			modeButton.setStyle(oldStyle+"-fx-background-color: " + color0[buttonMode]);
+
+		if (this.mode == buttonMode) {
+			modeButton.setStyle(oldStyle + "-fx-background-color: " + color0[buttonMode]);
 			return;
 		}
-		modeButton.setStyle(oldStyle+"-fx-background-color: " + color1[buttonMode]);
+		modeButton.setStyle(oldStyle + "-fx-background-color: " + color1[buttonMode]);
 	}
 }

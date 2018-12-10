@@ -81,7 +81,7 @@ public abstract class Mode extends StackPane {
 
 	protected void timerNextLevel() {
 	}
-	
+
 	protected void setToNextLevelButton(Button toNextLevelButton) {
 		toNextLevelButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

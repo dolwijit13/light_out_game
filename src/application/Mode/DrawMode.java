@@ -16,16 +16,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class DrawMode extends Mode
-{
+public class DrawMode extends Mode {
 	private static InputStream levelFile = DrawMode.class.getClassLoader().getResourceAsStream("DrawLevel.txt");
 	private static String[] levels;
 	private static String[] initialBoards;
-	private ArrayList<Integer>initalBoard;
+	private ArrayList<Integer> initalBoard;
 	protected int level;
 
-	public DrawMode(int level)
-	{
+	public DrawMode(int level) {
 		mode = 2;
 
 		this.level = level;
@@ -33,32 +31,28 @@ public class DrawMode extends Mode
 		String[] initialTmp = initialBoards[level - 1].split(" ");
 		initalBoard = new ArrayList<Integer>();
 		level--;
-		int n = 4 + level / 5;	
+		int n = 4 + level / 5;
 
 		board = new Board(n, 2, level + 1, 2);
-		
-		for (int i = 0; i < initialTmp.length; i++)
-		{
+
+		for (int i = 0; i < initialTmp.length; i++) {
 			int temp = Integer.parseInt(initialTmp[i]);
 			initalBoard.add(temp);
-			board.changeColor(temp /n, temp %n, false);
-		}	
-		
-		gameMenu = new DrawGameMenu(n,initalBoard,level+1);
+			board.changeColor(temp / n, temp % n, false);
+		}
+
+		gameMenu = new DrawGameMenu(n, initalBoard, level + 1);
 		setResetButton(gameMenu.getResetButton());
 		setUndoButton(gameMenu.getUndoButton());
 		setHelp2Button(((DrawGameMenu) gameMenu).getHelp2Button());
-		
-		for (int i = 0; i < start.length; i++)
-		{
+
+		for (int i = 0; i < start.length; i++) {
 			int temp = Integer.parseInt(start[i]);
 			board.changeColor(temp / n, temp % n, true);
 		}
 
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
 				board.getLight(i, j).setOnMouseClicked(mouseClick);
 			}
 		}
@@ -66,102 +60,77 @@ public class DrawMode extends Mode
 		modeHBox.getChildren().addAll(board, gameMenu);
 	}
 
-	public static void readLevel()
-	{
-		try
-		{
+	public static void readLevel() {
+		try {
 			String levelString = "";
 			String initalString = "";
 			int mode = 0;
 			// 0->normal click 1->initail board
 			char c = '1';
-			while (c != '*')
-			{
+			while (c != '*') {
 				c = (char) levelFile.read();
-				if (c == '*')
-				{
+				if (c == '*') {
 					break;
-				}
-				else if (c == '/')
-				{
+				} else if (c == '/') {
 					mode = 1;
 					continue;
-				}
-				else if (c == '-')
-				{
+				} else if (c == '-') {
 					levelString += c;
 					initalString += c;
 					mode = 0;
 					continue;
 				}
-				if (mode == 0)
-				{
+				if (mode == 0) {
 					levelString += c;
-				}
-				else
-				{
+				} else {
 					initalString += c;
 				}
 			}
 			levels = levelString.split("-");
 			initialBoards = initalString.split("-");
 
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	protected void toNextLevel()
-	{
+	protected void toNextLevel() {
 		DrawMode nextLevel = new DrawMode(board.getCurLevel() + 1);
 		Main.changeScene(nextLevel);
 	}
 
 	@Override
-	protected void resetBoard()
-	{
+	protected void resetBoard() {
 		Main.changeScene(new DrawMode(board.getCurLevel()));
 	}
 
 	@Override
-	protected void setPenalty()
-	{
+	protected void setPenalty() {
 		PlayerInfo.setDrawPassedLevel(level);
 		PlayerInfo.setDrawPenalty(level, gameMenu.getPenalty());
 	}
 
-	private void setResetButton(Button resetButton)
-	{
-		resetButton.setOnAction(new EventHandler<ActionEvent>()
-		{
+	private void setResetButton(Button resetButton) {
+		resetButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0)
-			{
+			public void handle(ActionEvent arg0) {
 				GameMenuButton.playSoundEffect();
 				resetBoard();
 			}
 		});
 	}
 
-	private void setHelp2Button(Button help2Button)
-	{
-		help2Button.setOnAction(new EventHandler<ActionEvent>()
-		{
+	private void setHelp2Button(Button help2Button) {
+		help2Button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0)
-			{
+			public void handle(ActionEvent arg0) {
 				gameMenu.addPenalty(50);
 				int n = 4 + (level - 1) / 5;
 				ArrayList<Integer> shouldPress = new ArrayList<Integer>();
-				for (int i = 0; i < n; i++)
-				{
-					for (int j = 0; j < n; j++)
-					{
-						if (board.getLight(i, j).isShouldPress())
-						{
+				for (int i = 0; i < n; i++) {
+					for (int j = 0; j < n; j++) {
+						if (board.getLight(i, j).isShouldPress()) {
 							shouldPress.add(i * n + j);
 						}
 					}
@@ -173,38 +142,31 @@ public class DrawMode extends Mode
 				Light light = board.getLight(i, j);
 				light.setMinSize();
 				light.setBorder("-fx-border-color: #FF0000; -fx-border-width: 3px;");
-				
+
 				help2Button.setDisable(true);
 			}
 		});
 	}
 
 	@Override
-	public boolean isWinLevel()
-	{
+	public boolean isWinLevel() {
 		int n = board.getN();
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				int idx=i*n+j;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				int idx = i * n + j;
 				int curState = board.getLight(i, j).getCurrentState();
-				if(initalBoard.contains(idx) && curState==0)
-				{
+				if (initalBoard.contains(idx) && curState == 0) {
 					return false;
-				}
-				else if(!initalBoard.contains(idx) && curState==1)
-				{
+				} else if (!initalBoard.contains(idx) && curState == 1) {
 					return false;
 				}
 			}
 		}
 		return true;
 	}
-	
+
 	@Override
-	public void showPassLevel()
-	{
+	public void showPassLevel() {
 		DrawPassLevel passLevel = new DrawPassLevel(board.getCurLevel(), gameMenu.getPenalty());
 		setToNextLevelButton(passLevel.getToNextLevelButton());
 		setRestartButton(passLevel.getRestartButton());
