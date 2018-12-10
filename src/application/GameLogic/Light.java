@@ -28,8 +28,8 @@ public class Light extends Button
 		switch (mode) {
 		case 0:
 			//for classic
-			state0 = new ImageView(new Image(ClassLoader.getSystemResource("classic/"+level+"/"+text+".png").toString()));
-			state1 = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
+			state0 = new ImageView(new Image(ClassLoader.getSystemResource("assets/classic/"+level+"/"+text+".png").toString()));
+			state1 = new ImageView(new Image(ClassLoader.getSystemResource("assets/classic/back_light.png").toString()));
 			break;
 		case 1:
 			//for timer
@@ -42,7 +42,7 @@ public class Light extends Button
 			color1 = "#69B6FF";
 			break;
 		case 3:
-			//for
+			//for triColor
 			color0 = "#444444";
 			color1 = "#69B6FF";
 			color2 = "#FF6969";
@@ -101,7 +101,7 @@ public class Light extends Button
 		{
 			currentState = (currentState + 1) % maxState;
 			setColor(color2);
-			/// Blue to red (to 2)
+			/// Blue to Red (to 2)
 		}
 	}
 	
