@@ -6,9 +6,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-
 public class BoardSolver
 {
 	private InputStream inversedMFile;
@@ -17,13 +14,11 @@ public class BoardSolver
 	private int n;
 	private ArrayList<Integer> shouldPress;
 	private ArrayList<Light> boardVector;
-	private int maxState;
 
 	public BoardSolver(Board board) throws FileNotFoundException
 	{
 		inversedMFile = BoardSolver.class.getClassLoader().getResourceAsStream("BoardSolver_inversedM.txt");
 		this.board = board;
-		this.maxState = board.getMaxState();
 		n = board.getN();
 		read_inversedM();
 		shouldPress = new ArrayList<Integer>();
@@ -36,7 +31,6 @@ public class BoardSolver
 			}
 		}
 		find_ShouldPress();
-		//printInversedM();
 	}
 
 	private void read_inversedM()
@@ -104,26 +98,12 @@ public class BoardSolver
 
 	public void showShouldPress()
 	{
-		//*
 		Random rand = new Random();
 		int sz = shouldPress.size();
 		int idx = shouldPress.get(rand.nextInt(sz));
 		int i = idx / n, j = idx % n;
 		Light light = board.getLight(i, j);
-		String style = light.getStyle();
 		light.setMinSize();
 		light.setBorder("-fx-border-color: #ff0000; -fx-border-width: 3px;");
-		//*/
-		/*
-		for(int i=0 ; i<shouldPress.size();i++)
-		{
-			int idx=shouldPress.get(i);
-			Light light = board.getLight(idx/n, idx%n);
-			String style = light.getStyle();
-			light.setMinSize();
-			light.setStyle(style + "-fx-border-color: #ff0000; -fx-border-width: 3px;");
-		}
-		
-		//*/
 	}
 }

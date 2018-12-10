@@ -119,12 +119,12 @@ public abstract class Mode extends StackPane
 			}
 			if (gameMenu instanceof ClassicGameMenu)
 			{
-				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(!board.canHelp1());
-				((ClassicGameMenu) gameMenu).getHelp2Button().setDisable(!board.canHelp2());
+				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(!board.isCanHelp1());
+				((ClassicGameMenu) gameMenu).getHelp2Button().setDisable(!board.isCanHelp2());
 			}
 			if(gameMenu instanceof DrawGameMenu)
 			{
-				((DrawGameMenu) gameMenu).getHelp2Button().setDisable(!board.canHelp2());
+				((DrawGameMenu) gameMenu).getHelp2Button().setDisable(!board.isCanHelp2());
 			}
 			Button undoButton = gameMenu.getUndoButton();
 			undoButton.setDisable(false);

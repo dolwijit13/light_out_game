@@ -19,21 +19,9 @@ public class Light extends Button
 	private int shouldPress;
 	private String colorStyle = "";
 	private String borderStyle = "";
-	
-	public Light()
-	{
-		//back = new ImageView(new Image(ClassLoader.getSystemResource("back_light.png").toString()));
-		//test = new ImageView(new Image(ClassLoader.getSystemResource("test.png").toString()));
-		maxState = 2;
-		currentState = 0;
-		textProperty().set("N/A");
-		size =80;
-		setPrefHeight(size);
-		setPrefWidth(size);
-		//setGraphic(back);
-	}
 
-	public Light(String text, int h, int w, int maxState, int mode, int level) //mode : 0 = classic, 1 = time, 2 = ???, 3 = 3 colors
+	//mode : 0 = classic, 1 = timer, 2 = draw, 3 = triColor
+	public Light(String text, int h, int w, int maxState, int mode, int level)
 	{
 		this.shouldPress=0;
 		this.mode = mode;
@@ -62,12 +50,10 @@ public class Light extends Button
 		default:
 			break;
 		}
-		//test = new ImageView(new Image(ClassLoader.getSystemResource("test.png").toString()));
 		size = h;
 		setPadding(new Insets(0,0,0,0));
 		this.maxState = maxState;
 		this.currentState = 0;
-		//textProperty().set(text);
 		setPrefHeight(size);
 		setPrefWidth(size);
 		setMaxHeight(size);
@@ -85,8 +71,8 @@ public class Light extends Button
 	//for BoardSolver
 	public Light(int curState,int maxState)
 	{
-		this.maxState = maxState;
 		this.currentState = curState;
+		this.maxState = maxState;
 	}
 
 	public void changeColor()
@@ -99,9 +85,7 @@ public class Light extends Button
 			}else {
 				setColor(color1);
 			}
-			//setMaxSize();
-			//setStyle("");
-			/// black green (to 1)
+			/// Gray to Blue (to 1)
 		}
 		else if (currentState == maxState - 1)
 		{
@@ -111,17 +95,13 @@ public class Light extends Button
 			}else {
 				setColor(color0);
 			}
-			//setMaxSize();
-			//setStyle("");
-			/// light green (to 0)
+			/// Blue (or Red) to Gray (to 0)
 		}
 		else
 		{
 			currentState = (currentState + 1) % maxState;
 			setColor(color2);
-			//setMaxSize();
-			//setStyle("");
-			/// red (to 2)
+			/// Blue to red (to 2)
 		}
 	}
 	
@@ -138,17 +118,6 @@ public class Light extends Button
 	public String getBorderStyle() {
 		return borderStyle;
 	}
-
-	/*public void setCurrentState(int currentState)
-	{
-		this.currentState = currentState;
-		switch(currentState) {
-		case 0 : setGraphic(state0);
-		case 1 : setGraphic(state1);
-		case 2 : setGraphic(state2);
-		}
-		setStyle("");
-	}*/
 	
 	public int getCurrentState()
 	{

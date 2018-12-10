@@ -35,6 +35,7 @@ public class Main extends Application
 
 		try
 		{
+			primaryStage.setTitle("Is Next Picture A Doggo?");
 			StartMenu startMenu = new StartMenu();
 			stage = primaryStage;
 			changeScene(startMenu);

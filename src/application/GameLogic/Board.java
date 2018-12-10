@@ -27,7 +27,6 @@ public class Board extends GridPane
 			for (int j = 0; j < n; j++)
 			{
 				lights[i][j] = new Light("" + (i * n + j), 705 / n - 5, 705 / n - 5, maxState,mode,level);
-				//lights[i][j].setOnMouseClicked(mouseClick);
 				lights[i][j].setId("" + (i * n + j));
 				this.add(lights[i][j], j, i);
 			}
@@ -36,7 +35,6 @@ public class Board extends GridPane
 
 	public void changeColor(int x, int y, Boolean first)
 	{
-		// System.out.println("b "+(x*5+y)+" "+x+" "+y+" "+first);
 		Light b = lights[x][y];
 		b.changeColor();
 		if (first)
@@ -82,7 +80,7 @@ public class Board extends GridPane
 		return lights[i][j];
 	}
 	
-	public boolean canHelp1() {
+	public boolean isCanHelp1() {
 		int cnt = 0;
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < n; j++) {
@@ -102,7 +100,7 @@ public class Board extends GridPane
 		this.canHelp2=canHelp2;
 	}
 	
-	public boolean canHelp2()
+	public boolean isCanHelp2()
 	{
 		return canHelp2;
 	}
