@@ -132,7 +132,7 @@ public class LeaderBoard extends VBox
 		setPrefWidth(1280);
 		setAlignment(Pos.TOP_RIGHT);
 
-		Label leaderBoardLebel = new Label("LEADER BOARD");
+		Label leaderBoardLebel = new Label("LEADERBOARD");
 		leaderBoardLebel.setPrefHeight(82);
 		leaderBoardLebel.setPrefWidth(1280);
 		leaderBoardLebel.setAlignment(Pos.CENTER);

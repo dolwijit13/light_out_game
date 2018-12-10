@@ -168,7 +168,7 @@ public class TriColorMode extends Mode
 				int i = idx / n, j = idx % n;
 				Light light = board.getLight(i, j);
 				light.setMinSize();
-				light.setBorder("-fx-border-color: #000080; -fx-border-width: 3px;");
+				light.setBorder("-fx-border-color: #FF0000; -fx-border-width: 3px;");
 			}
 		});
 	}

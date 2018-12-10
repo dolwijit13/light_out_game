@@ -43,28 +43,23 @@ public abstract class Mode extends StackPane {
 				undoDeq.addLast(ID);
 				while (undoDeq.size() > 5)
 					undoDeq.removeFirst();
-			} else if (button == MouseButton.SECONDARY) {
-				Light b = (Light) event.getSource();
-				int ID = Integer.parseInt(b.getId());
-				int x = ID / n, y = ID % n;
-				board.changeColor(x, y, false);
+				gameMenu.addPenalty(5);
+				if (isWinLevel() && mode != 1) {
+					setPenalty();
+					showPassLevel();
+				} else if (isWinLevel() && mode == 1) {
+					timerNextLevel();
+				}
+				if (gameMenu instanceof ClassicGameMenu) {
+					((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(!board.isCanHelp1());
+					((ClassicGameMenu) gameMenu).getHelp2Button().setDisable(!board.isCanHelp2());
+				}
+				if (gameMenu instanceof DrawGameMenu) {
+					((DrawGameMenu) gameMenu).getHelp2Button().setDisable(!board.isCanHelp2());
+				}
+				Button undoButton = gameMenu.getUndoButton();
+				undoButton.setDisable(false);
 			}
-			gameMenu.addPenalty(5);
-			if (isWinLevel() && mode != 1) {
-				setPenalty();
-				showPassLevel();
-			} else if (isWinLevel() && mode == 1) {
-				timerNextLevel();
-			}
-			if (gameMenu instanceof ClassicGameMenu) {
-				((ClassicGameMenu) gameMenu).getHelp1Button().setDisable(!board.isCanHelp1());
-				((ClassicGameMenu) gameMenu).getHelp2Button().setDisable(!board.isCanHelp2());
-			}
-			if (gameMenu instanceof DrawGameMenu) {
-				((DrawGameMenu) gameMenu).getHelp2Button().setDisable(!board.isCanHelp2());
-			}
-			Button undoButton = gameMenu.getUndoButton();
-			undoButton.setDisable(false);
 		}
 	};
 

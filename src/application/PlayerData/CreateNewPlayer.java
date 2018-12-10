@@ -36,7 +36,7 @@ public class CreateNewPlayer extends VBox
 		upVBox.getChildren().add(upLabel);
 		
 		VBox nameVBox = new VBox(20);
-		Label nameLabel = new Label("What's youre name?");
+		Label nameLabel = new Label("What's your name?");
 		nameLabel.setStyle("-fx-font-size: 48px; -fx-font-family:\"Arial Black\";");
 		nameLabel.setTextFill(Color.web("#FFFFFF"));
 		TextField nameField = new TextField();
